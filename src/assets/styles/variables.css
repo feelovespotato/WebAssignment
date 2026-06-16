@@ -1,0 +1,32 @@
+
+/* ── LIGHT MODE (default) ── */
+:root {
+    /*font color*/
+  --halfvisibletext: #515151;
+  --redtext: #e51938;
+  --title: #252525;
+  --textwhite:#fafafa;
+
+  /*button and bg*/
+  --redbutton: #E51938;
+  --hoverredbutton: #890f22;
+  --whitehoverbutton: #e51938;
+  --bg:#fff;
+  --whiteborderbutton:#fafafa;
+  --redborderbutton:#e51938;
+
+  /*drink bg colours*/
+  --teabg:#E9F4C4;
+  --coffeebg:#F3D6C3;
+  --juicebg:#FBDFBE;
+  --sodabg:#FCE9B9;
+  --functionalbg:#D8EDFA;
+  --dairybg:#FEEAE9;
+  --localdrinkbg:#FDF4DB;
+  --otherbg:#EAE4D4;
+
+  /*drink title color*/
+  --drinktitle: #34410b;
+}
+
+
