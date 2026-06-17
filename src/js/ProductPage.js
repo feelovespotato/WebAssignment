@@ -1,9 +1,11 @@
-async function loadComponent(id, file) {
-  const response = await fetch(file);
-  const html = await response.text();
-  document.getElementById(id).innerHTML = html;
+
+// load all components first, THEN observe
+async function init() {
+    await loadComponent('welcoming', '../components/productpage/Welcomingsection.html');
+    await loadComponent('category', '../components/productpage/ProductCategory.html');
+    await loadComponent('Search', '../components/productpage/Searchbar.html');
+    
+    observeAnimations(); // runs after all components are in the DOM
 }
 
-loadComponent('welcoming', '../components/productpage/Welcomingsection.html');
-loadComponent('category', '../components/productpage/ProductCategory.html');
-loadComponent('Search', '../components/productpage/Searchbar.html')
+init();
