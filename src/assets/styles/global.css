@@ -43,6 +43,8 @@ p{
     font-family: 'Montserrat';
     font-size: clamp(1rem, 0.8rem + 1vw, 1.5rem);
     margin:0;
+    /*for spcaing out*/
+    margin-bottom: clamp(2rem, 1rem + 1vw, 2.5rem);
 }
 
 img, video {
@@ -68,7 +70,7 @@ img, video {
     overflow: hidden;
     cursor:pointer;
 }
-/*the product description text in cards*/
+/*the product info in cards for container purpose */
 .product-info {
     display:flex;
     flex-direction: column;
@@ -118,7 +120,7 @@ img, video {
     font-size: clamp(0.5rem, 0.9rem + 0.3vw, 1.5rem);
 }
 
-/*description below title*/
+/*description below big title*/
 .subtitle{
     font-family: 'Montserrat', sans-serif;
     font-style: italic;
@@ -133,8 +135,8 @@ img, video {
     border-radius: 100vw;
     padding-left: clamp(2rem, 1.5rem + 2vw, 3rem);
     padding-right:clamp(2rem, 1.5rem + 2vw, 3rem);
-    padding-top:clamp(1.25rem, 2vw, 1.4rem);
-    padding-bottom:clamp(1.25rem, 2vw, 1.4rem);
+    padding-top:clamp(1.25rem, 0.5rem + 0.2vw, 1rem);
+    padding-bottom:clamp(1.25rem, 0.5rem + 0.2vw, 1rem);
     
     
     /*text in button*/
@@ -143,8 +145,18 @@ img, video {
     color:var(--textwhite);
     font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
     cursor:pointer;
+    transition: all 0.1s ease;
     
 }
+
+.solidbutton:hover{
+    background-color:var(--hoverredbutton);
+    border-color: var(--hoverredbutton);
+    color:var(--grayhovertext);
+    
+}
+
+/*--------------------------------------------------------------*/
 /*search bar*/
 input {
     border: 1px solid var(--grayborder);
@@ -165,7 +177,13 @@ input {
 /*used in productpage carousel*/
 /*carousel properties*/
 
-/* the peephole window */
+/*arrow in prev next button*/
+/*.arrow-icon {
+    font-size: clamp(1.6rem, 0.5rem + 1.5vw, 3rem);
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
 .carousel-track-wrapper {
     flex: 1;
     overflow: hidden;
@@ -180,15 +198,22 @@ input {
 }
 
 /* each card fixed width inside carousel */
-.carousel-track .card {
-    min-width: clamp(150px, 40vw, 250px);  /* override the 100% width from grid context */
+/*.carousel-track .card {
     flex-shrink: 0;
-    transform: scale(0.85);         /* side cards smaller */
-    opacity: 0.6;                   /* side cards dimmed */
+    transform: scale(0.85);         /* side cards smaller *//*
+    opacity: 0.6;                   /* side cards dimmed *//*
     transition: transform 0.4s ease, opacity 0.4s ease;
+    background-color: var(--hoverredbutton);
+}
+*/
+/*.carousel-track .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .carousel-track .card.active {
-    transform: scale(1);            /* active card full size */
-    opacity: 1;                     /* active card full bright */
+    transform: scale(1);            /* active card full size *//*
+    opacity: 1;                     /* active card full bright *//*
 }
+*/

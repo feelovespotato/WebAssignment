@@ -6,6 +6,7 @@
   --redtext: #e51938;
   --title: #252525;
   --textwhite:#fafafa;
+  --grayhovertext:#a3a3a3;
 
   /*button and bg*/
   --redbutton: #E51938;
@@ -16,7 +17,7 @@
   --redborderbutton:#e51938;
   --grayborder:#a8a8a8;
 
-  /*drink bg colours*/
+  /*drinks bg colours*/
   --teabg:#E9F4C4;
   --coffeebg:#F3D6C3;
   --juicebg:#FBDFBE;

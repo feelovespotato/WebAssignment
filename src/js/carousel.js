@@ -3,15 +3,11 @@ function initCarousel() {
   // Selectors MUST be inside the function so they search the DOM after it loads
   const track = document.querySelector('.carousel-track');
   const cards = document.querySelectorAll('.carousel-track .card');
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
+  const prevBtn = document.querySelector('.carousel-btn-prev');
+  const nextBtn = document.querySelector('.carousel-btn-next');
 
   // Guard clause to catch missing elements
-  if (!track || !cards.length) {
-    console.error("Carousel elements not found in the DOM!");
-    return; 
-  }
-
+ 
   let currentIndex = 1; 
 
   function updateCarousel() {
