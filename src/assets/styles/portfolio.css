@@ -4,8 +4,9 @@
     width: 100%;
     overflow:auto;
 
-    border-radius: 2rem;
     background-color: var(--bgteagreen);
+    border-top: 40px solid var(--herobordergreen);
+    border-bottom: 40px solid var(--herobordergreen);
 
     margin-top:clamp(3.8rem, 4vw, 4rem);
     margin-bottom:clamp(2rem, 4vw, 4rem) ;
