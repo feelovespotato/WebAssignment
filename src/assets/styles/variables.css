@@ -13,6 +13,7 @@
   --hoverredbutton: #890f22;
   --whitehoverbutton: #e51938;
   --bg:#fff;
+  --bgpink:#ffeaf3;
   --whiteborderbutton:#fafafa;
   --redborderbutton:#e51938;
   --grayborder:#a8a8a8;
@@ -29,6 +30,12 @@
 
   /*drink title color*/
   --drinktitle: #34410b;
+
+  /*portfolio section*/
+  --frontendbg:var(--functionalbg);
+  --backendbg:var(--bgpink);
+  --bgteagreen:var(--teabg);
+  --greenborder: #3e432c;
 }
 
 

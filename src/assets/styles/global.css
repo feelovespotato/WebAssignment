@@ -59,6 +59,30 @@ img, video {
 /*--------------------------------------------------------------------*/
 /*used in caroussel, product category*/
 /*card properties*/
+
+/*cards each category layout*/
+.productcard-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: clamp(0.75rem, 2vw, 1.5rem); 
+  padding-top: clamp(1rem, 4vw, 2rem);
+  padding-bottom: clamp(3rem, 4vw, 4rem);
+}
+
+/* tablet */
+@media (max-width: 768px) {
+  .productcard-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+  .productcard-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 .card{
     text-align: center;
     border-radius: 2.5rem;
