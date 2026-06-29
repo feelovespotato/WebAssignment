@@ -1,0 +1,63 @@
+/* NAVBAR */
+/*adding space-between makes gapping guaranteed */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav { 
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 32px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+  width:100%;
+}
+
+nav ul {
+  display: flex;  
+  list-style: none;
+  gap: 24px;
+  margin-left: 32px;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
+    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    color: var(--title)
+}
+
+#NavButtons {
+  display: flex;
+  align-items: center;/* align is for vertical, justify for horizontal */
+  gap: 32px;
+  margin-left: auto;
+  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
+    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    color: var(--title)
+}
+
+#WebsiteTheme { 
+    font-family: 'Montserrat', sans-serif; 
+    border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+}
+
+#logo img {
+  width: 100px;
+  height: auto;
+}
