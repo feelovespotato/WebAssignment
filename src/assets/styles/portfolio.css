@@ -1,32 +1,62 @@
 
 /*for container purpose*/
 #portfolio-header{
+    position:relative;
     width: 100%;
-    overflow:auto;
+    height:100%;
+    overflow:hidden;
 
-    background-color: var(--bgteagreen);
-    border-top: 40px solid var(--herobordergreen);
-    border-bottom: 40px solid var(--herobordergreen);
-
-    margin-top:clamp(3.8rem, 4vw, 4rem);
     margin-bottom:clamp(2rem, 4vw, 4rem) ;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
 }
+/*for tea field background img*/
+.hero-bg-img{
+    position: absolute;
+    inset: 0; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+    
+}
+/*contianer for red bg card*/
+.hero-card{
+    position: relative;
+    z-index: 1;
+    background-color: var(--redbg);
+    border-radius: 2rem;
+    padding: clamp(2rem, 3vw, 3.5rem);
+    width: clamp(25rem, 80vw, 90rem);
+    
+    margin-top: clamp(3rem, 3rem + 1vw, 5rem);
+    margin-bottom: clamp(3rem, 3rem + 1vw, 5rem);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+}
+
 /*circle container*/
 .img-sec {
     flex-shrink: 0;
-    shape-outside: circle(50%);
-    float: left;
 
     width:clamp(15rem, 17rem + 5vw, 25rem);
     height: clamp(15rem, 17rem + 5vw, 25rem);
 
     overflow:hidden;
     border-radius: 50%;
-    border: 2px solid var(--greenborder);
-    margin:clamp(1.5rem , 2rem + 0.5vw, 3rem);
+    border: 2px solid var(--whiteborderbutton);
+    margin-top:clamp(1.5rem , 2rem + 0.5vw, 3rem);
    
 }
-
+/*personal img*/
 .img-sec img{
     width:100%;
     height: 100%;
@@ -38,7 +68,9 @@
 /*name + bio container*/
 .name-bio-sec {
     width:auto;
-    margin:clamp(1.5rem , 1rem + 0.5vw, 3rem);
+    margin-bottom:clamp(1.5rem , 1rem + 0.5vw, 3rem);
+    margin-left:clamp(1.5rem , 1rem + 0.5vw, 3rem);
+    margin-right:clamp(1.5rem , 1rem + 0.5vw, 3rem);
 }
 /*bio text for alignment*/
 .name-bio-sec p {
@@ -48,27 +80,12 @@
 
 /*bring the name + bio part down avoid breaking and not nice*/
 @media (max-width: 950px) {
-    #portfolio-header {
-        display: flex;
+    .hero-card {
         flex-direction: column;
         align-items: center;
-    }
-    .img-sec {
-        float: none;          /* no floating on phones */
-        shape-outside: none;  /* no shape wrapping */
-        width:clamp(15rem, 17rem + 5vw, 25rem);
-
+        text-align: center;
     }
     
-    .name-bio-sec {
-        text-align: center;   
-        margin:clamp(1.5rem , 1rem + 0.5vw, 3rem);
-    }
-    
-    .name-bio-sec p {
-        text-align: justify; 
-        text-justify: inter-word;
-    }
 }
 /*-------------------------------------------------------------------------------------*/
 /*whole front back end container*/
@@ -136,7 +153,7 @@
     width: 100%;
     height: clamp(1.2rem, 1rem + 1.5vw, 2rem);
     border-radius: 100vw;
-    color:var(--redbutton);
+    color:var(--redbg);
     border: 2px solid var(--redborderbutton);
     -webkit-appearance: none;
     appearance: none;
@@ -156,14 +173,14 @@
 
 /* Chrome, Safari, Edge*/ /*also progress bar animation*/
 .animate-fade-up.in-view progress::-webkit-progress-value {
-    background-color: var(--redbutton); 
+    background-color: var(--redbg); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Firefox*/
 .animate-fade-up.in-view progress::-moz-progress-bar {
-    background-color: var(--redbutton); 
+    background-color: var(--redbg); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
