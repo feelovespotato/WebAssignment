@@ -7,6 +7,8 @@
 
 body {
   overflow-x: hidden;
+  color: var(--color-text-dark);
+  background-color: var(--color-body-bg);
 }
 
 nav { 
@@ -17,6 +19,8 @@ nav {
   background-color: #ffffff;
   border-bottom: 1px solid #eee;
   width:100%;
+  background-color: var(--color-navbar);
+  color: var(--color-text-light);
 }
 
 nav ul {
@@ -24,6 +28,7 @@ nav ul {
   list-style: none;
   gap: 24px;
   margin-left: 32px;
+  color: var(--color-text-light);
 }
 
 nav ul a {
@@ -36,6 +41,17 @@ nav ul a {
 }
 
 #NavButtons {
+  display: flex;
+  align-items: center;/* align is for vertical, justify for horizontal */
+  gap: 32px;
+  margin-left: auto;
+  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
+    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    color: var(--title)
+}
+
+#MainButtons {
   display: flex;
   align-items: center;/* align is for vertical, justify for horizontal */
   gap: 32px;
@@ -60,4 +76,11 @@ nav ul a {
 #logo img {
   width: 100px;
   height: auto;
+}
+
+:root {
+  --color-navbar: #d729e3;     /* dark brown for navbar */
+  --color-body-bg: #ffffff;    /* soft beige for body */
+  --color-text-dark: #3b2417;  /* dark brown text */
+  --color-text-light: #fdf6ec; /* light text for navbar */
 }
