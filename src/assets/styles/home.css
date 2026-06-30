@@ -4,6 +4,13 @@
 * {
   box-sizing: border-box;
 }
+h1 { 
+  color: var(--color-text-light);
+}
+
+h2 { 
+  color: var(--color-text-light);
+}
 
 body {
   overflow-x: hidden;
@@ -12,6 +19,7 @@ body {
 }
 
 nav { 
+  color: var(--color-text-light);
   display: flex;
   align-items: center;
   gap: 32px;
@@ -20,7 +28,7 @@ nav {
   border-bottom: 1px solid #eee;
   width:100%;
   background-color: var(--color-navbar);
-  color: var(--color-text-light);
+  
 }
 
 nav ul {
@@ -32,15 +40,16 @@ nav ul {
 }
 
 nav ul a {
+  color: var(--color-text-light);
   text-decoration: none;
-  color: #333;
   font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
     font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
     font-size: clamp(0.8rem, 1vw, 1rem);
-    color: var(--title)
+    
 }
 
 #NavButtons {
+   color: var(--color-text-light);
   display: flex;
   align-items: center;/* align is for vertical, justify for horizontal */
   gap: 32px;
@@ -48,10 +57,16 @@ nav ul a {
   font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
     font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
     font-size: clamp(0.8rem, 1vw, 1rem);
-    color: var(--title)
+    
+}
+
+#NavButtons a {
+  color: var(--color-text-light);
+  text-decoration: none;
 }
 
 #MainButtons {
+  color: var(--color-text-light);
   display: flex;
   align-items: center;/* align is for vertical, justify for horizontal */
   gap: 32px;
@@ -59,7 +74,7 @@ nav ul a {
   font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
     font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
     font-size: clamp(0.8rem, 1vw, 1rem);
-    color: var(--title)
+    
 }
 
 #WebsiteTheme { 
@@ -79,8 +94,15 @@ nav ul a {
 }
 
 :root {
-  --color-navbar: #d729e3;     /* dark brown for navbar */
-  --color-body-bg: #ffffff;    /* soft beige for body */
-  --color-text-dark: #3b2417;  /* dark brown text */
-  --color-text-light: #fdf6ec; /* light text for navbar */
+  --color-navbar: #72243e;     /* dark brown for navbar */
+  --color-body-bg: #FFc5d3;    /* soft beige for body */
+  --color-text-dark: #FFFFFF;  /* dark brown text */
+  --color-text-light: #D198B7; /* light text for navbar */
+}
+
+[data-theme="dark"] {
+  --color-navbar: #2a0f1a;
+  --color-body-bg: #1a0d12;
+  --color-text-dark: #f5d6e0;
+  --color-text-light: #f5d6e0;
 }
