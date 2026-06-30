@@ -214,12 +214,12 @@ input {
     position:relative;
 }
 
-/* the sliding row */
+/* the sliding row *//*
 .carousel-track {
     display: flex;
     gap: clamp(0.75rem, 2vw, 1.5rem); 
     transition: transform 0.4s ease;
-}
+} */
 
 /* each card fixed width inside carousel */
 /*.carousel-track .card {
