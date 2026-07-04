@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Page</title>
+    
+    <!-- Font Awesome (for stars and icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Existing Global Stylesheets -->
+    <link rel="stylesheet" href="../assets/styles/variables.css">
+    <link rel="stylesheet" href="../assets/styles/global.css">
+    
+    <style>
+        /* =========================================================
+           REVIEWS SECTION STYLES (Combined from Form & List)
+        ========================================================= */
+
+        .reviews-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        /* ----- Shared Product Card ----- */
+        .product-card {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s;
+            box-sizing: border-box;
+        }
+
+        .product-card.form-card {
+            max-width: 600px;
+        }
+
+        .product-card.list-card {
+            max-width: 820px;
+        }
+
+        /* =========================================================
+           "WRITE A REVIEW" EXACT DESIGN MATCH
+        ========================================================= */
+        
+        /* Serif font for the form to match the image */
+        .form-card h2 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .stars-selector-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .stars-selector-label {
+            display: block;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: #2d3748;
+            text-align: left;
+        }
+
+        #starRatingInput {
+            display: flex;
+            gap: 0.25rem;
+            font-size: 2.4rem;
+            color: #e2e8f0; /* Light gray stars matching image */
+        }
+
+        #starRatingInput i {
+            cursor: pointer;
+            transition: color 0.15s, transform 0.1s;
+        }
+
+        #starRatingInput i:active {
+            transform: scale(0.9);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .input-control {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem; /* Fully rounded name input */
+            font-size: 0.95rem;
+            background: #ffffff;
+            transition: border 0.15s, box-shadow 0.15s;
+            box-sizing: border-box;
+            color: #2d3748;
+            font-family: sans-serif;
+        }
+
+        .input-control::placeholder {
+            color: #a0aec0;
+        }
+
+        .input-control:focus {
+            outline: none;
+            border-color: #a0aec0;
+            box-shadow: 0 0 0 3px rgba(226, 232, 240, 0.5);
+        }
+
+        textarea.input-control {
+            border-radius: 1.25rem; /* Slightly less rounded for textarea */
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Courier New', Courier, monospace; /* Monospace to match image placeholder */
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.8rem;
+            margin-top: 0.35rem;
+            display: none;
+            text-align: left;
+            font-family: sans-serif;
+        }
+
+        .form-divider {
+            border: none;
+            border-top: 1px solid #edf2f7;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .btn-primary {
+            background: #1c1c24; /* Dark Navy/Black matching the image */
+            color: #ffffff;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 3rem; /* Fully rounded button */
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        .btn-primary:hover {
+            background: #2d2d3a;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .toast-message {
+            margin-top: 1rem;
+            padding: 0.8rem 1.2rem;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: sans-serif;
+        }
+
+        .toast-message.show {
+            display: flex;
+        }
+
+
+        /* =========================================================
+           REVIEW LIST STYLES
+        ========================================================= */
+        .list-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--title, #1e1e2a);
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+            margin-bottom: 1.8rem;
+            background: #faf9f7;
+            padding: 0.8rem 1.2rem;
+            border-radius: 3rem;
+        }
+
+        .big-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+
+        .big-stars i {
+            color: #f5b342;
+            font-size: 1.6rem;
+        }
+
+        .rating-number {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--title, #1e1e2a);
+        }
+
+        .rating-count {
+            color: var(--halfvisibletext, #5b5b6e);
+            font-size: 0.95rem;
+            margin-left: 0.2rem;
+            font-family: sans-serif;
+        }
+
+        .reviews-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #edeae4;
+        }
+
+        @media (min-width: 600px) {
+            .reviews-controls {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+        }
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+            background: #fcfcfb;
+            border: 1px solid var(--grayborder, #d6d2ca);
+            border-radius: 3rem;
+            padding: 0 1rem;
+            flex: 1 1 220px;
+        }
+
+        .search-bar-container .input-control {
+            border: none;
+            padding: 0.6rem 0.6rem;
+            margin: 0;
+            width: 100%;
+            font-family: sans-serif;
+        }
+
+        .search-icon-svg {
+            width: 18px;
+            height: 18px;
+            stroke: #888899;
+            flex-shrink: 0;
+        }
+
+        .filter-sort-select {
+            padding: 0.6rem 1.2rem 0.6rem 1rem;
+            border: 1px solid var(--grayborder, #d6d2ca);
+            border-radius: 3rem;
+            background: #fcfcfb;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: left;
+            font-family: sans-serif;
+        }
+
+        .comment-card {
+            background: #faf9f7;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #edeae4;
+            transition: border 0.15s;
+        }
+
+        .comment-card:hover { border-color: #d6d2ca; }
+
+        .comment-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .comment-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--title, #1e1e2a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .comment-user-meta h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--title, #1e1e2a);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: var(--halfvisibletext, #5b5b6e);
+        }
+
+        .comment-stars {
+            display: flex;
+            gap: 0.1rem;
+            color: #f5b342;
+        }
+
+        .comment-stars svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .comment-text {
+            margin: 0.5rem 0 0.75rem;
+            line-height: 1.6;
+            font-size: 0.98rem;
+            color: #2b2b3a;
+        }
+
+        .comment-text mark {
+            background: #fdebb3;
+            padding: 0 0.15rem;
+            border-radius: 2px;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .comment-upvote-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: transparent;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--halfvisibletext, #5b5b6e);
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            font-weight: 600;
+        }
+
+        .comment-upvote-btn:hover { background: #edeae4; }
+        .comment-upvote-btn.voted { color: #f5b342; }
+        .comment-upvote-btn.voted:hover { background: #fdf0d6; }
+        .comment-upvote-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+        .comment-upvote-btn.voted svg { fill: currentColor; }
+        
+        .empty-reviews-state {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--halfvisibletext);
+        }
+
+        @media (max-width: 480px) {
+            .product-card { padding: 1.5rem; }
+            .rating-summary { flex-direction: column; align-items: flex-start; }
+            .reviews-controls { flex-direction: column; align-items: stretch; }
+            .filter-sort-select { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="welcoming"></div>
+    
+    <main>
+        <div id="category"></div>
+        <div id="Search"></div>
+        <!--<div id="carousel"></div>-->
+        
+        <!-- ===== REVIEWS INTEGRATION START ===== -->
+        <section class="reviews-layout">
+            
+            <!-- 1. WRITE A REVIEW FORM -->
+            <div class="product-card form-card animate-fade-up">
+                <h2>Write a Review</h2>
+                <form id="reviewForm" novalidate>
+                    <!-- Star selector -->
+                    <div class="stars-selector-group">
+                        <span class="stars-selector-label">How would you rate this product?</span>
+                        <div id="starRatingInput">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <div id="ratingError" class="error-message">Please select a star rating</div>
+                    </div>
+
+                    <!-- Name -->
+                    <div class="input-group">
+                        <label class="input-label" for="reviewerName">Your Name</label>
+                        <input class="input-control" type="text" id="reviewerName" placeholder="Sakura Tanaka" />
+                        <div id="nameError" class="error-message">Name is required</div>
+                    </div>
+
+                    <!-- Feedback -->
+                    <div class="input-group">
+                        <label class="input-label" for="reviewFeedback">Your Feedback</label>
+                        <textarea class="input-control" id="reviewFeedback" placeholder="Light, floral, and perfectly balanced. I love the subtle jasmine fragrance."></textarea>
+                        <div id="commentError" class="error-message">Review comment must be at least 4 characters</div>
+                    </div>
+
+                    <hr class="form-divider" />
+
+                    <button class="btn-primary" type="submit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Publish My Review
+                    </button>
+                </form>
+
+                <!-- Toast feedback -->
+                <div id="publishToast" class="toast-message">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="toastText">Thank you! Your review has been published.</span>
+                </div>
+            </div>
+
+            <!-- 2. CUSTOMER'S REVIEW LIST -->
+            <div class="product-card list-card animate-fade-up">
+                <h2>Customer's Reviews</h2>
+                <!-- RATING SUMMARY -->
+                <div class="rating-summary">
+                    <span class="rating-number" id="avgRatingDisplay">4.3</span>
+                    <span class="big-stars" id="bigStarContainer">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </span>
+                    <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
+                </div>
+                <!-- RATING LIST COMPONENT -->
+                <div id="ratingListContainer"></div>
+            </div>
+
+        </section>
+        <!-- ===== REVIEWS INTEGRATION END ===== -->
+        
+        <!-- JavaScript Dependencies -->
+        <script src="../js/utils.js"></script>
+        <script src="../js/animations.js"></script>
+        <script src="../js/ProductPage.js"></script>
+
+        <!-- Script for Reviews Logic & Web Component -->
+        <script>
+            // ============================================================
+            // 1. RATING LIST WEB COMPONENT
+            // ============================================================
+            class RatingList extends HTMLElement {
+                constructor() {
+                    super();
+                    this._reviews = [
+                        { id: 1, name: "Haruka Sato", rating: 5,
+                            comment: "This Green Tea is absolutely perfect! Just the right amount of sweetness and very refreshing after a hot afternoon walk. Best tea in the market!",
+                            date: "May 12, 2026", upvotes: 14, hasUpvoted: false },
+                        { id: 2, name: "Benjamin Lim", rating: 4,
+                            comment: "Really delicious flavor, but I wish the jasmine aroma was just a little stronger. Still, a solid beverage from Pokka that I buy almost every week.",
+                            date: "Jun 04, 2026", upvotes: 8, hasUpvoted: false },
+                        { id: 3, name: "Chloe Tan", rating: 5,
+                            comment: "Incredibly refreshing! Clean, crisp taste. It isn't overly sweetened like some of the other brands. Reminds me of the authentic tea in Japan.",
+                            date: "Jun 18, 2026", upvotes: 23, hasUpvoted: false },
+                        { id: 4, name: "Zul bin Kassim", rating: 3,
+                            comment: "The taste is okay but it's a bit too sweet for my diet. If Pokka launches a zero-sugar version of this exact blend, it would be a 5-star easily.",
+                            date: "Jun 29, 2026", upvotes: 3, hasUpvoted: false }
+                    ];
+                    this._searchQuery = "";
+                    this._sortBy = "helpful";
+                    this._filterStar = 0;
+                }
+
+                connectedCallback() { this.render(); }
+
+                get reviews() { return this._reviews; }
+                set reviews(val) { 
+                    this._reviews = val;
+                    this.updateList(); 
+                }
+
+                addReview(review) {
+                    this._reviews.unshift(review);
+                    this.updateList();
+                    this.dispatchEvent(new CustomEvent('reviews-updated', { bubbles: true, composed: true }));
+                }
+
+                render() {
+                    this.innerHTML = `
+                        <div class="rating-list-wrapper">
+                            <div class="reviews-controls">
+                                <div class="search-bar-container">
+                                    <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                    </svg>
+                                    <input class="input-control search-input" type="text" id="review-search" placeholder="Filter reviews by keyword...">
+                                </div>
+                                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                                    <select class="filter-sort-select" id="review-filter">
+                                        <option value="0">All Stars</option>
+                                        <option value="5">5 Stars only</option>
+                                        <option value="4">4 Stars &amp; above</option>
+                                        <option value="3">3 Stars &amp; below</option>
+                                    </select>
+                                    <select class="filter-sort-select" id="review-sort">
+                                        <option value="helpful">Most Helpful</option>
+                                        <option value="recent">Most Recent</option>
+                                        <option value="high">Highest Rating</option>
+                                        <option value="low">Lowest Rating</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="comments-list" id="list-container"></div>
+                        </div>
+                    `;
+                    this.setupToolbarLogic();
+                    this.updateList();
+                }
+
+                setupToolbarLogic() {
+                    const searchInput = this.querySelector('#review-search');
+                    const filterSelect = this.querySelector('#review-filter');
+                    const sortSelect = this.querySelector('#review-sort');
+                    searchInput.addEventListener('input', (e) => {
+                        this._searchQuery = e.target.value.toLowerCase().trim();
+                        this.updateList();
+                    });
+                    filterSelect.addEventListener('change', (e) => {
+                        this._filterStar = parseInt(e.target.value);
+                        this.updateList();
+                    });
+                    sortSelect.addEventListener('change', (e) => {
+                        this._sortBy = e.target.value;
+                        this.updateList();
+                    });
+                }
+
+                updateList() {
+                    const container = this.querySelector('#list-container');
+                    if (!container) return;
+
+                    let filtered = this._reviews.filter(review => {
+                        const matchesSearch = review.comment.toLowerCase().includes(this._searchQuery) ||
+                            review.name.toLowerCase().includes(this._searchQuery);
+                        let matchesStar = true;
+                        if (this._filterStar === 5) matchesStar = review.rating === 5;
+                        else if (this._filterStar === 4) matchesStar = review.rating >= 4;
+                        else if (this._filterStar === 3) matchesStar = review.rating <= 3;
+                        return matchesSearch && matchesStar;
+                    });
+
+                    filtered.sort((a, b) => {
+                        if (this._sortBy === "recent") return new Date(b.date) - new Date(a.date);
+                        else if (this._sortBy === "high") return b.rating - a.rating;
+                        else if (this._sortBy === "low") return a.rating - b.rating;
+                        else return b.upvotes - a.upvotes;
+                    });
+
+                    if (filtered.length === 0) {
+                        container.innerHTML = `
+                            <div class="empty-reviews-state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; stroke: #ccc; margin-bottom: 0.75rem;">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="8" y1="12" x2="16" y2="12" />
+                                </svg>
+                                <h3>No reviews found</h3>
+                                <p>Try adjusting your search keywords or filter criteria.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    container.innerHTML = "";
+                    filtered.forEach(review => {
+                        const card = document.createElement('div');
+                        card.className = 'comment-card animate-fade-in';
+                        card.id = `review-${review.id}`;
+
+                        let highlightedComment = review.comment;
+                        if (this._searchQuery !== "") {
+                            const regex = new RegExp(`(${this.escapeRegExp(this._searchQuery)})`, 'gi');
+                            highlightedComment = review.comment.replace(regex, '<mark>$1</mark>');
+                        }
+
+                        let starHtml = "";
+                        for (let i = 1; i <= 5; i++) {
+                            starHtml += `
+                                <svg viewBox="0 0 24 24" fill="${i <= review.rating ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                </svg>
+                            `;
+                        }
+
+                        card.innerHTML = `
+                            <div class="comment-card-header">
+                                <div class="comment-user-info">
+                                    <div class="comment-user-avatar">${review.name.charAt(0).toUpperCase()}</div>
+                                    <div class="comment-user-meta">
+                                        <h4>${review.name}</h4>
+                                        <div class="comment-date">${review.date}</div>
+                                    </div>
+                                </div>
+                                <div class="comment-stars">${starHtml}</div>
+                            </div>
+                            <p class="comment-text">${highlightedComment}</p>
+                            <div class="comment-actions">
+                                <button class="comment-upvote-btn ${review.hasUpvoted ? 'voted' : ''}" data-id="${review.id}">
+                                    <svg viewBox="0 0 24 24" fill="${review.hasUpvoted ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                                    </svg>
+                                    <span class="count">${review.upvotes}</span> people found this helpful
+                                </button>
+                            </div>
+                        `;
+
+                        const upvoteBtn = card.querySelector('.comment-upvote-btn');
+                        upvoteBtn.addEventListener('click', () => this.handleUpvote(review.id));
+                        container.appendChild(card);
+                    });
+                }
+
+                handleUpvote(id) {
+                    const review = this._reviews.find(r => r.id === id);
+                    if (!review) return;
+                    review.hasUpvoted ? (review.upvotes--, review.hasUpvoted = false) : (review.upvotes++, review.hasUpvoted = true);
+                    this.dispatchEvent(new CustomEvent('review-upvote', {
+                        bubbles: true,
+                        composed: true,
+                        detail: { id, upvotes: review.upvotes, hasUpvoted: review.hasUpvoted }
+                    }));
+                    this.updateList();
+                }
+
+                escapeRegExp(string) {
+                    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                }
+            }
+
+            customElements.define('rating-list', RatingList);
+
+            // ============================================================
+            // 2. APP LOGIC (Mounting, Summary Calc, and Form Submission)
+            // ============================================================
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                // Initialize IntersectionObserver if the function exists (from animation.js)
+                if(typeof observeAnimations === 'function') {
+                    observeAnimations();
+                }
+
+                // Mount Rating List Component
+                const container = document.getElementById('ratingListContainer');
+                const ratingList = document.createElement('rating-list');
+                ratingList.id = 'mainRatingList';
+                container.appendChild(ratingList);
+
+                // Summary Elements
+                const reviewCountDisplay = document.getElementById('reviewCountDisplay');
+                const avgRatingDisplay = document.getElementById('avgRatingDisplay');
+                const bigStarContainer = document.getElementById('bigStarContainer');
+
+                // Function to Update Top Summary Header
+                function updateSummary() {
+                    const reviews = ratingList.reviews || [];
+                    const total = reviews.length;
+                    reviewCountDisplay.textContent = `Based on ${total} reviews`;
+                    if (total > 0) {
+                        const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
+                        const avg = (sum / total).toFixed(1);
+                        avgRatingDisplay.textContent = avg;
+                        
+                        const avgNum = parseFloat(avg);
+                        bigStarContainer.innerHTML = '';
+                        for (let i = 1; i <= 5; i++) {
+                            const icon = document.createElement('i');
+                            if (i <= Math.floor(avgNum)) {
+                                icon.className = 'fas fa-star';
+                            } else if (i === Math.ceil(avgNum) && avgNum % 1 >= 0.3) {
+                                icon.className = 'fas fa-star-half-alt';
+                            } else {
+                                icon.className = 'far fa-star';
+                            }
+                            bigStarContainer.appendChild(icon);
+                        }
+                    }
+                }
+
+                // Summary Event Listeners
+                ratingList.addEventListener('reviews-updated', updateSummary);
+                ratingList.addEventListener('review-upvote', updateSummary);
+                setTimeout(updateSummary, 50);
+
+                // ============================================================
+                // FORM LOGIC
+                // ============================================================
+                const starContainer = document.getElementById('starRatingInput');
+                const stars = starContainer.querySelectorAll('.fa-star');
+                const nameInput = document.getElementById('reviewerName');
+                const feedbackInput = document.getElementById('reviewFeedback');
+                const form = document.getElementById('reviewForm');
+                const toast = document.getElementById('publishToast');
+                const toastText = document.getElementById('toastText');
+                const ratingError = document.getElementById('ratingError');
+                const nameError = document.getElementById('nameError');
+                const commentError = document.getElementById('commentError');
+
+                let selectedRating = 0;
+                let hoveredRating = 0;
+
+                function updateStars() {
+                    const display = hoveredRating || selectedRating || 0;
+                    stars.forEach((star, idx) => {
+                        star.style.color = (idx + 1 <= display) ? '#f5b342' : '#e2e8f0';
+                    });
+                }
+
+                function resetHover() { hoveredRating = 0; updateStars(); }
+
+                stars.forEach(star => {
+                    star.addEventListener('mouseenter', function() {
+                        hoveredRating = parseInt(this.dataset.value);
+                        updateStars();
+                    });
+                    star.addEventListener('click', function() {
+                        const val = parseInt(this.dataset.value);
+                        selectedRating = (selectedRating === val) ? 0 : val;
+                        updateStars();
+                        ratingError.style.display = 'none';
+                    });
+                    star.addEventListener('mouseleave', resetHover);
+                });
+                starContainer.addEventListener('mouseleave', resetHover);
+
+                // Form Submit Handling
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    let hasError = false;
+
+                    // Validate Rating
+                    if (selectedRating === 0) {
+                        ratingError.style.display = 'block';
+                        hasError = true;
+                    } else {
+                        ratingError.style.display = 'none';
+                    }
+
+                    // Validate Name
+                    const name = nameInput.value.trim();
+                    if (name === '') {
+                        nameError.style.display = 'block';
+                        nameInput.style.borderColor = '#e53e3e';
+                        hasError = true;
+                    } else {
+                        nameError.style.display = 'none';
+                        nameInput.style.borderColor = '#e2e8f0';
+                    }
+
+                    // Validate Comment
+                    const comment = feedbackInput.value.trim();
+                    if (comment.length < 4) {
+                        commentError.style.display = 'block';
+                        feedbackInput.style.borderColor = '#e53e3e';
+                        hasError = true;
+                    } else {
+                        commentError.style.display = 'none';
+                        feedbackInput.style.borderColor = '#e2e8f0';
+                    }
+
+                    if (hasError) return;
+
+                    // Build review data
+                    const now = new Date();
+                    const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    const reviewData = {
+                        id: Date.now(),
+                        name: name,
+                        rating: selectedRating,
+                        comment: comment,
+                        date: dateStr,
+                        upvotes: 0,
+                        hasUpvoted: false
+                    };
+
+                    // Add review directly to the list below
+                    ratingList.addReview(reviewData);
+
+                    // Show success toast
+                    toastText.textContent = `⭐ ${selectedRating} stars · Thank you, ${name}! Review published.`;
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+
+                    // Reset form
+                    form.reset();
+                    selectedRating = 0;
+                    stars.forEach(s => s.style.color = '#e2e8f0');
+                    nameInput.style.borderColor = '#e2e8f0';
+                    feedbackInput.style.borderColor = '#e2e8f0';
+                    ratingError.style.display = 'none';
+                    nameError.style.display = 'none';
+                    commentError.style.display = 'none';
+                });
+
+                // Real-time error clearing
+                nameInput.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        nameError.style.display = 'none';
+                        this.style.borderColor = '#e2e8f0';
+                    }
+                });
+                feedbackInput.addEventListener('input', function() {
+                    if (this.value.trim().length >= 4) {
+                        commentError.style.display = 'none';
+                        this.style.borderColor = '#e2e8f0';
+                    }
+                });
+            });
+        </script>
+        
+    </main>
+</body>
+</html>
