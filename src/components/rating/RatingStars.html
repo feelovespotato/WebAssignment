@@ -1,0 +1,241 @@
+<!-- components/RatingStars.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rating Stars Component </title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    /* Sandbox styles */
+    .sandbox-container {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2.5rem;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    .sandbox-title {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+    .sandbox-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+    .demo-box {
+      background-color: var(--color-bg);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .rating-value-display {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .code-snippet {
+      text-align: left;
+      background-color: #1a2e22;
+      color: #e2f4ea;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      overflow-x: auto;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sandbox-container">
+    <h2 class="sandbox-title">Rating Stars Component</h2>
+
+    <div class="demo-box">
+      <div class="rating-value-display">Select a Rating</div>
+      
+      <!-- Reusable Web Component Instance -->
+      <rating-stars id="sandbox-stars" rating="0" interactive="true"></rating-stars>
+      
+      <div id="status-text" class="rating-total-count">Click the stars to rate this product</div>
+    </div>
+
+  </div>
+  <!-- Web Component Implementation script -->
+  <script>
+    class RatingStars extends HTMLElement {
+      static get observedAttributes() {
+        return ['rating', 'interactive', 'size'];
+      }
+
+      constructor() {
+        super();
+        this._rating = 0;
+        this._interactive = false;
+        this._size = '1.85rem';
+        this._hoverRating = 0;
+      }
+
+      connectedCallback() {
+        this._rating = parseFloat(this.getAttribute('rating')) || 0;
+        this._interactive = this.getAttribute('interactive') === 'true';
+        this._size = this.getAttribute('size') || '1.85rem';
+        this.render();
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue) return;
+        if (name === 'rating') {
+          this._rating = parseFloat(newValue) || 0;
+          this.updateStars();
+        } else if (name === 'interactive') {
+          this._interactive = newValue === 'true';
+          this.render();
+        } else if (name === 'size') {
+          this._size = newValue;
+          this.style.setProperty('--star-size', newValue);
+        }
+      }
+
+      get rating() {
+        return this._rating;
+      }
+
+      set rating(val) {
+        this.setAttribute('rating', val);
+      }
+
+      render() {
+        this.style.display = 'inline-flex';
+        this.style.gap = '0.35rem';
+        this.style.setProperty('--star-size', this._size);
+        this.innerHTML = '';
+
+        // Generate 5 stars
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('span');
+          star.className = 'star-interactive';
+          star.setAttribute('data-value', i);
+          star.style.fontSize = this._size;
+          star.style.lineHeight = '1';
+          star.style.display = 'inline-block';
+          star.style.cursor = this._interactive ? 'pointer' : 'default';
+          
+          // Use inline custom SVG star representation for modularity
+          star.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em;">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          `;
+
+          if (this._interactive) {
+            // Event listeners for interactivity
+            star.addEventListener('mouseenter', () => this.handleMouseEnter(i));
+            star.addEventListener('mouseleave', () => this.handleMouseLeave());
+            star.addEventListener('click', () => this.handleClick(i));
+          }
+
+          this.appendChild(star);
+        }
+
+        this.updateStars();
+      }
+
+      updateStars() {
+        const stars = this.querySelectorAll('.star-interactive');
+        const activeRating = this._hoverRating || this._rating;
+
+        stars.forEach((star, index) => {
+          const value = index + 1;
+          const svg = star.querySelector('svg');
+          
+          if (value <= activeRating) {
+            star.classList.add('filled');
+            svg.setAttribute('fill', 'currentColor');
+            star.style.color = 'var(--color-secondary)';
+          } else if (value - 0.5 <= activeRating) {
+            // Half star representation
+            star.classList.add('filled');
+            // Using a linear gradient fallback for half-stars (SVG gradient is clean)
+            svg.setAttribute('fill', 'url(#half-star-gradient)');
+            star.style.color = 'var(--color-secondary)';
+          } else {
+            star.classList.remove('filled');
+            svg.setAttribute('fill', 'none');
+            star.style.color = 'var(--color-border)';
+          }
+
+          // Active hover color styling
+          if (this._hoverRating && value <= this._hoverRating) {
+            star.style.color = '#ffca28';
+          }
+        });
+      }
+
+      handleMouseEnter(value) {
+        this._hoverRating = value;
+        this.updateStars();
+        this.dispatchEvent(new CustomEvent('star-hover', { detail: value }));
+      }
+
+      handleMouseLeave() {
+        this._hoverRating = 0;
+        this.updateStars();
+        this.dispatchEvent(new CustomEvent('star-hover', { detail: 0 }));
+      }
+
+      handleClick(value) {
+        this._rating = value;
+        this.setAttribute('rating', value);
+        this.updateStars();
+        
+        // Dispatch custom event for forms/listeners
+        this.dispatchEvent(new CustomEvent('rating-change', {
+          bubbles: true,
+          composed: true,
+          detail: { rating: value }
+        }));
+      }
+    }
+
+    customElements.define('rating-stars', RatingStars);
+
+    // Sandbox controller code
+    const sandboxStars = document.getElementById('sandbox-stars');
+    const valueDisplay = document.querySelector('.rating-value-display');
+    const statusText = document.getElementById('status-text');
+
+    sandboxStars.addEventListener('rating-change', (e) => {
+      const rating = e.detail.rating;
+      valueDisplay.textContent = `Selected Rating: ${rating} Star${rating > 1 ? 's' : ''}`;
+      
+      const feelings = ['Disliked it', 'Could be better', 'Quite good', 'Loved it!', 'Absolutely Outstanding!'];
+      statusText.innerHTML = `<strong>${feelings[rating - 1]}</strong> &bull; Click again to change your rating.`;
+    });
+
+    sandboxStars.addEventListener('star-hover', (e) => {
+      const hoverVal = e.detail;
+      if (hoverVal > 0) {
+        valueDisplay.textContent = `Hovering: ${hoverVal} Star${hoverVal > 1 ? 's' : ''}`;
+      } else {
+        const rating = sandboxStars.rating;
+        valueDisplay.textContent = rating > 0 
+          ? `Selected Rating: ${rating} Star${rating > 1 ? 's' : ''}`
+          : 'Select a Rating';
+      }
+    });
+  </script>
+</body>
+</html>
