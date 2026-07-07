@@ -1,1 +1,95 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\SignupPage.css">
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="">
+<title> Pokka Member Sign Up Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+<main class="container">
+    <div class="signup">
+<header>
+    <h1> <link rel="icon" type="image/png" href=""> </h1>
+
+    <h2> Join the Pokka Family to enjoy endless benefits! </h2>
+<p class="description">
+    Please fill up the information below to register your Pokka account. 
+</p>
+</header>
+
+<form action="#" method: "post">
+     <label for ="email address"> Email Address</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Email Address"
+            required>
+
+        <label for ="First Name"> First Name</label>
+        <input
+            type="text"
+            id="First Name"
+            placeholder="First Name"
+            required>
+
+        <label for ="Last Name"> Last Name</label>
+        <input 
+            type="text"
+            id="First Name"
+            placeholder="Last Name">
+        
+        <label for ="Mobile Number"> Mobile Number </label>
+        <input
+            type="tel"
+            id="Mobile Number"
+            placeholder="Mobile Number"
+            required>
+        
+        <label for="password"> Password </label>
+        <div class="passwordContainer">
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required>
+
+        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+        </div>
+
+        <label for ="confirm password"> Confirm Password </label>
+        <div class="passwordContainer">
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm your Password"
+            required>
+
+        <i class="fa-solid fa-eye-slash" id="toggleConfirmPassword"></i>
+        </div>
+
+        <label for="4 digit pin code"> A 4-digit Unique Pin Code</label>
+        <input
+            type="text"
+            id="pin"
+            placeholder="A 4-digit Pin. Yours alone."
+            maxlength="4"
+            pattern="[0-9]"
+            inputmode="numeric"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            required>
+
+<div class="signup-options">
+        <button type="submit" class="signupButton">
+            Submit
+        </button>
+    </form>
+
+    <p class="signupFooter"> Already have an account? <a href="LoginPage.html"> Login </a></p>
+    </div>
+</main>
+<script src="C:\Users\Pravineesh\WebAssignment\src\js\SignupPage.js"></script>
+</body>
+</html>
