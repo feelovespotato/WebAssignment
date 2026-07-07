@@ -5,7 +5,7 @@
                 constructor() {
                     super();
                     this._reviews = [
-                        { id: 1, name: "Haruka Sato", rating: 5,
+                        { id: 1, name: "Alex Lau", rating: 5,
                             comment: "This Green Tea is absolutely perfect! Just the right amount of sweetness and very refreshing after a hot afternoon walk. Best tea in the market!",
                             date: "May 12, 2026", upvotes: 14, hasUpvoted: false },
                         { id: 2, name: "Benjamin Lim", rating: 4,
