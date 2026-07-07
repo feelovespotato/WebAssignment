@@ -8,7 +8,7 @@ async function init() {
     
     
     observeAnimations(); // runs after all components are in the DOM
-    
+     initCarousel();
 }
 
 init();
