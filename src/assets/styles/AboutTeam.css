@@ -1,4 +1,4 @@
-/* ===== PAGE ROOT ===== */
+/* Page root*/
 .about-team-root {
   max-width: 1200px;
   margin: 40px auto;
@@ -6,7 +6,7 @@
   font-family: var(--font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
 }
 
-/* ===== HEADER SECTION ===== */
+/* Header section */
 .team-header {
   text-align: center;
   margin-bottom: 50px;
@@ -30,7 +30,7 @@
   font-weight: 400;
 }
 
-/* ===== GRID SYSTEM (2 Cards Per Row) ===== */
+/* Grid */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -38,7 +38,7 @@
   margin-bottom: 60px;
 }
 
-/* Responsive: Stacks to 1 card per row on mobile phones */
+/* 1 card per row for mobile users*/
 @media (max-width: 768px) {
   .team-grid {
     grid-template-columns: 1fr;
@@ -46,7 +46,7 @@
   }
 }
 
-/* ===== CARD DESIGN ===== */
+/* Card design */
 .team-card {
   background: #ffffff;
   border: 1px solid #e8e8e8;
@@ -68,13 +68,13 @@
   border-color: var(--redtext, #e51938);
 }
 
-/* ===== MEMBER AVATAR ===== */
+/* Member avatar */
 .member-avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 15px; /* Center and add space below */
+  margin: 0 auto 15px; /* Center & add space below */
   flex-shrink: 0;
   border: 3px solid #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -87,7 +87,7 @@
   left: auto;
 }
 
-/* If using real images */
+/* For real images */
 .member-avatar img {
   width: 100%;
   height: 100%;
@@ -95,14 +95,14 @@
   display: block;
 }
 
-/* ===== CARD TEXT STYLES ===== */
+/* Card text styles */
 .team-card h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   margin: 0 0 4px 0;
   color: var(--title, #252525);
-  position: relative; /* Reset positioning */
+  position: relative; 
 }
 
 .member-name {
@@ -113,7 +113,7 @@
   letter-spacing: 1.2px;
   margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
-  position: relative; /* Reset positioning */
+  position: relative; 
 }
 
 /* ===== QUANTIFIED METRICS BOX ===== */
@@ -146,7 +146,7 @@
   margin-bottom: 0;
 }
 
-/* Custom styled labels using the design's format */
+/* Custom styled labels */
 .contribution-metrics li strong {
   color: #0f172a;
   display: block;
@@ -164,7 +164,7 @@
   border-top: 1px solid #e8edf2;
 }
 
-/* ===== BUTTONS ===== */
+/* Buttons */
 .member-actions {
   display: flex;
   gap: 12px;
@@ -208,31 +208,6 @@
   transform: translateY(-1px);
 }
 
-/* ===== CONTRIBUTION SECTION (Footer) ===== */
-.contribution-section {
-  background: #f8fafc;
-  padding: 35px 40px;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  margin-top: 40px;
-}
-
-.contribution-section h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: var(--title, #252525);
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-
-.contribution-section p {
-  color: #475569;
-  font-size: 1rem;
-  margin-bottom: 0;
-  line-height: 1.7;
-}
-
-/* ===== RESPONSIVE FINE-TUNING ===== */
 @media (max-width: 480px) {
   .team-card {
     padding: 25px 20px 20px;
@@ -265,14 +240,8 @@
     text-align: center;
     padding: 12px;
   }
-  
-  .contribution-section {
-    padding: 25px 20px;
-  }
 }
 
-/* ===== ANIMATION ENHANCEMENT (optional) ===== */
-/* If you want to add staggered animation to cards */
 .team-card {
   opacity: 0;
   animation: fadeUp 0.6s ease forwards;
@@ -291,13 +260,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Override animation if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .team-card {
-    opacity: 1;
-    animation: none;
   }
 }

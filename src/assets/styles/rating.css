@@ -7,7 +7,7 @@
   margin-top: 2rem;
 }
 
-/* Shared Product Card */
+/* Shared product card */
 .product-card {
   width: 100%;
   background: #ffffff;
@@ -26,8 +26,7 @@
 }
 
 /* Write a review form */
-
-/* Form title - uses Georgia font */
+/* Form title */
 .form-card h2 {
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1.8rem;
@@ -127,7 +126,7 @@ textarea.input-control {
   margin: 2rem 0 1.5rem;
 }
 
-/* Button (for publish my review) */
+/* Button to publish the reviews */
 .btn-publish {
   display: inline-flex;
   align-items: center;
@@ -146,7 +145,7 @@ textarea.input-control {
   fill: none;
 }
 
-/* Toast notification - unique */
+/* Toast notification */
 .toast-message {
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
@@ -165,11 +164,8 @@ textarea.input-control {
   display: flex;
 }
 
-/* ============================================================
-   REVIEW LIST - UNIQUE STYLES
-   =========================================================== */
-
-/* Rating summary - unique */
+/* Review list*/
+/* Rating summary */
 .rating-summary {
   display: flex;
   align-items: center;
@@ -199,7 +195,7 @@ textarea.input-control {
   color: var(--title, #1e1e2a);
 }
 
-/* Review controls - unique layout */
+/* Review controls */
 .reviews-controls {
   display: flex;
   flex-direction: column;
@@ -218,7 +214,7 @@ textarea.input-control {
   }
 }
 
-/* Search bar container - unique */
+/* Search bar container */
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -229,7 +225,7 @@ textarea.input-control {
   flex: 1 1 220px;
 }
 
-/* Override global input inside search bar */
+/* Search bar */
 .search-bar-container .input-control {
   border: none;
   padding: 0.6rem 0.6rem;
@@ -250,7 +246,7 @@ textarea.input-control {
   flex-shrink: 0;
 }
 
-/* Filter/sort selects - unique */
+/* Filter/sort selects */
 .filter-sort-select {
   padding: 0.6rem 1.2rem 0.6rem 1rem;
   border: 1px solid var(--grayborder, #d6d2ca);
@@ -262,7 +258,7 @@ textarea.input-control {
   outline: none;
 }
 
-/* Comments list - unique */
+/* Comments list */
 .comments-list {
   display: flex;
   flex-direction: column;
@@ -403,7 +399,7 @@ textarea.input-control {
   font-weight: 600;
 }
 
-/* Empty state - unique */
+/* Empty state */
 .empty-reviews-state {
   text-align: center;
   padding: 2.5rem 1rem;
@@ -423,7 +419,7 @@ textarea.input-control {
   margin-bottom: 0.2rem;
 }
 
-/* Animation - unique */
+/* Animation */
 .animate-fade-in {
   animation: fadeIn 0.3s ease;
 }
@@ -439,7 +435,6 @@ textarea.input-control {
   }
 }
 
-/* Responsive overrides */
 @media (max-width: 480px) {
   .product-card {
     padding: 1.5rem;
