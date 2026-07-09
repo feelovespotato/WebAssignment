@@ -13,6 +13,25 @@
 <body>
     <main>
         <section class="reviews-layout">
+            <!-- Customer's review list -->
+            <div class="product-card list-card animate-fade-up">
+                <h2>Customer's Reviews</h2>
+                <!-- Rating summary -->
+                <div class="rating-summary">
+                    <span class="rating-number" id="avgRatingDisplay">4.3</span>
+                    <span class="big-stars" id="bigStarContainer">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </span>
+                    <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
+                </div>
+                <!-- Rating List -->
+                <div id="ratingListContainer"></div>
+            </div>
+            
             <!-- Write a review -->
             <div class="product-card form-card animate-fade-up">
                 <h2>Write a Review</h2>
@@ -60,25 +79,6 @@
                     <i class="fas fa-check-circle"></i>
                     <span id="toastText">Thank you! Your review has been published.</span>
                 </div>
-            </div>
-
-            <!-- Customer's review list -->
-            <div class="product-card list-card animate-fade-up">
-                <h2>Customer's Reviews</h2>
-                <!-- Rating summary -->
-                <div class="rating-summary">
-                    <span class="rating-number" id="avgRatingDisplay">4.3</span>
-                    <span class="big-stars" id="bigStarContainer">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
-                </div>
-                <!-- Rating List -->
-                <div id="ratingListContainer"></div>
             </div>
 
         </section>
