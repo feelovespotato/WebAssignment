@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\SignupPage.css">
+<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\navbar.css">
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="">
 <title> Pokka Member Sign Up Form</title>
@@ -9,6 +10,40 @@
 </head>
 
 <body>
+
+    <nav class="navbar">
+
+    <a href="MainDisplay.html" class="navbarlogo">
+        Punde
+    </a>
+
+    <ul class="navLinks">
+
+        <li><a href="MainDisplay.html">Home</a></li>
+
+        <li><a href="DrinkCategories.html">Products</a></li>
+
+        <li><a href="#">Rewards</a></li>
+
+        <li><a href="#">About Us</a></li>
+
+        <li><a href="#">Contact</a></li>
+
+    </ul>
+
+    <div class="navButtons">
+
+        <a href="LoginForm.html" class="loginButton">
+            Login
+        </a>
+
+        <a href="SignupPage.html" class="SignupButton">
+            Sign Up
+        </a>
+
+    </div>
+    </nav>
+
 <main class="container">
     <div class="signup">
 <header>
@@ -20,7 +55,7 @@
 </p>
 </header>
 
-<form action="#" method: "post">
+<form action="#" method="post">
      <label for ="email address"> Email Address</label>
         <input
             type="email"
@@ -38,7 +73,7 @@
         <label for ="Last Name"> Last Name</label>
         <input 
             type="text"
-            id="First Name"
+            id="Last Name"
             placeholder="Last Name">
         
         <label for ="Mobile Number"> Mobile Number </label>
@@ -85,6 +120,7 @@
         <button type="submit" class="signupButton">
             Submit
         </button>
+</div>
     </form>
 
     <p class="signupFooter"> Already have an account? <a href="LoginPage.html"> Login </a></p>

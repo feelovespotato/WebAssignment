@@ -9,9 +9,6 @@
 
 body{
     background:#F8F5EF;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     min-height:100vh;
 }
 
@@ -89,28 +86,24 @@ input:focus{
     box-shadow:0 0 8px rgba(243,154,30,.15);
 }
 
-.signupButton{
+.SignupButton{
 
-    width:100%;
-    margin-top:35px;
-    padding:16px;
-    border:none;
-    border-radius:50px;
-    background:#F39A1E;
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+    text-decoration: none;
+    color: white;
+    background: #F39A1E;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .3s;
 }
 
-.signupButton:hover{
+.SignupButton:hover{
 
     background:#D98300;
     transform:translateY(-2px);
 }
 
-.signupFooter{
+.SignupFooter{
 
     text-align:center;
     margin-top:30px;
@@ -122,14 +115,14 @@ input:focus{
     gap:5px;
 }
 
-.signupFooter a{
+.SignupFooter a{
     color:#F39A1E;
     text-decoration: none;
     font-weight:600;
     transition: 0.4s;
 }
 
-.signupFooter a:hover{
+.SignupFooter a:hover{
     text-decoration: underline;
 }
 
