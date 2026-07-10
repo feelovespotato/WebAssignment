@@ -203,70 +203,72 @@ textarea.input-control {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #edeae4;
-}
-
-@media (min-width: 600px) {
-  .reviews-controls {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+  min-width: 0;
 }
 
 /* Search bar container */
 .search-bar-container {
-    display: flex;
-    align-items: center;
-    background: #fcfcfb;
-    border: 1px solid var(--color-border, #d6d2ca);
-    border-radius: 3rem;
-    padding: 0 1rem;
-    transition: border 0.15s, box-shadow 0.15s;
-    flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  background: #fcfcfb;
+  border: 1px solid var(--color-border, #d6d2ca);
+  border-radius: 3rem;
+  padding: 0 1rem;
+  transition: border 0.15s, box-shadow 0.15s;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .search-bar-container:focus-within {
-    border-color: #b8a78f;
-    box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
+  border-color: #b8a78f;
+  box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
 }
 
 .search-icon-svg {
-    width: 18px;
-    height: 18px;
-    stroke: #888899;
-    flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  stroke: #888899;
+  flex-shrink: 0;
 }
 
 .search-bar-container .input-control {
-    border: none;
-    background: transparent;
-    padding: 0.6rem 0.6rem;
-    font-size: 0.95rem;
-    width: 100%;
-    outline: none;
-    opacity: 0.85;
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0.6rem;
+  font-size: 0.95rem;
+  flex: 1 1 auto;
+  width: 100%;
+  outline: none;
+  opacity: 0.85;
+  box-sizing: border-box;
 }
 
 .search-bar-container .input-control:focus {
-    opacity: 1;
+  opacity: 1;
+}
+
+.filter-sort-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .filter-sort-select {
-    padding: 0.5rem 1.2rem 0.5rem 1rem;
-    border: 1px solid var(--color-border, #d6d2ca);
-    border-radius: 3rem;
-    background: #fcfcfb;
-    font-size: 0.9rem;
-    color: var(--color-text, #1e1e2a);
-    cursor: pointer;
-    outline: none;
-    transition: border 0.15s;
-    min-width: 140px;
+  padding: 0.5rem 1.2rem 0.5rem 1rem;
+  border: 1px solid var(--color-border, #d6d2ca);
+  border-radius: 3rem;
+  background: #fcfcfb;
+  font-size: 0.9rem;
+  color: var(--color-text, #1e1e2a);
+  cursor: pointer;
+  outline: none;
+  transition: border 0.15s;
+  min-width: 140px;
 }
 
 .filter-sort-select:focus {
-    border-color: #b8a78f;
+  border-color: #b8a78f;
 }
 
 /* Comments list */

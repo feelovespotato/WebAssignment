@@ -44,9 +44,9 @@ class RatingList extends HTMLElement {
                             <circle cx="11" cy="11" r="8" />
                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
                         </svg>
-                        <input class="class="input-group"control search-input" type="text" id="review-search" placeholder="Filter reviews by keyword...">
+                        <input class="input-control search-input" type="text" id="review-search" placeholder="Filter reviews by keyword...">
                     </div>
-                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <div class="filter-sort-group">
                         <select class="filter-sort-select" id="review-filter">
                             <option value="0">All Stars</option>
                             <option value="5">5 Stars only</option>
