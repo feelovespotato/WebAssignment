@@ -192,16 +192,21 @@ customElements.define('rating-list', RatingList);
 // Mounting, summary calculation & form submission
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Initialize IntersectionObserver if the function exists
-    if(typeof observeAnimations === 'function') {
+    // Initialize IntersectionObserver if available
+    if (typeof observeAnimations === 'function') {
         observeAnimations();
     }
 
     // Mount rating list component 
     const container = document.getElementById('ratingListContainer');
-    const ratingList = document.createElement('rating-list');
-    ratingList.id = 'mainRatingList';
-    container.appendChild(ratingList);
+    let ratingList = null;
+    if (container) {
+        ratingList = document.createElement('rating-list');
+        ratingList.id = 'mainRatingList';
+        container.appendChild(ratingList);
+    } else {
+        ratingList = document.getElementById('mainRatingList') || document.querySelector('rating-list');
+    }
 
     // Summary elements
     const reviewCountDisplay = document.getElementById('reviewCountDisplay');
@@ -210,6 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to update top summary header
     function updateSummary() {
+        if (!ratingList || !reviewCountDisplay || !avgRatingDisplay || !bigStarContainer) return;
         const reviews = ratingList.reviews || [];
         const total = reviews.length;
         reviewCountDisplay.textContent = `Based on ${total} reviews`;
@@ -217,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
             const avg = (sum / total).toFixed(1);
             avgRatingDisplay.textContent = avg;
-            
+
             const avgNum = parseFloat(avg);
             bigStarContainer.innerHTML = '';
             for (let i = 1; i <= 5; i++) {
@@ -235,129 +241,159 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Summary event listeners
-    ratingList.addEventListener('reviews-updated', updateSummary);
-    ratingList.addEventListener('review-upvote', updateSummary);
-    setTimeout(updateSummary, 50);
+    if (ratingList) {
+        ratingList.addEventListener('reviews-updated', updateSummary);
+        ratingList.addEventListener('review-upvote', updateSummary);
+        setTimeout(updateSummary, 50);
+    }
 
     // Form logic
     const starContainer = document.getElementById('starRatingInput');
-    const stars = starContainer.querySelectorAll('.fa-star');
-    const nameInput = document.getElementById('reviewerName');
-    const feedbackInput = document.getElementById('reviewFeedback');
     const form = document.getElementById('reviewForm');
-    const toast = document.getElementById('publishToast');
-    const toastText = document.getElementById('toastText');
-    const ratingError = document.getElementById('ratingError');
-    const nameError = document.getElementById('nameError');
-    const commentError = document.getElementById('commentError');
 
-    let selectedRating = 0;
-    let hoveredRating = 0;
+    if (starContainer) {
+        const stars = starContainer.querySelectorAll('[data-value]');
+        const nameInput = document.getElementById('reviewerName');
+        const feedbackInput = document.getElementById('reviewFeedback');
+        const toast = document.getElementById('publishToast');
+        const toastText = document.getElementById('toastText');
+        const ratingError = document.getElementById('ratingError');
+        const nameError = document.getElementById('nameError');
+        const commentError = document.getElementById('commentError');
 
-    function updateStars() {
-        const display = hoveredRating || selectedRating || 0;
-        stars.forEach((star, idx) => {
-            star.style.color = (idx + 1 <= display) ? '#f5b342' : '#e2e8f0';
+        let selectedRating = 0;
+        let hoveredRating = 0;
+
+        function updateStars() {
+            const display = hoveredRating || selectedRating || 0;
+            stars.forEach((star, idx) => {
+                const color = (idx + 1 <= display) ? '#f5b342' : '#e2e8f0';
+                try {
+                    star.style.color = color;
+                    if (star.tagName && star.tagName.toLowerCase() === 'svg') {
+                        star.style.fill = color;
+                    } else {
+                        const innerSvg = star.querySelector && star.querySelector('svg');
+                        if (innerSvg) innerSvg.style.fill = color;
+                    }
+                } catch (err) {
+                }
+            });
+        }
+
+        function resetHover() { hoveredRating = 0; updateStars(); }
+
+        if (stars.length === 0) {
+            console.debug('rating.js: no stars found inside #starRatingInput');
+        }
+        stars.forEach(star => {
+            star.addEventListener('pointerenter', function() {
+                hoveredRating = parseInt(this.dataset.value) || 0;
+                updateStars();
+            });
+            star.addEventListener('click', function() {
+                const val = parseInt(this.dataset.value) || 0;
+                selectedRating = (selectedRating === val) ? 0 : val;
+                updateStars();
+                if (ratingError) ratingError.style.display = 'none';
+            });
+            star.addEventListener('pointerleave', resetHover);
         });
+        starContainer.addEventListener('mouseleave', resetHover);
+
+        // Form submit handling 
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let hasError = false;
+
+                // Validate rating
+                if (selectedRating === 0) {
+                    if (ratingError) ratingError.style.display = 'block';
+                    hasError = true;
+                } else if (ratingError) {
+                    ratingError.style.display = 'none';
+                }
+
+                // Validate name 
+                const name = nameInput ? nameInput.value.trim() : '';
+                if (name === '') {
+                    if (nameError) nameError.style.display = 'block';
+                    if (nameInput) nameInput.style.borderColor = '#e53e3e';
+                    hasError = true;
+                } else {
+                    if (nameError) nameError.style.display = 'none';
+                    if (nameInput) nameInput.style.borderColor = '#e2e8f0';
+                }
+
+                // Validate comment
+                const comment = feedbackInput ? feedbackInput.value.trim() : '';
+                if (comment.length < 4) {
+                    if (commentError) commentError.style.display = 'block';
+                    if (feedbackInput) feedbackInput.style.borderColor = '#e53e3e';
+                    hasError = true;
+                } else {
+                    if (commentError) commentError.style.display = 'none';
+                    if (feedbackInput) feedbackInput.style.borderColor = '#e2e8f0';
+                }
+
+                if (hasError) return;
+
+                // Build review data
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                const reviewData = {
+                    id: Date.now(),
+                    name: name,
+                    rating: selectedRating,
+                    comment: comment,
+                    date: dateStr,
+                    upvotes: 0,
+                    hasUpvoted: false
+                };
+
+                // Add review to the rating list component 
+                if (ratingList && typeof ratingList.addReview === 'function') {
+                    ratingList.addReview(reviewData);
+                } else {
+                    console.warn('rating-list component missing; cannot append new review.');
+                }
+
+                // Show success toast
+                if (toastText) toastText.textContent = `⭐ ${selectedRating} stars · Thank you, ${name}! Review published.`;
+                if (toast) {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                }
+
+                // Reset form
+                form.reset();
+                selectedRating = 0;
+                stars.forEach(s => s.style.color = '#e2e8f0');
+                if (nameInput) nameInput.style.borderColor = '#e2e8f0';
+                if (feedbackInput) feedbackInput.style.borderColor = '#e2e8f0';
+                if (ratingError) ratingError.style.display = 'none';
+                if (nameError) nameError.style.display = 'none';
+                if (commentError) commentError.style.display = 'none';
+            });
+        }
+
+        // Real-time error clearing
+        if (nameInput) {
+            nameInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    if (nameError) nameError.style.display = 'none';
+                    this.style.borderColor = '#e2e8f0';
+                }
+            });
+        }
+        if (feedbackInput) {
+            feedbackInput.addEventListener('input', function() {
+                if (this.value.trim().length >= 4) {
+                    if (commentError) commentError.style.display = 'none';
+                    this.style.borderColor = '#e2e8f0';
+                }
+            });
+        }
     }
-
-    function resetHover() { hoveredRating = 0; updateStars(); }
-
-    stars.forEach(star => {
-        star.addEventListener('mouseenter', function() {
-            hoveredRating = parseInt(this.dataset.value);
-            updateStars();
-        });
-        star.addEventListener('click', function() {
-            const val = parseInt(this.dataset.value);
-            selectedRating = (selectedRating === val) ? 0 : val;
-            updateStars();
-            ratingError.style.display = 'none';
-        });
-        star.addEventListener('mouseleave', resetHover);
-    });
-    starContainer.addEventListener('mouseleave', resetHover);
-
-    // Form submit handling 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        let hasError = false;
-
-        // Validate rating
-        if (selectedRating === 0) {
-            ratingError.style.display = 'block';
-            hasError = true;
-        } else {
-            ratingError.style.display = 'none';
-        }
-
-        // Validate name 
-        const name = nameInput.value.trim();
-        if (name === '') {
-            nameError.style.display = 'block';
-            nameInput.style.borderColor = '#e53e3e';
-            hasError = true;
-        } else {
-            nameError.style.display = 'none';
-            nameInput.style.borderColor = '#e2e8f0';
-        }
-
-        // Validate comment
-        const comment = feedbackInput.value.trim();
-        if (comment.length < 4) {
-            commentError.style.display = 'block';
-            feedbackInput.style.borderColor = '#e53e3e';
-            hasError = true;
-        } else {
-            commentError.style.display = 'none';
-            feedbackInput.style.borderColor = '#e2e8f0';
-        }
-
-        if (hasError) return;
-
-        // Build review data
-        const now = new Date();
-        const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        const reviewData = {
-            id: Date.now(),
-            name: name,
-            rating: selectedRating,
-            comment: comment,
-            date: dateStr,
-            upvotes: 0,
-            hasUpvoted: false
-        };
-
-        // Add review directly to the list below
-        ratingList.addReview(reviewData);
-
-        // Show success toast
-        toastText.textContent = `⭐ ${selectedRating} stars · Thank you, ${name}! Review published.`;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 4000);
-
-        // Reset form
-        form.reset();
-        selectedRating = 0;
-        stars.forEach(s => s.style.color = '#e2e8f0');
-        nameInput.style.borderColor = '#e2e8f0';
-        feedbackInput.style.borderColor = '#e2e8f0';
-        ratingError.style.display = 'none';
-        nameError.style.display = 'none';
-        commentError.style.display = 'none';
-    });
-
-    // Real-time error clearing
-    nameInput.addEventListener('input', function() {
-        if (this.value.trim() !== '') {
-            nameError.style.display = 'none';
-            this.style.borderColor = '#e2e8f0';
-        }
-    });
-    feedbackInput.addEventListener('input', function() {
-        if (this.value.trim().length >= 4) {
-            commentError.style.display = 'none';
-            this.style.borderColor = '#e2e8f0';
-        }
-    });
 });

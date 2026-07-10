@@ -3,7 +3,7 @@
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
-  font-family: var(--font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Header section */
@@ -52,14 +52,14 @@
   border: 1px solid #e8e8e8;
   border-radius: 16px;
   padding: 35px 30px 30px;
-  text-align: center; /* Center everything */
+  text-align: center; 
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
+  align-items: center; 
   position: relative;
-  overflow: visible; /* Ensure nothing gets cut off */
+  overflow: visible; 
 }
 
 .team-card:hover {
@@ -74,7 +74,7 @@
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 15px; /* Center & add space below */
+  margin: 0 auto 15px; 
   flex-shrink: 0;
   border: 3px solid #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -82,8 +82,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; /* Reset positioning */
-  top: auto; /* Remove any absolute positioning */
+  position: relative; 
+  top: auto;
   left: auto;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .member-name {
-  color: var(--bluetext, rgb(24, 24, 139));
+  color: rgb(24, 24, 139);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
   position: relative; 
 }
 
-/* ===== QUANTIFIED METRICS BOX ===== */
+/* Metrics box*/
 .contribution-metrics {
   background: #f8fafc;
   border-radius: 10px;

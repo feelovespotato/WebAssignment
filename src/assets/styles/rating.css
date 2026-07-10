@@ -211,7 +211,7 @@ textarea.input-control {
   display: flex;
   align-items: center;
   background: #fcfcfb;
-  border: 1px solid var(--color-border, #d6d2ca);
+  border: 1px solid var(--grayborder, #d6d2ca);
   border-radius: 3rem;
   padding: 0 1rem;
   transition: border 0.15s, box-shadow 0.15s;
@@ -256,11 +256,11 @@ textarea.input-control {
 
 .filter-sort-select {
   padding: 0.5rem 1.2rem 0.5rem 1rem;
-  border: 1px solid var(--color-border, #d6d2ca);
+  border: 1px solid var(--grayborder, #d6d2ca);
   border-radius: 3rem;
   background: #fcfcfb;
   font-size: 0.9rem;
-  color: var(--color-text, #1e1e2a);
+  color: #1e1e2a);
   cursor: pointer;
   outline: none;
   transition: border 0.15s;
