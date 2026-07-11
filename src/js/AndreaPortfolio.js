@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Typewriter */
     const typewriterElement = document.getElementById('typewrite-text');
-    const roles = ["Software Engineer", "Frontend Developer", "UI/UX Specialist"];
+    const roles = ["Software Engineer Student"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
