@@ -221,3 +221,35 @@ body{
     text-decoration: none;
     color:#F39A1E
 }
+
+:root{
+    background-color: #FFFFFF;
+    text-decoration-color: #1A1A1A;
+    border-color: #ddd;
+}
+
+[data-theme="dark"]{
+    background-color:#1a1a1a;
+    text-decoration-color: #f0f0f0;
+    border-color: #444;
+}
+
+.themeToggle {
+  padding: 10px 24px;
+  border-radius: 999px; /* pill shape, same as your Signup button */
+  border: 2px solid 
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.themeToggle:hover {
+  background-color: #1A1A1A;
+  color: #fff;
+}
+
+.themeToggle:active {
+  transform: scale(0.97);
+}
