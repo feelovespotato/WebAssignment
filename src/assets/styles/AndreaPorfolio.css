@@ -779,90 +779,6 @@ header {
     animation: shimmer 1.6s ease 0.6s 1;
 }
 
-/* Featured project highlight */
-.featured-project {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 0;
-    background-color: var(--card-bg);
-    border: 1px solid var(--accent);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 3rem;
-    box-shadow: var(--shadow);
-    animation: glow-pulse 4s ease-in-out infinite;
-}
-
-.featured-media {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--border-color) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4.5rem;
-    color: var(--accent);
-    min-height: 260px;
-}
-
-.featured-content {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.featured-badge {
-    align-self: flex-start;
-    background-color: rgba(56, 189, 248, 0.15);
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.35rem 0.8rem;
-    border-radius: 100vw;
-}
-
-.featured-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--text-primary);
-}
-
-.featured-desc {
-    color: var(--text-secondary);
-    font-size: 0.98rem;
-}
-
-.featured-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin: 0.25rem 0 0.5rem;
-}
-
-.featured-stat {
-    display: flex;
-    flex-direction: column;
-}
-
-.featured-stat strong {
-    font-size: 1.25rem;
-    color: var(--text-primary);
-}
-
-.featured-stat span {
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.featured-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
 /* Projects grid */
 .projects-grid {
     display: grid;
@@ -1091,12 +1007,13 @@ textarea.form-control {
 
 /* Footer */
 footer {
+    height: 100px;
     padding: 2.5rem 0;
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     text-align: center;
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.5rem;
 }
 
 /* Animations */
@@ -1114,7 +1031,7 @@ footer {
     50% { box-shadow: var(--shadow), 0 0 0 8px rgba(56, 189, 248, 0); }
 }
 
-/* Respect reduced-motion preferences */
+/* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.001ms !important;
@@ -1132,10 +1049,6 @@ footer {
     .bio-image {
         max-width: 320px;
         margin: 0 auto;
-    }
-
-    .featured-project {
-        grid-template-columns: 1fr;
     }
 
     .proficiency-grid {
@@ -1282,19 +1195,14 @@ footer {
     }
 
     .timeline-content, .education-card, .cert-card, .project-card,
-    .skills-category, .featured-project {
+    .skills-category {
         border: 1px solid #ccc !important;
         background: #fff !important;
         break-inside: avoid;
         margin-bottom: 0.75rem;
     }
 
-    .featured-project {
-        grid-template-columns: 1fr;
-    }
-
-    /* Certificate photos are real content, not decoration, so unlike the
-       icon panels above they stay visible — just de-colorized for ink. */
+    /* Certificate photos */
     .cert-image {
         filter: grayscale(1);
         max-height: 160px;
