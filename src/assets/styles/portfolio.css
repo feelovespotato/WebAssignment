@@ -9,27 +9,19 @@
     margin-bottom:clamp(2rem, 4vw, 4rem) ;
     
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    background-color: var(--brownboardbg);
 
 }
-/*for tea field background img*/
-.hero-bg-img{
-    position: absolute;
-    inset: 0; 
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    z-index: 0;
-    
-}
+
 /*contianer for red bg card*/
 .hero-card{
     position: relative;
     z-index: 1;
-    background-color: var(--redbg);
+    
     border-radius: 2rem;
     padding: clamp(2rem, 3vw, 3.5rem);
     width: clamp(25rem, 80vw, 90rem);
@@ -52,9 +44,10 @@
 
     overflow:hidden;
     border-radius: 50%;
-    border: 2px solid var(--whiteborderbutton);
+    border: 2px solid var(--grayborder);
     margin-top:clamp(1.5rem , 2rem + 0.5vw, 3rem);
-   
+    background-color: var(--bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 /*personal img*/
 .img-sec img{
@@ -68,9 +61,9 @@
 /*name + bio container*/
 .name-bio-sec {
     width:auto;
-    margin-bottom:clamp(1.5rem , 1rem + 0.5vw, 3rem);
     margin-left:clamp(1.5rem , 1rem + 0.5vw, 3rem);
     margin-right:clamp(1.5rem , 1rem + 0.5vw, 3rem);
+    
 }
 /*bio text for alignment*/
 .name-bio-sec p {
@@ -154,7 +147,7 @@
     height: clamp(1.2rem, 1rem + 1.5vw, 2rem);
     border-radius: 100vw;
     color:var(--redbg);
-    border: 2px solid var(--redborderbutton);
+    border: 2px solid var(--redbutton);
     -webkit-appearance: none;
     appearance: none;
 }
@@ -173,14 +166,14 @@
 
 /* Chrome, Safari, Edge*/ /*also progress bar animation*/
 .animate-fade-up.in-view progress::-webkit-progress-value {
-    background-color: var(--redbg); 
+    background-color: var(--redbutton); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Firefox*/
 .animate-fade-up.in-view progress::-moz-progress-bar {
-    background-color: var(--redbg); 
+    background-color: var(--redbutton); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -334,4 +327,152 @@
 
 .next-btn {
     right: -2rem;
+}
+
+/*---------------------------------------------------------------------------*/
+/*not review yet*/
+
+.pinboard {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(2rem, 4vw, 4rem);
+    background-color: var(--brownboardbg);
+    border-radius: 2rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+ 
+.pin-item {
+    position: relative;
+    flex: 0 0 auto;
+}
+ 
+/* the thumbtack */
+.pin-dot {
+    position: absolute;
+    top: -0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--redbg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+ 
+/* the polaroid-style photo, slightly rotated as if pinned casually */
+.pin-photo {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    padding: 0.75rem 0.75rem 2.25rem;
+    width: clamp(14rem, 20vw, 18rem);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transform: rotate(-4deg);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+ 
+.pin-photo:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+ 
+.pin-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+ 
+/* handwritten-style project name label at the bottom of the photo */
+.pin-tag {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.9rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--title);
+}
+ 
+.pin-caption {
+    flex: 1 1 18rem;
+    min-width: 0;
+}
+ 
+.pin-caption h2 {
+    margin-bottom: 0.75rem;
+}
+ 
+/* placeholder pin for future projects - dashed outline, no photo yet */
+.pin-item.pin-placeholder .pin-photo {
+    background-color: transparent;
+    border: 2px dashed var(--grayborder);
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    color: var(--halfvisibletext);
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 0.75rem;
+}
+ 
+@media (max-width: 700px) {
+    .pinboard {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .pin-caption {
+        text-align: center;
+    }
+}
+ 
+
+/*---------------------------------------------------------------*/
+/*not reviewed yet*/
+
+.bio-cards {
+    display: grid;
+    gap: clamp(0.75rem, 2vw, 1.5rem); 
+    padding-top: clamp(1rem, 4vw, 2rem);
+    padding-bottom: clamp(3rem, 4vw, 4rem);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 700px) {
+    .bio-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bio-card {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-sizing: border-box;
+    cursor: default;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.bio-card h1 {
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.bio-card a {
+    display: inline-block;
+    margin-right: 1rem;
+    color: var(--redtext);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.bio-card a:hover {
+    color: var(--hoverredbutton);
 }
