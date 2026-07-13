@@ -17,11 +17,10 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:calc(100vh - 85px);
     padding:40px;
 }
 
-.login{
+.signup{
     width:480px;
     background:#ffffff;
     padding:55px;
@@ -29,7 +28,7 @@ body{
     box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
-.loginLogo{
+.logo{
     font-size:48px;
     font-weight:700;
     color:#1A1A1A;
@@ -65,7 +64,8 @@ label{
 input[type="email"],
 input[type="password"],
 input[type="text"],
-#pin{
+input[type="tel"]
+{
 
     width:100%;
     padding:15px;
@@ -86,58 +86,24 @@ input:focus{
     box-shadow:0 0 8px rgba(243,154,30,.15);
 }
 
-.forgot{
-    display:block;
-    text-align:right;
-    margin-top:12px;
-    margin-bottom:5px;
-    text-decoration:none;
-    color:#F39A1E;
-    font-size:14px;
-    font-weight:600;
+.SignupButton{
+
+    text-decoration: none;
+    color: white;
+    background: #F39A1E;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .3s;
 }
 
-.forgot:hover{
-    text-decoration:underline;
-}
-
-.remember{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:35px;
-    color:#555;
-    font-size:15px;
-}
-
-.remember input{
-    width:18px;
-    height:18px;
-    accent-color:#F39A1E;
-}
-
-.login-button{
-
-    width:100%;
-    margin-top:35px;
-    padding:16px;
-    border:none;
-    border-radius:50px;
-    background:#F39A1E;
-    color:white;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.login-button:hover{
+.SignupButton:hover{
 
     background:#D98300;
     transform:translateY(-2px);
 }
 
-.signup{
+.SignupFooter{
 
     text-align:center;
     margin-top:30px;
@@ -149,14 +115,25 @@ input:focus{
     gap:5px;
 }
 
-.signup a{
+.SignupFooter a{
+    color:#F39A1E;
+    text-decoration: none;
+    font-weight:600;
+    transition: 0.4s;
+}
+
+.SignupFooter a:hover{
+    text-decoration: underline;
+}
+
+.login a{
 
     text-decoration:none;
     color:#F39A1E;
     font-weight:600;
 }
 
-.signup a:hover{
+.login a:hover{
 
     text-decoration:underline;
 }
@@ -167,7 +144,7 @@ a{
 
 @media(max-width:600px){
 
-    .login{
+    .signup{
 
         width:100%;
         padding:35px;
@@ -193,7 +170,7 @@ a{
 
 .passwordContainer input{
     width:100%;
-    padding:15px 45px 15px 15px;
+    padding: 15px 45px 15px 15px;
 }
 
 .passwordContainer i{
@@ -203,7 +180,7 @@ a{
     transform:translateY(-50%);
     cursor:pointer;
     color:#999;
-    transition:0.3s;
+    transition: 0.4s;
 }
 
 .passwordContainer i:hover{

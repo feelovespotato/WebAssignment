@@ -7,7 +7,7 @@
   margin-top: 2rem;
 }
 
-/* Shared Product Card */
+/* Shared product card */
 .product-card {
   width: 100%;
   background: #ffffff;
@@ -18,7 +18,7 @@
 }
 
 .product-card.form-card {
-  max-width: 600px;
+  max-width: 810px;
 }
 
 .product-card.list-card {
@@ -26,8 +26,7 @@
 }
 
 /* Write a review form */
-
-/* Form title - uses Georgia font */
+/* Form title */
 .form-card h2 {
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1.8rem;
@@ -127,7 +126,7 @@ textarea.input-control {
   margin: 2rem 0 1.5rem;
 }
 
-/* Button (for publish my review) */
+/* Button to publish the reviews */
 .btn-publish {
   display: inline-flex;
   align-items: center;
@@ -146,7 +145,7 @@ textarea.input-control {
   fill: none;
 }
 
-/* Toast notification - unique */
+/* Toast notification */
 .toast-message {
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
@@ -165,11 +164,8 @@ textarea.input-control {
   display: flex;
 }
 
-/* ============================================================
-   REVIEW LIST - UNIQUE STYLES
-   =========================================================== */
-
-/* Rating summary - unique */
+/* Review list*/
+/* Rating summary */
 .rating-summary {
   display: flex;
   align-items: center;
@@ -199,7 +195,7 @@ textarea.input-control {
   color: var(--title, #1e1e2a);
 }
 
-/* Review controls - unique layout */
+/* Review controls */
 .reviews-controls {
   display: flex;
   flex-direction: column;
@@ -207,18 +203,10 @@ textarea.input-control {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #edeae4;
+  min-width: 0;
 }
 
-@media (min-width: 600px) {
-  .reviews-controls {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-}
-
-/* Search bar container - unique */
+/* Search bar container */
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -226,21 +214,15 @@ textarea.input-control {
   border: 1px solid var(--grayborder, #d6d2ca);
   border-radius: 3rem;
   padding: 0 1rem;
-  flex: 1 1 220px;
-}
-
-/* Override global input inside search bar */
-.search-bar-container .input-control {
-  border: none;
-  padding: 0.6rem 0.6rem;
-  margin: 0;
+  transition: border 0.15s, box-shadow 0.15s;
   width: 100%;
-  font-family: sans-serif;
-  background: transparent;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.search-bar-container .input-control:focus {
-  box-shadow: none;
+.search-bar-container:focus-within {
+  border-color: #b8a78f;
+  box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
 }
 
 .search-icon-svg {
@@ -250,19 +232,46 @@ textarea.input-control {
   flex-shrink: 0;
 }
 
-/* Filter/sort selects - unique */
+.search-bar-container .input-control {
+  border: none;
+  background: transparent;
+  padding: 0.6rem 0.6rem;
+  font-size: 0.95rem;
+  flex: 1 1 auto;
+  width: 100%;
+  outline: none;
+  opacity: 0.85;
+  box-sizing: border-box;
+}
+
+.search-bar-container .input-control:focus {
+  opacity: 1;
+}
+
+.filter-sort-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .filter-sort-select {
-  padding: 0.6rem 1.2rem 0.6rem 1rem;
+  padding: 0.5rem 1.2rem 0.5rem 1rem;
   border: 1px solid var(--grayborder, #d6d2ca);
   border-radius: 3rem;
   background: #fcfcfb;
-  font-family: 'Montserrat', sans-serif;
   font-size: 0.9rem;
+  color: #1e1e2a);
   cursor: pointer;
   outline: none;
+  transition: border 0.15s;
+  min-width: 140px;
 }
 
-/* Comments list - unique */
+.filter-sort-select:focus {
+  border-color: #b8a78f;
+}
+
+/* Comments list */
 .comments-list {
   display: flex;
   flex-direction: column;
@@ -403,7 +412,7 @@ textarea.input-control {
   font-weight: 600;
 }
 
-/* Empty state - unique */
+/* Empty state */
 .empty-reviews-state {
   text-align: center;
   padding: 2.5rem 1rem;
@@ -423,7 +432,7 @@ textarea.input-control {
   margin-bottom: 0.2rem;
 }
 
-/* Animation - unique */
+/* Animation */
 .animate-fade-in {
   animation: fadeIn 0.3s ease;
 }
@@ -439,7 +448,6 @@ textarea.input-control {
   }
 }
 
-/* Responsive overrides */
 @media (max-width: 480px) {
   .product-card {
     padding: 1.5rem;

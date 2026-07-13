@@ -1,375 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer's Review Form</title>
-    <!-- For rating stars -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Page</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <link rel="stylesheet" href="global.css" />
-    <link rel="stylesheet" href="variables.css" />
-    <style>
-
-        /* ----- override body for this standalone page ----- */
-        body {
-            background: var(--color-bg, #f7f5f2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-
-        /* ----- product card (review container) ----- */
-        .product-card {
-            max-width: 600px;
-            width: 100%;
-            background: var(--color-surface, #ffffff);
-            border-radius: var(--radius-lg, 2rem);
-            padding: 2rem 2rem 1.8rem;
-            box-shadow: var(--shadow-md, 0 12px 30px rgba(0, 0, 0, 0.06));
-            transition: box-shadow 0.2s;
-        }
-
-        /* ----- review form specific styles ----- */
-        .review-form-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--color-primary, #1e1e2a);
-        }
-
-        .stars-selector-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .stars-selector-label {
-            display: block;
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            color: #2b2b3a;
-        }
-
-        #starRatingInput {
-            display: inline-flex;
-            gap: 0.35rem;
-            font-size: 2rem;
-            color: #d9d6d0;
-        }
-
-        #starRatingInput i {
-            cursor: pointer;
-            transition: color 0.15s;
-        }
-
-        .input-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .input-label {
-            display: block;
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-            color: #2b2b3a;
-        }
-
-        .input-control {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1px solid var(--color-border, #d6d2ca);
-            border-radius: 1.8rem;
-            font-size: 0.95rem;
-            background: #fcfcfb;
-            transition: border 0.15s, box-shadow 0.15s, opacity 0.2s;
-            opacity: 0.5;
-        }
-
-        .input-control:focus {
-            outline: none;
-            border-color: #b8a78f;
-            box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
-            opacity: 1;
-        }
-
-        .input-control::placeholder {
-            opacity: 0.6;
-        }
-
-        textarea.input-control {
-            border-radius: 1.5rem;
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .error-message {
-            color: var(--color-accent, #b33a3a);
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .btn-primary {
-            background: var(--color-primary, #1e1e2a);
-            color: white;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            padding: 0.75rem 2rem;
-            border-radius: 3rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            width: 100%;
-            letter-spacing: 0.3px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            margin-top: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            background: #2f2f40;
-        }
-
-        .btn-primary:active {
-            transform: scale(0.97);
-        }
-
-        .btn-primary svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-
-        /* toast */
-        .toast-message {
-            margin-top: 0.8rem;
-            padding: 0.6rem 1rem;
-            background: #e6f0e6;
-            color: #1f4f2b;
-            border-radius: 2rem;
-            font-size: 0.95rem;
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .toast-message.show {
-            display: flex;
-        }
-
-        .toast-message i {
-            color: #2b7a3b;
-        }
-
-        /* separator line */
-        .form-divider {
-            border: none;
-            border-top: 1px solid #e3dfd8;
-            margin: 1.5rem 0;
-        }
-
-        /* responsiveness */
-        @media (max-width: 480px) {
-            .product-card {
-                padding: 1.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/styles/variables.css">
+    <link rel="stylesheet" href="../../assets/styles/global.css">
+    <link rel="stylesheet" href="../../assets/styles/rating.css">
 </head>
 <body>
+    <main>
+        <section class="reviews-layout">
+            <!-- Write a review -->
+            <div class="product-card form-card animate-fade-up">
+                <h2>Write a Review</h2>
+                <form id="reviewForm" novalidate>
+                    <!-- Star selector -->
+                    <div class="stars-selector-group">
+                        <span class="stars-selector-label">How would you rate this product?</span>
+                        <div id="starRatingInput">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <div id="ratingError" class="error-message">Please select a star rating</div>
+                    </div>
 
-    <div class="product-card">
+                    <!-- Name -->
+                    <div>
+                        <label class="input-label" for="reviewerName">Your Name</label>
+                        <input class="input-control" type="text" id="reviewerName" placeholder="Sakura Tanaka" />
+                        <div id="nameError" class="error-message">Name is required</div>
+                    </div>
 
-        <!-- ===== WRITE A REVIEW FORM ===== -->
-        <h2 class="review-form-title">Write a Review</h2>
+                    <!-- Feedback -->
+                    <div class="input-group">
+                        <label class="input-label" for="reviewFeedback">Your Feedback</label>
+                        <textarea class="input-control" id="reviewFeedback" placeholder="Light, floral, and perfectly balanced. I love the subtle jasmine fragrance."></textarea>
+                        <div id="commentError" class="error-message">Review comment must be at least 4 characters</div>
+                    </div>
 
-        <form id="reviewForm" novalidate>
+                    <hr class="form-divider" />
 
-            <!-- Star selector -->
-            <div class="stars-selector-group">
-                <span class="stars-selector-label">How would you rate this product?</span>
-                <div id="starRatingInput">
-                    <i class="fas fa-star" data-value="1"></i>
-                    <i class="fas fa-star" data-value="2"></i>
-                    <i class="fas fa-star" data-value="3"></i>
-                    <i class="fas fa-star" data-value="4"></i>
-                    <i class="fas fa-star" data-value="5"></i>
+                    <button class="solidbutton btn-publish" type="submit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Publish My Review
+                    </button>
+                </form>
+
+                <!-- Toast feedback -->
+                <div id="publishToast" class="toast-message">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="toastText">Thank you! Your review has been published.</span>
                 </div>
-                <div id="ratingError" class="error-message">Please select a star rating</div>
             </div>
 
-            <!-- Name -->
-            <div class="input-group">
-                <label class="input-label" for="reviewerName">Your Name</label>
-                <input class="input-control" type="text" id="reviewerName" placeholder="e.g., Sakura Tanaka" value="Sakura Tanaka" />
-                <div id="nameError" class="error-message">Name is required</div>
-            </div>
-
-            <!-- Feedback -->
-            <div class="input-group">
-                <label class="input-label" for="reviewFeedback">Your Feedback</label>
-                <textarea class="input-control" id="reviewFeedback" rows="4" placeholder="Share your experience with this Pokka beverage (taste, sweetness, freshness...)">Light, floral, and perfectly balanced. I love the subtle jasmine fragrance.</textarea>
-                <div id="commentError" class="error-message">Review comment must be at least 4 characters</div>
-            </div>
-
-            <hr class="form-divider" />
-
-            <button class="btn-primary" type="submit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13" />
-                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
-                Publish My Review
-            </button>
-        </form>
-
-        <!-- Toast feedback -->
-        <div id="publishToast" class="toast-message">
-            <i class="fas fa-check-circle"></i>
-            <span id="toastText">Thank you! Your review has been published.</span>
-        </div>
-
-    </div>
-
-    <script>
-        // ============================================================
-        // WRITE REVIEW FORM – standalone logic
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const starContainer = document.getElementById('starRatingInput');
-            const stars = starContainer.querySelectorAll('.fa-star');
-            const nameInput = document.getElementById('reviewerName');
-            const feedbackInput = document.getElementById('reviewFeedback');
-            const form = document.getElementById('reviewForm');
-            const toast = document.getElementById('publishToast');
-            const toastText = document.getElementById('toastText');
-            const ratingError = document.getElementById('ratingError');
-            const nameError = document.getElementById('nameError');
-            const commentError = document.getElementById('commentError');
-
-            let selectedRating = 0;
-            let hoveredRating = 0;
-
-            function updateStars() {
-                const display = hoveredRating || selectedRating || 0;
-                stars.forEach((star, idx) => {
-                    star.style.color = (idx + 1 <= display) ? '#f5b342' : '#d9d6d0';
-                });
-            }
-
-            function resetHover() { hoveredRating = 0;
-                updateStars(); }
-
-            stars.forEach(star => {
-                star.addEventListener('mouseenter', function() {
-                    hoveredRating = parseInt(this.dataset.value);
-                    updateStars();
-                });
-                star.addEventListener('click', function() {
-                    const val = parseInt(this.dataset.value);
-                    selectedRating = (selectedRating === val) ? 0 : val;
-                    updateStars();
-                    ratingError.style.display = 'none';
-                });
-                star.addEventListener('mouseleave', resetHover);
-            });
-            starContainer.addEventListener('mouseleave', resetHover);
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                let hasError = false;
-
-                // Validate Rating
-                if (selectedRating === 0) {
-                    ratingError.style.display = 'block';
-                    hasError = true;
-                } else {
-                    ratingError.style.display = 'none';
-                }
-
-                // Validate Name
-                const name = nameInput.value.trim();
-                if (name === '') {
-                    nameError.style.display = 'block';
-                    nameInput.style.borderColor = '#b33a3a';
-                    hasError = true;
-                } else {
-                    nameError.style.display = 'none';
-                    nameInput.style.borderColor = '#d6d2ca';
-                }
-
-                // Validate Comment
-                const comment = feedbackInput.value.trim();
-                if (comment.length < 4) {
-                    commentError.style.display = 'block';
-                    feedbackInput.style.borderColor = '#b33a3a';
-                    hasError = true;
-                } else {
-                    commentError.style.display = 'none';
-                    feedbackInput.style.borderColor = '#d6d2ca';
-                }
-
-                if (hasError) return;
-
-                // Build review data (for demo purposes)
-                const now = new Date();
-                const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                const reviewData = {
-                    id: Date.now(),
-                    name: name,
-                    rating: selectedRating,
-                    comment: comment,
-                    date: dateStr,
-                    upvotes: 0,
-                    hasUpvoted: false
-                };
-
-                // Show success toast
-                toastText.textContent = `⭐ ${selectedRating} stars · Thank you, ${name}! Review published.`;
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 4000);
-
-                // Log to console (you can replace with your own logic)
-                console.log('Review submitted:', reviewData);
-
-                // Reset form
-                form.reset();
-                selectedRating = 0;
-                stars.forEach(s => s.style.color = '#d9d6d0');
-                nameInput.style.borderColor = '#d6d2ca';
-                feedbackInput.style.borderColor = '#d6d2ca';
-                ratingError.style.display = 'none';
-                nameError.style.display = 'none';
-                commentError.style.display = 'none';
-            });
-
-            // Real-time clearing
-            nameInput.addEventListener('input', function() {
-                if (this.value.trim() !== '') {
-                    nameError.style.display = 'none';
-                    this.style.borderColor = '#d6d2ca';
-                }
-            });
-            feedbackInput.addEventListener('input', function() {
-                if (this.value.trim().length >= 4) {
-                    commentError.style.display = 'none';
-                    this.style.borderColor = '#d6d2ca';
-                }
-            });
-
-            // initial star state
-            stars.forEach(s => s.style.color = '#d9d6d0');
-        });
-    </script>
-
+        </section>
+        <script src="../../js/utils.js"></script>
+        <script src="../../js/animations.js"></script>
+        <script src="../../js/rating.js"></script>
+    </main>
 </body>
 </html>
