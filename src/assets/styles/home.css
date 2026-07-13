@@ -97,7 +97,7 @@ nav ul a {
   --color-navbar: #72243e;     /* dark brown for navbar */
   --color-body-bg: #FFc5d3;    /* soft beige for body */
   --color-text-dark: #FFFFFF;  /* dark brown text */
-  --color-text-light: #D198B7; /* light text for navbar */
+  --color-text-light: #72243e; /* light text for navbar */
 }
 
 [data-theme="dark"] {
