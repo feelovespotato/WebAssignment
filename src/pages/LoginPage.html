@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\LoginPage.css">
+<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\navbar.css">
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="">
+<title>Welcome to Pokka!</title>
+</head>
+
+<body>
+    <nav class="navbar">
+
+    <a href="MainDisplay.html" class="navbarlogo">
+        Punde
+    </a>
+
+    <ul class="navLinks">
+
+        <li><a href="MainDisplay.html">Home</a></li>
+
+        <li><a href="DrinkCategories.html">Products</a></li>
+
+        <li><a href="#">Rewards</a></li>
+
+        <li><a href="#">About Us</a></li>
+
+        <li><a href="#">Contact</a></li>
+
+    </ul>
+
+    <div class="navButtons">
+
+        <a href="LoginForm.html" class="loginButton">
+            Login
+        </a>
+
+        <a href="SignupPage.html" class="signupButton">
+            Sign Up
+        </a>
+
+    </div>
+
+</nav>
+<main class="container">
+    <div class="login">
+<header>
+    
+    <h1> Welcome back to Pokka! </h1>
+<p class="description">
+        Please sign in to continue to your Pokka account.
+    </p>
+</header>
+
+<form action="#" method="post">
+    <label for ="email address"> Email Address </label>
+    <input
+        type="email"
+        id="email"
+        placeholder="Email Address"
+        required>
+
+       
+
+    <label for="password"> Password</label>
+    <div class="passwordContainer">
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required>
+
+        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+        </div>
+
+         <a href="#" class="forgot"> Forgot your Password? </a>
+
+    <label for="pin"> 4 Digit Pin Code</label>
+    <input
+        type="text"
+        id="pin"
+        placeholder="4 Digit Pin Code"
+        maxlength="4"
+        pattern="[0-9]{4}"
+        inputmode="numeric"
+        oninput="this.value = this.value.replace(/[^0-9]/g,'')"
+        required>
+    
+    <div class="remember-selection">
+
+        <label class="remember">
+            <input type="checkbox">
+            Remember My ID
+        </label>
+
+        
+       </div>
+        
+       <button type="submit" class="login-button">
+        Login
+       </button>
+</form>
+
+<p class="signup">
+    Don't have an account? 
+    <a href="SignupPage.html"> Join us! </a>
+</p>
+<a href="index.html" class:"home-button">
+
+</a>
+    </div>
+</main>
+<script src="C:\Users\Pravineesh\WebAssignment\src\js\LoginPage.js"></script>
+</body>
+</html>
