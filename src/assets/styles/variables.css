@@ -37,6 +37,9 @@
   --bgteagreen:var(--teabg);
   --greenborder: #3e432c;
   --herobordergreen:#BFD98A;
+
+  --bluecardbg:#6dcaf5;
+  --purplecardbg:hsl(268, 100%, 93%);
 }
 
 
