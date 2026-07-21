@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -56,6 +60,12 @@ img, video {
 
 }
 
+a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    border-radius: 100vw;
+}
+
 /*--------------------------------------------------------------------*/
 /*used in caroussel, product category*/
 /*card properties*/
@@ -93,6 +103,8 @@ img, video {
     flex-direction: column;
     overflow: hidden;
     cursor:pointer;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 /*the product info in cards for container purpose */
 .product-info {
@@ -121,6 +133,11 @@ img, video {
     object-fit: contain;
     object-position: center;
      
+}
+
+.card-transition:hover {
+    transform: translateY(-0.4rem);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
 }
 
 /*-----------------------------------------------------------------------------------------*/
@@ -170,7 +187,7 @@ img, video {
     font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
     cursor:pointer;
     transition: all 0.1s ease;
-    
+    text-decoration:none;
 }
 
 .solidbutton:hover{
