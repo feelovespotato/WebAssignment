@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\SignupPage.css">
-<link rel="stylesheet" href="C:\Users\Pravineesh\WebAssignment\src\assets\styles\navbar.css">
+
+  <link rel="stylesheet" href="../assets/styles/SignupPage.css">
+  <link rel="stylesheet" href="../assets/styles/navbar.css">
+  <link rel="stylesheet" href="../assets/styles/reset.css">   <!-- Resets all formatting -->
+  <link rel="stylesheet" href="../assets/styles/variables.css"> <!-- Loads in any fonts or colours -->
+  <link rel="stylesheet" href="../assets/styles/global.css">    <!-- Applies any website-wide styles we have -->
+  <link rel="stylesheet" href="../assets/styles/home.css"> 
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="">
 <title> Pokka Member Sign Up Form</title>
@@ -10,8 +15,7 @@
 </head>
 
 <body>
-
-    <nav class="navbar">
+ <nav class="navbar">
 
     <a href="MainDisplay.html" class="navbarlogo">
         Punde
@@ -37,19 +41,19 @@
             Login
         </a>
 
-        <a href="SignupPage.html" class="SignupButton">
+        <a href="SignupPage.html" class="signupButton">
             Sign Up
         </a>
 
     </div>
-    </nav>
+
+</nav>
 
 <main class="container">
     <div class="signup">
 <header>
-    <h1> <link rel="icon" type="image/png" href=""> </h1>
 
-    <h2> Join the Pokka Family to enjoy endless benefits! </h2>
+ <h2> Join the Pokka Family to enjoy endless benefits! </h2>
 <p class="description">
     Please fill up the information below to register your Pokka account. 
 </p>
@@ -116,16 +120,25 @@
             oninput="this.value=this.value.replace(/[^0-9]/g,'')"
             required>
 
-<div class="signup-options">
-        <button type="submit" class="signupButton">
+<div class="Signup-options">
+        <button type="submit" class="SignupButton">
             Submit
         </button>
 </div>
     </form>
 
-    <p class="signupFooter"> Already have an account? <a href="LoginPage.html"> Login </a></p>
+    <p class="SignupFooter"> Already have an account? <a href="LoginPage.html"> Login </a></p>
     </div>
 </main>
-<script src="C:\Users\Pravineesh\WebAssignment\src\js\SignupPage.js"></script>
-</body>
+
+   <script src="../js/navbar.js"></script>
+ <script src="../js/SignupPage.js"></script>
+ <script src="../js/utils.js"></script>
+  <script src="../js/HomePage.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/theme.js"></script>
+  
+
+
+
 </html>

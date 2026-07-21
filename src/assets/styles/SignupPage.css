@@ -35,17 +35,13 @@ body{
     margin-bottom:10px;
 }
 
-h2{
-    color:#1A1A1A;
-    font-size:34px;
-    margin-bottom:12px;
-}
 
 .description{
     color:#666;
     font-size:15px;
     line-height:1.7;
     margin-bottom:35px;
+    margin-top: 20px;
 }
 
 form{
@@ -88,12 +84,16 @@ input:focus{
 
 .SignupButton{
 
+    width: 100%;
+    padding: 15px;
     text-decoration: none;
     color: white;
     background: #F39A1E;
-    padding: 12px 26px;
+    border: none;
     border-radius: 50px;
+    font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
     transition: .3s;
 }
 
@@ -186,3 +186,15 @@ a{
 .passwordContainer i:hover{
     color:#F39A1E;
 }
+
+.Signup-options{
+    margin-top: 25px;
+}
+
+.signup h2 {
+    display: block;
+    color: black;
+    font-size: 34px;
+    visibility: visible;
+    opacity: 1;
+} 
