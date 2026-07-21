@@ -260,11 +260,7 @@ textarea.input-control {
   border-radius: 3rem;
   background: var(--inputwhitebg);
   font-size: 0.9rem;
-<<<<<<< HEAD
-  color: var(--title);
-=======
   color: #1e1e2a;
->>>>>>> f50e14532a5a0bae56a6e0c7c39c1a8da68044ed
   cursor: pointer;
   outline: none;
   transition: border 0.15s;
