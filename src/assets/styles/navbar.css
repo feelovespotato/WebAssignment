@@ -237,7 +237,7 @@ body{
 .themeToggle {
   padding: 10px 24px;
   border-radius: 999px; /* pill shape, same as your Signup button */
-  border: 2px solid 
+  border: 2px solid ;
   background: transparent;
   font-weight: 600;
   font-size: 14px;
