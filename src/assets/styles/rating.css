@@ -10,7 +10,7 @@
 /* Shared product card */
 .product-card {
   width: 100%;
-  background: #ffffff;
+  background: var(--cardwhitebg);
   border-radius: 24px;
   padding: 2.5rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
@@ -31,7 +31,7 @@
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #1a202c;
+  color: var(--darktext);
   margin-top: 0;
   margin-bottom: 1.5rem;
   text-align: left;
@@ -47,7 +47,7 @@
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1rem;
   margin-bottom: 0.6rem;
-  color: #2d3748;
+  color: var(--darktext-hover);
   text-align: left;
 }
 
@@ -55,7 +55,7 @@
   display: flex;
   gap: 0.25rem;
   font-size: 2.4rem;
-  color: #e2e8f0;
+  color: var(--staremptycolor);
 }
 
 #starRatingInput i {
@@ -73,30 +73,30 @@
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
-  color: #2d3748;
+  color: var(--darktext-hover);
 }
 
 /* Custom input styles */
 .input-control {
   width: 100%;
   padding: 0.85rem 1.25rem;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--inputborder);
   border-radius: 2rem;
   font-size: 0.95rem;
-  background: #ffffff;
+  background: var(--cardwhitebg);
   box-sizing: border-box;
-  color: #2d3748;
+  color: var(--darktext-hover);
   transition: border 0.15s, box-shadow 0.15s;
   font-family: sans-serif;
 }
 
 .input-control::placeholder {
-  color: #a0aec0;
+  color: var(--placeholdergray);
 }
 
 .input-control:focus {
   outline: none;
-  border-color: #a0aec0;
+  border-color: var(--placeholdergray);
   box-shadow: 0 0 0 3px rgba(226, 232, 240, 0.5);
 }
 
@@ -111,7 +111,7 @@ textarea.input-control {
 
 /* Error messages */
 .error-message {
-  color: #e53e3e;
+  color: var(--errored);
   font-size: 0.8rem;
   margin-top: 0.35rem;
   display: none;
@@ -122,7 +122,7 @@ textarea.input-control {
 /* Form divider */
 .form-divider {
   border: none;
-  border-top: 1px solid #edf2f7;
+  border-top: 1px solid var(--formdivider);
   margin: 2rem 0 1.5rem;
 }
 
@@ -149,9 +149,9 @@ textarea.input-control {
 .toast-message {
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
-  background: #f0fdf4;
-  color: #166534;
-  border: 1px solid #bbf7d0;
+  background: var(--successbg);
+  color: var(--successtext);
+  border: 1px solid var(--successborder);
   border-radius: 2rem;
   font-size: 0.95rem;
   display: none;
@@ -172,7 +172,7 @@ textarea.input-control {
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
   margin-bottom: 1.8rem;
-  background: #faf9f7;
+  background: var(--offwhitebg);
   padding: 0.8rem 1.2rem;
   border-radius: 3rem;
 }
@@ -184,7 +184,7 @@ textarea.input-control {
 }
 
 .big-stars i {
-  color: #f5b342;
+  color: var(--starcolor);
   font-size: 1.6rem;
 }
 
@@ -192,7 +192,7 @@ textarea.input-control {
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
-  color: var(--title, #1e1e2a);
+  color: var(--title);
 }
 
 /* Review controls */
@@ -202,7 +202,7 @@ textarea.input-control {
   gap: 1rem;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #edeae4;
+  border-bottom: 1px solid var(--reviewborder);
   min-width: 0;
 }
 
@@ -210,8 +210,8 @@ textarea.input-control {
 .search-bar-container {
   display: flex;
   align-items: center;
-  background: #fcfcfb;
-  border: 1px solid var(--grayborder, #d6d2ca);
+  background: var(--inputwhitebg);
+  border: 1px solid var(--grayborder);
   border-radius: 3rem;
   padding: 0 1rem;
   transition: border 0.15s, box-shadow 0.15s;
@@ -221,14 +221,14 @@ textarea.input-control {
 }
 
 .search-bar-container:focus-within {
-  border-color: #b8a78f;
+  border-color: var(--focusaccent);
   box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
 }
 
 .search-icon-svg {
   width: 18px;
   height: 18px;
-  stroke: #888899;
+  stroke: var(--icongray);
   flex-shrink: 0;
 }
 
@@ -256,11 +256,11 @@ textarea.input-control {
 
 .filter-sort-select {
   padding: 0.5rem 1.2rem 0.5rem 1rem;
-  border: 1px solid var(--grayborder, #d6d2ca);
+  border: 1px solid var(--grayborder);
   border-radius: 3rem;
-  background: #fcfcfb;
+  background: var(--inputwhitebg);
   font-size: 0.9rem;
-  color: #1e1e2a);
+  color: var(--title);
   cursor: pointer;
   outline: none;
   transition: border 0.15s;
@@ -268,7 +268,7 @@ textarea.input-control {
 }
 
 .filter-sort-select:focus {
-  border-color: #b8a78f;
+  border-color: var(--focusaccent);
 }
 
 /* Comments list */
@@ -281,15 +281,15 @@ textarea.input-control {
 }
 
 .comment-card {
-  background: #faf9f7;
+  background: var(--offwhitebg);
   border-radius: 1.5rem;
   padding: 1.2rem 1.5rem;
-  border: 1px solid #edeae4;
+  border: 1px solid var(--reviewborder);
   transition: border 0.15s;
 }
 
 .comment-card:hover {
-  border-color: #d6d2ca;
+  border-color: var(--reviewborder-hover);
 }
 
 .comment-card-header {
@@ -311,7 +311,7 @@ textarea.input-control {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--title, #1e1e2a);
+  background: var(--title);
   color: white;
   display: flex;
   align-items: center;
@@ -326,19 +326,19 @@ textarea.input-control {
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  color: var(--title, #1e1e2a);
+  color: var(--title);
   font-family: 'Montserrat', sans-serif;
 }
 
 .comment-date {
   font-size: 0.8rem;
-  color: var(--halfvisibletext, #5b5b6e);
+  color: var(--halfvisibletext);
 }
 
 .comment-stars {
   display: flex;
   gap: 0.1rem;
-  color: #f5b342;
+  color: var(--starcolor);
   flex-shrink: 0;
 }
 
@@ -353,11 +353,11 @@ textarea.input-control {
   margin: 0.5rem 0 0.75rem;
   line-height: 1.6;
   font-size: 0.98rem;
-  color: #2b2b3a;
+  color: var(--commenttext);
 }
 
 .comment-text mark {
-  background: #fdebb3;
+  background: var(--marktextbg);
   padding: 0 0.15rem;
   border-radius: 2px;
 }
@@ -378,22 +378,22 @@ textarea.input-control {
   border-radius: 2rem;
   font-size: 0.85rem;
   font-family: 'Montserrat', sans-serif;
-  color: var(--halfvisibletext, #5b5b6e);
+  color: var(--halfvisibletext);
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   font-weight: 600;
 }
 
 .comment-upvote-btn:hover {
-  background: #edeae4;
+  background: var(--reviewbg-hover);
 }
 
 .comment-upvote-btn.voted {
-  color: #f5b342;
+  color: var(--starcolor);
 }
 
 .comment-upvote-btn.voted:hover {
-  background: #fdf0d6;
+  background: var(--upvotehoverbg);
 }
 
 .comment-upvote-btn svg {
@@ -422,13 +422,13 @@ textarea.input-control {
 .empty-reviews-state svg {
   width: 48px;
   height: 48px;
-  stroke: #ccc;
+  stroke: var(--emptystateicon);
   margin-bottom: 0.75rem;
 }
 
 .empty-reviews-state h3 {
   font-size: 1.1rem;
-  color: var(--title, #1e1e2a);
+  color: var(--title);
   margin-bottom: 0.2rem;
 }
 
