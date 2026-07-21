@@ -60,11 +60,15 @@ img, video {
 
 }
 
-a {
+a, a:visited {
     font-family: 'Montserrat', sans-serif;
+    color: var(--title);
     font-weight: 500;
     border-radius: 100vw;
+    text-decoration: none;
 }
+
+
 
 /*--------------------------------------------------------------------*/
 /*used in caroussel, product category*/
@@ -213,6 +217,20 @@ input {
     font-size: clamp(0.5rem, 0.5rem + 1vw, 1.5rem);
     width: clamp(15rem, 50vw, 40rem);
 }
+/*----------------------------------------------------------------------------*/
+/*for category in breadcrumb section*/
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color:var(--title);
+    font-size: clamp(1rem, 1rem + 0.3vw, 1.5rem);
+}
+
 
 /*---------------------------------------------------------------------------------------*/
 /*used in productpage carousel*/

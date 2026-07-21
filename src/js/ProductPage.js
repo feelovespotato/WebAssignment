@@ -1,13 +1,15 @@
 
 // load all components first, THEN observe
 async function init() {
-    await loadComponent('welcoming', '../components/productpage/Welcomingsection.html');
-    await loadComponent('category', '../components/productpage/ProductCategory.html');
-    await loadComponent('Search', '../components/productpage/Searchbar.html');
-    //await loadComponent("carousel", "../components/productpage/carouselproduct.html")
+    await Promise.all([
+        loadComponent('welcoming', '../components/productpage/Welcomingsection.html'),
+        loadComponent('category', '../components/productpage/ProductCategory.html'),
+        loadComponent('Search', '../components/productpage/Searchbar.html')
+    ]);
     
     observeAnimations(); // runs after all components are in the DOM
-    //initCarousel();
+   
 }
 
-init();
+document.addEventListener('DOMContentLoaded', init);
+//CHECKED
