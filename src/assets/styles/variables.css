@@ -41,6 +41,45 @@
 
   --bluecardbg:#6dcaf5;
   --purplecardbg:hsl(268, 100%, 93%);
+
+  /*about team section*/
+  --teamsubtext: #64748b;
+  --teammembertitle: #18188b;
+  --teamheaderborder: #f0f0f0;
+  --cardborder: #e8e8e8;
+  --metricsbg: #f8fafc;
+  --metricsborder: #eef2f6;
+  --metricstext: #334155;
+  --metricslabel: #0f172a;
+  --darktext: #1a202c;
+  --darktext-hover: #2d3748;
+  --cvborder: #d0d7de;
+  --cvhoverbg: #f1f5f9;
+  --cvhoverborder: #b0b8c0;
+
+  /*rating section*/
+  --starcolor: #f5b342;
+  --offwhitebg: #faf9f7;
+  --reviewborder: #edeae4;
+  --inputborder: #e2e8f0;
+  --placeholdergray: #a0aec0;
+  --errorred: #e53e3e;
+  --successbg: #f0fdf4;
+  --successtext: #166534;
+  --successborder: #bbf7d0;
+  --commenttext: #2b2b3a;
+  --marktextbg: #fdebb3;
+  --staremptycolor: #e2e8f0;
+  --reviewborder-hover: #d6d2ca;
+  --reviewbg-hover: #edeae4;
+  --cardwhitebg: #ffffff;
+  --avatarborder: #ffffff;
+  --avatarbg: #f0f4f8;
+  --metricsdivider: #e8edf2;
+  --inputwhitebg: #fcfcfb;
+  --formdivider: #edf2f7;
+  --focusaccent: #b8a78f;
+  --icongray: #888899;
+  --upvotehoverbg: #fdf0d6;
+  --emptystateicon: #ccc;
 }
-
-
