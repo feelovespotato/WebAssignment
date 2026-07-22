@@ -35,7 +35,7 @@ async function initProductDetailPage() {
     renderInfo(product);
 
     initGalleryThumbnails();
-    initOptionPills();
+    initOptionPills(product);
     initQuantityStepper();
 
     observeAnimations();
@@ -90,7 +90,6 @@ function renderGallery(product) {
 function renderInfo(product) {
     setText("product-category-tag", product.category);
     setText("product-title", product.name);
-    setText("product-price", product.price);
     setText("product-description", product.description);
     setText("product-availability", product.availability);
     setText("product-delivery", product.delivery);
@@ -99,10 +98,30 @@ function renderInfo(product) {
     renderPills("flavor-pills", product.flavors, product.defaultFlavor); 
     renderPills("pack-pills", product.packs, product.defaultPack);
     
-   
+    updatePriceForSelection(product);
+}
+// get the selected option by user
+function getSelectedVariant(product) {
+    if (!product.variants) {
+        return { price: product.price};
+    }
+
+    const selectedSize = document.querySelector("#size-pills .option-pill.active")?.textContent;
+    const selectedPack = document.querySelector("#pack-pills .option-pill.active")?.textContent;
+
+    const match = product.variants.find(
+        (v) => v.size === selectedSize && v.pack === selectedPack
+    );
+
+    return match || product.variants[0];
+}
+// for price update when select different size
+function updatePriceForSelection(product) {
+    const variant = getSelectedVariant(product);
+    setText("product-price", variant.price);
 }
 
-
+// for the options button
 function renderPills(containerId, options, defaultValue) {
     const container = document.getElementById(containerId);
     
@@ -116,15 +135,13 @@ function renderPills(containerId, options, defaultValue) {
         )
         .join("");
 }
-
+// set text function for all elements
 function setText(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
 }
 
-/*---------------------------------------------------------------*/
-/* gallery: clicking a thumbnail swaps the main image              */
-/*---------------------------------------------------------------*/
+// for img selection below main img
 function initGalleryThumbnails() {
     const mainImage = document.getElementById("main-product-image");
     const thumbs = document.querySelectorAll(".thumbnail-row .img-wrapper");
@@ -144,13 +161,21 @@ function initGalleryThumbnails() {
 }
 // size / pack pills: single active selection per option group
 
-function initOptionPills() {
+function initOptionPills(product) {
     document.querySelectorAll(".option-group").forEach((group) => {
         const pills = group.querySelectorAll(".option-pill");
         pills.forEach((pill) => {
             pill.addEventListener("click", () => {
                 pills.forEach((p) => p.classList.remove("active"));
                 pill.classList.add("active");
+
+                // only size + pack selections affect price — flavour
+                // doesn't, so this only recalculates when relevant
+                const isPriceAffecting = group.querySelector("#size-pills, #pack-pills");
+
+                if (isPriceAffecting) {
+                    updatePriceForSelection(product);
+                }
             });
         });
     });
