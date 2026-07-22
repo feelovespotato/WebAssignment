@@ -203,7 +203,7 @@
   border: 1px solid var(--darktext);
 }
 
-.btn-portfolio: hover {
+.btn-portfolio:hover {
   background-color: var(--darktext-hover);
   border-color: var(--darktext-hover);
   transform: translateY(-1px);
