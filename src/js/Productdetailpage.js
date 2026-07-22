@@ -52,7 +52,8 @@ function renderBreadcrumb(product) {
 
     if (categoryLink) {
         categoryLink.textContent = product.category;
-        categoryLink.href = `../pages/ProductPage.html?category=${encodeURIComponent(product.category)}`;
+        
+        categoryLink.href = `../pages/CategoryProductsPage.html?category=${encodeURIComponent(product.category)}`;
     }
     if (current) current.textContent = product.name;
 }

@@ -10,6 +10,7 @@ html {
 }
 
 body {
+    font-family: 'Montserrat', sans-serif;
     background-color: #fff;
     min-height: 100%;
     margin: 0;
@@ -28,7 +29,6 @@ section {
 }
 
 h1{
-    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: clamp(3rem, 5vw, 4rem);
     margin-bottom: 1rem;
@@ -36,7 +36,6 @@ h1{
 }
 
 h2{
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: var(--drinktitle);
     font-size: clamp(1.25rem, 1.1rem + 1vw, 1.45rem);
@@ -44,7 +43,6 @@ h2{
 }
 
 p{
-    font-family: 'Montserrat';
     font-size: clamp(1rem, 0.8rem + 1vw, 1.5rem);
     margin:0;
     /*for spcaing out*/
@@ -61,13 +59,17 @@ img, video {
 }
 
 a, a:visited {
-    font-family: 'Montserrat', sans-serif;
     color: var(--title);
     font-weight: 500;
     border-radius: 100vw;
     text-decoration: none;
 }
 
+button {
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Montserrat', sans-serif;
+}
 
 
 /*--------------------------------------------------------------------*/
