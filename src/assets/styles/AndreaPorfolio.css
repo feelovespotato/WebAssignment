@@ -78,14 +78,14 @@ section {
 }
 
 .btn-secondary {
-    border-color: var(--border-color);
-    color: var(--text-primary);
+    border-color: var(--border-color)!important;
+    color: var(--text-primary)!important;
     background: none;
 }
 
 .btn-secondary:hover {
     background-color: var(--bg-secondary);
-    border-color: var(--accent);
+    border-color: var(--accent)!important;
     transform: translateY(-2px);
 }
 
@@ -93,6 +93,38 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+/* CV Button Styles*/
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+.btn-cv {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+}
+
+.btn-cv:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
 }
 
 /* Navigation */
@@ -146,24 +178,46 @@ header {
     font-size: 0.95rem;
     transition: var(--transition);
     position: relative;
+    padding: 0.5rem 0;
 }
 
-.nav-link:hover, .nav-link.active {
+/* All links are having the same color by default */
+.nav-link:link,
+.nav-link:visited {
+    color: var(--text-secondary);
+}
+
+.nav-link:hover{
     color: var(--accent);
 }
 
+.nav-link.active {
+    color: var(--accent);
+}
+
+/* Remove any default from visited links */
+.nav-link:visited {
+    color: var(--text-secondary);
+}
+
+.nav-link.active:visited {
+    color: var(--accent);
+}
+
+/* Underline effect */
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
+    bottom: -2px;
     left: 0;
     background-color: var(--accent);
     transition: var(--transition);
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
@@ -863,7 +917,7 @@ header {
 
 .project-link {
     text-decoration: none;
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     font-size: 0.9rem;
     font-weight: 600;
     display: flex;
@@ -873,7 +927,7 @@ header {
 }
 
 .project-link:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 /* Contact section */
@@ -933,7 +987,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: var(--text-primary)!important;
     border: 1px solid var(--border-color);
     transition: var(--transition);
     text-decoration: none;

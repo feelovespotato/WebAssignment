@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initPage();
 });
 
-/* Fetch every section's HTML into its placeholder */
+/* Fetch every component's HTML*/
 async function loadAllComponents() {
     const components = [
         ['site-header', '../components/portfolio/Andrea/header.html'],
@@ -23,6 +23,23 @@ async function loadAllComponents() {
         await Promise.all(components.map(([id, file]) => loadComponent(id, file)));
     } catch (err) {
         console.error('One or more components failed to load:', err);
+    }
+}
+
+async function loadComponent(elementId, filePath) {
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const html = await response.text();
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = html;
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error(`Failed to load component ${filePath}:`, error);
+        return false;
     }
 }
 
@@ -102,6 +119,8 @@ function initPage() {
 
     /* Navigation active-link tracking */
     const sections = document.querySelectorAll('section');
+    
+    // Intersection Observer
     const navObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -111,9 +130,43 @@ function initPage() {
                 });
             }
         });
-    }, { root: null, rootMargin: '0px', threshold: 0.3 });
+    }, { 
+        root: null, 
+        rootMargin: '-100px 0px -100px 0px',
+        threshold: 0.1
+    });
 
     sections.forEach(section => navObserver.observe(section));
+
+    // Scroll-based fallback
+    let scrollTimeout;
+    function updateActiveLink() {
+        let currentSection = '';
+        const scrollPosition = window.scrollY + 120;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        if (currentSection) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
+            });
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveLink, 50);
+    });
+
+    // Run on load
+    setTimeout(updateActiveLink, 100);
 
     observeAnimations();
 
@@ -151,5 +204,24 @@ function initPage() {
                 formAlert.style.display = 'none';
             }, 5000);
         }
+    });
+}
+
+function observeAnimations() {
+    const animateElements = document.querySelectorAll('.animate-fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
     });
 }

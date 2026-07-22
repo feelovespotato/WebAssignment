@@ -9,8 +9,8 @@
 /* Header section */
 .team-header {
   text-align: center;
-  margin-bottom: 50px;
-  padding-bottom: 30px;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
   border-bottom: 2px solid var(--teamheaderborder);
 }
 
@@ -19,15 +19,23 @@
   font-weight: 700;
   font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--title);
-  margin-bottom: 15px;
+  margin-bottom: 0 0 2px 0 !important;
+  padding: 0 !important;
 }
 
 .team-header p {
   color: var(--teamsubtext);
   font-size: 1.1rem;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 10px auto !important;
+  padding: 0 !important;
   font-weight: 400;
+  line-height: 1.2 !important;
+}
+
+#teamSection{
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Grid */
@@ -35,7 +43,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  margin-top: 0;
   margin-bottom: 60px;
+  padding-top: 8px;
 }
 
 /* 1 card per row for mobile users*/
@@ -186,7 +196,8 @@
   display: inline-block;
 }
 
-.btn-portfolio {
+.btn-portfolio,
+.btn-portfolio:visited {
   background-color: var(--darktext);
   color: var(--textwhite);
   border: 1px solid var(--darktext);
