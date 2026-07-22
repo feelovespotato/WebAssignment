@@ -125,6 +125,8 @@
   margin-bottom: 22px;
   flex-grow: 1;
   border: 1px solid var(--metricsborder);
+  height: 350px;
+  overflow-y: auto;
 }
 
 .contribution-metrics ul {
