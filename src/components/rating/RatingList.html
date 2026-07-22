@@ -1,41 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Customer's Reviews </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="../../assets/styles/global.css" />
-    <link rel="stylesheet" href="../../assets/styles/variables.css" />
-    <link rel="stylesheet" href="../../assets/styles/rating.css" />
-
-    
-</head>
-<body>
-    <main>
-        <section class="reviews-layout">
-            <!-- Customer's review list -->
-            <div class="product-card list-card animate-fade-up">
-                <h2>Customer's Reviews</h2>
-                <!-- Rating summary -->
-                <div class="rating-summary">
-                    <span class="rating-number" id="avgRatingDisplay">4.3</span>
-                    <span class="big-stars" id="bigStarContainer">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
-                </div>
-                <!-- Rating List -->
-                <div id="ratingListContainer"></div>
-            </div>
-        </section>
-        <script src="../../js/utils.js"></script>
-        <script src="../../js/animations.js"></script>
-        <script src="../../js/rating.js"></script>
-    </main>
-</body>
-</html>
+<section id="ratingList" class="product-card list-card animate-fade-up">
+    <h2>Customer's Reviews</h2>
+    <div class="rating-summary">
+        <span class="rating-number" id="avgRatingDisplay">4.3</span>
+        <span class="big-stars" id="bigStarContainer">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+        </span>
+        <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
+    </div>
+    <div id="ratingListContainer"></div>
+</section>
