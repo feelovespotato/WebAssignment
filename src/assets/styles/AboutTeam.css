@@ -11,19 +11,19 @@
   text-align: center;
   margin-bottom: 50px;
   padding-bottom: 30px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid var(--teamheaderborder);
 }
 
 .team-header h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--title, #252525);
+  color: var(--title);
   margin-bottom: 15px;
 }
 
 .team-header p {
-  color: #64748b;
+  color: var(--teamsubtext);
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto;
@@ -48,8 +48,8 @@
 
 /* Card design */
 .team-card {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
+  background: var(--cardwhitebg);
+  border: 1px solid var(--cardborder);
   border-radius: 16px;
   padding: 35px 30px 30px;
   text-align: center; 
@@ -65,7 +65,7 @@
 .team-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  border-color: var(--redtext, #e51938);
+  border-color: var(--redtext);
 }
 
 /* Member avatar */
@@ -76,9 +76,9 @@
   overflow: hidden;
   margin: 0 auto 15px; 
   flex-shrink: 0;
-  border: 3px solid #fff;
+  border: 3px solid var(--avatarborder);
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  background: #f0f4f8;
+  background: var(--avatarbg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,12 +101,12 @@
   font-weight: 700;
   font-size: 1.5rem;
   margin: 0 0 4px 0;
-  color: var(--title, #252525);
+  color: var(--title);
   position: relative; 
 }
 
 .member-name {
-  color: rgb(24, 24, 139);
+  color: var(--teammembertitle);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -118,13 +118,15 @@
 
 /* Metrics box*/
 .contribution-metrics {
-  background: #f8fafc;
+  background: var(--metricsbg);
   border-radius: 10px;
   padding: 20px 22px;
   text-align: left;
   margin-bottom: 22px;
   flex-grow: 1;
-  border: 1px solid #eef2f6;
+  border: 1px solid var(--metricsborder);
+  height: 350px;
+  overflow-y: auto;
 }
 
 .contribution-metrics ul {
@@ -135,7 +137,7 @@
 
 .contribution-metrics li {
   font-size: 0.9rem;
-  color: #334155;
+  color: var(--metricstext);
   margin-bottom: 14px;
   line-height: 1.6;
   padding-left: 0;
@@ -148,7 +150,7 @@
 
 /* Custom styled labels */
 .contribution-metrics li strong {
-  color: #0f172a;
+  color: var(--metricslabel);
   display: block;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -161,7 +163,7 @@
 /* Separator line between metrics */
 .contribution-metrics li + li {
   padding-top: 14px;
-  border-top: 1px solid #e8edf2;
+  border-top: 1px solid var(--metricsdivider);
 }
 
 /* Buttons */
@@ -185,26 +187,26 @@
 }
 
 .btn-portfolio {
-  background-color: #1a202c;
-  color: #ffffff;
-  border: 1px solid #1a202c;
+  background-color: var(--darktext);
+  color: var(--textwhite);
+  border: 1px solid var(--darktext);
 }
 
 .btn-portfolio:hover {
-  background-color: #2d3748;
-  border-color: #2d3748;
+  background-color: var(--darktext-hover);
+  border-color: var(--darktext-hover);
   transform: translateY(-1px);
 }
 
 .btn-cv {
   background-color: transparent;
-  color: #1a202c;
-  border: 1px solid #d0d7de;
+  color: var(--darktext);
+  border: 1px solid var(--cvborder);
 }
 
 .btn-cv:hover {
-  background-color: #f1f5f9;
-  border-color: #b0b8c0;
+  background-color: var(--cvhoverbg);
+  border-color: var(--cvhoverborder);
   transform: translateY(-1px);
 }
 

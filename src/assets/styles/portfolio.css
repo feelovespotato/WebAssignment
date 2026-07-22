@@ -9,27 +9,19 @@
     margin-bottom:clamp(2rem, 4vw, 4rem) ;
     
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    background-color: var(--brownboardbg);
 
 }
-/*for tea field background img*/
-.hero-bg-img{
-    position: absolute;
-    inset: 0; 
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    z-index: 0;
-    
-}
+
 /*contianer for red bg card*/
 .hero-card{
     position: relative;
     z-index: 1;
-    background-color: var(--redbg);
+    
     border-radius: 2rem;
     padding: clamp(2rem, 3vw, 3.5rem);
     width: clamp(25rem, 80vw, 90rem);
@@ -52,26 +44,14 @@
 
     overflow:hidden;
     border-radius: 50%;
-    border: 2px solid var(--whiteborderbutton);
+    border: 2px solid var(--grayborder);
     margin-top:clamp(1.5rem , 2rem + 0.5vw, 3rem);
-   
+    background-color: var(--bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 /*personal img*/
-.img-sec img{
-    width:100%;
-    height: 100%;
-    object-fit: cover;         
-    display: block;
-    
-}
 
-/*name + bio container*/
-.name-bio-sec {
-    width:auto;
-    margin-bottom:clamp(1.5rem , 1rem + 0.5vw, 3rem);
-    margin-left:clamp(1.5rem , 1rem + 0.5vw, 3rem);
-    margin-right:clamp(1.5rem , 1rem + 0.5vw, 3rem);
-}
+
 /*bio text for alignment*/
 .name-bio-sec p {
     text-align: justify; 
@@ -103,7 +83,7 @@
   }
 }
 
-/*front back end*/
+/*front back end bc default for .card is 4 columns but this only 2 columns*/
 .skills-card {
     border-radius: 2.5rem;
     width: 100%;
@@ -113,6 +93,8 @@
     overflow: hidden;
     padding: 0 2rem; 
     box-sizing: border-box;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /*progress name + progress bar */
@@ -154,7 +136,7 @@
     height: clamp(1.2rem, 1rem + 1.5vw, 2rem);
     border-radius: 100vw;
     color:var(--redbg);
-    border: 2px solid var(--redborderbutton);
+    border: 2px solid var(--redbutton);
     -webkit-appearance: none;
     appearance: none;
 }
@@ -173,14 +155,14 @@
 
 /* Chrome, Safari, Edge*/ /*also progress bar animation*/
 .animate-fade-up.in-view progress::-webkit-progress-value {
-    background-color: var(--redbg); 
+    background-color: var(--redbutton); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Firefox*/
 .animate-fade-up.in-view progress::-moz-progress-bar {
-    background-color: var(--redbg); 
+    background-color: var(--redbutton); 
     border-radius: 100vw;
     animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -202,15 +184,19 @@
     padding: clamp(0.5rem, 1vw, 1rem);
     gap: clamp(0.5rem, 1vw, 0.75rem);
     box-sizing: border-box;
+    min-width: 0;
+    
 }
 /*i overwrite the original img-wrapper here*/
 .bento-item .img-wrapper {
     flex: 1;
     min-height: 0;
+    min-width: 0;
     width: 100%;
     height: 100%;
     padding-top: 0;
     margin: 0;
+    overflow: hidden;
 }
 /*same*/
 .bento-item .img-wrapper img {
@@ -232,6 +218,7 @@
     grid-column: span 1;
     grid-row: span 2;
     
+    
 }
 
 .span-tall {
@@ -244,50 +231,15 @@
     grid-row: span 4;
 }
 
+/*for last one i want it to be span-small as default but after in monile size change to span-tall*/
+.span-small.span-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
 .achievement-description{
     text-align: center;
     
-}
-
-
-@media(max-width: 1200px) {
-    .bento-container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, clamp(9rem, 18vh, 16rem));
-    }
-    .span-small {
-    grid-column: span 1;
-    grid-row: span 2;
-    }
-    .span-rectangle {
-    grid-column: span 2;
-    grid-row: span 1;
-    }
-    .span-long {
-        grid-column: span 1;
-        grid-row: span 3;
-    }
-    .span-tall {
-        grid-column: span 2;
-        grid-row: span 1;
-    }
-    .span-feature {
-        grid-column: span 1;
-        grid-row: span 4;
-    }
-}
-
-@media(max-width: 480px) {
-    .bento-container {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(1, clamp(9rem, 18vh, 16rem));
-    }
-    .span-tall,
-    .span-small,
-    .span-feature {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
 }
 
 /*carossel*/
@@ -320,13 +272,245 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-size: clamp(1.7rem, 2vw, 2rem);
 }
 
 .prev-btn {
-    left: -1.5rem;
+    left: -2rem;
 }
 
 .next-btn {
-    right: -1.5rem;
+    right: -2rem;
+}
+
+@media(max-width: 1200px) {
+    .bento-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, clamp(9rem, 18vh, 16rem));
+        grid-auto-rows: clamp(9rem, 18vh, 16rem); 
+    }
+    .span-small {
+    grid-column: span 1;
+    grid-row: span 2;
+    }
+    .span-rectangle {
+    grid-column: span 2;
+    grid-row: span 1;
+    }
+    .span-tall {
+        grid-column: span 1;
+        grid-row: span 3;
+    }
+    .span-long {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+    .span-feature {
+        grid-column: span 1;
+        grid-row: span 3;
+    }
+    .span-small.span-tall {
+        grid-column: span 1;
+        grid-row: span 2;   
+    }
+}
+
+@media(max-width: 600px) {
+    .bento-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, clamp(9rem, 18vh, 16rem));
+        grid-auto-rows: clamp(9rem, 18vh, 16rem)
+    }
+    .span-small {
+    grid-column: span 1;
+    grid-row: span 2;
+    }
+    .span-rectangle {
+    grid-column: span 1;
+    grid-row: span 2;
+    }
+    .span-tall {
+        grid-column: span 1;
+        grid-row: span 3;
+    }
+    .span-long {
+        grid-column: span 1;
+        grid-row: span 2;
+    }
+    .span-feature {
+        grid-column: span 1;
+        grid-row: span 3;
+    }
+
+    .span-small.span-tall {
+        grid-column: span 1;
+        grid-row: span 3;   /* only becomes "tall" at 600px and below */
+    }
+    .prev-btn {
+        left: -1.5rem;
+    }
+    .next-btn {
+        right: -1.5rem;
+    }
+}
+
+
+/*---------------------------------------------------------------------------*/
+/*for the project showcase part*/
+
+/*container for the whole project part*/
+.pinboard {
+    display: flex;
+    flex-direction: column;
+
+    gap: clamp(3rem, 6vw, 4rem); /*fro each box*/
+}
+
+.project-row {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(2rem, 4vw, 4rem); /* Space between image and text */
+    flex-wrap: wrap;
+    background-color: var(--brownboardbg);
+    border-radius: 2rem;
+    padding: clamp(2rem, 4vw, 4rem);
+    width: 100%;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+/*container for the photo + caption*/
+.pin-item {
+    position: relative;
+    flex: 0 0 auto; /*dont sllow it to grow*/
+    margin-top: clamp(3rem, 5vw, 4rem);
+}
+ 
+/* the pin dot on photo */
+.pin-dot {
+    position: absolute;
+    top: -2.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: clamp(2rem, 1.5rem + 2vw, 3rem);
+    height: auto;
+    max-width: none;
+    max-height: none;
+
+    z-index: 2;
+}
+ 
+/* the polaroid-style photo, slightly rotated as if pinned casually */
+.pin-photo {
+    position: relative;
+    
+    background-color: var(--bg);
+    padding: 0.75rem 0.75rem 2.25rem;
+    width: clamp(14rem, 20vw, 18rem);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    transform: rotate(-4deg);
+    transition: transform 0.3s ease;
+}
+ 
+/*transition for photo hover*/
+.pin-photo:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+ 
+.pin-photo img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+ 
+/* project name label on the photo */
+.pin-tag {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.9rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem; /*fixed bc the container will auto adjust*/ 
+    font-weight: 700;
+    color: var(--title);
+}
+ 
+.pin-caption {
+    flex: 1 1 18rem;
+    min-width: 0;
+}
+ 
+.pin-caption h1{
+    margin-bottom: clamp(2rem, 1rem + 1vw, 3rem);
+}
+ 
+.pin-caption p{
+    margin-bottom: clamp(2rem, 1rem + 3vw, 3rem);
+}
+
+@media (max-width: 700px) {
+    .pinboard {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .pin-caption {
+        text-align: center;
+    }
+}
+ 
+
+/*---------------------------------------------------------------*/
+/*bio part contact and education bg*/
+
+.bio-card-container{
+    display: flex;
+    flex-direction: row;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+@media (max-width: 700px) {
+   .bio-card-container{
+    flex-direction: column;
+    }
+}
+
+.bio-card {
+    background-color: var(--bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+    align-items: start;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    padding: clamp(1.5rem, 3vw, 7rem);
+    
+}
+
+/*overwrite the global one*/
+.bio-card h1 {
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem); 
+    margin-bottom: 0; 
+}
+/*overwrite the global one*/
+.bio-card p {
+    margin-bottom: 0; 
+}
+
+.bio-card hr {
+    width: 100%;
+    border-top: 1px solid var(--grayborder);
+}
+
+/*link fro github and linkedin*/
+.bio-card a {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--redborderbutton);
+    color: var(--redtext);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.bio-card a:hover {
+    background-color: var(--redbutton);
+    color: var(--textwhite);
+    border-color: var(--redbutton);
 }

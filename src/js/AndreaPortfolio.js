@@ -1,4 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadAllComponents();
+    initPage();
+});
+
+/* Fetch every section's HTML into its placeholder */
+async function loadAllComponents() {
+    const components = [
+        ['site-header', '../components/portfolio/Andrea/header.html'],
+        ['site-hero', '../components/portfolio/Andrea/hero.html'],
+        ['site-bio', '../components/portfolio/Andrea/bio.html'],
+        ['site-experience', '../components/portfolio/Andrea/experience.html'],
+        ['site-education', '../components/portfolio/Andrea/education.html'],
+        ['site-activities', '../components/portfolio/Andrea/activities.html'],
+        ['site-certifications', '../components/portfolio/Andrea/certifications.html'],
+        ['site-skills', '../components/portfolio/Andrea/skills.html'],
+        ['site-projects', '../components/portfolio/Andrea/projects.html'],
+        ['site-contact', '../components/portfolio/Andrea/contact.html'],
+        ['site-footer', '../components/portfolio/Andrea/footer.html'],
+    ];
+
+    try {
+        await Promise.all(components.map(([id, file]) => loadComponent(id, file)));
+    } catch (err) {
+        console.error('One or more components failed to load:', err);
+    }
+}
+
+function initPage() {
 
     /* Theme toggle */
     const themeToggle = document.getElementById('theme-toggle');
@@ -44,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Typewriter */
     const typewriterElement = document.getElementById('typewrite-text');
-    const roles = ["Software Engineer", "Frontend Developer", "UI/UX Specialist"];
+    const roles = ["Software Engineer Student"];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -124,5 +152,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
         }
     });
-
-});
+}

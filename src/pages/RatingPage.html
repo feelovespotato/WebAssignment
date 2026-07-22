@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rating Page</title>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="../assets/styles/variables.css">
     <link rel="stylesheet" href="../assets/styles/global.css">
@@ -13,76 +13,11 @@
 <body>
     <main>
         <section class="reviews-layout">
-            <!-- Customer's review list -->
-            <div class="product-card list-card animate-fade-up">
-                <h2>Customer's Reviews</h2>
-                <!-- Rating summary -->
-                <div class="rating-summary">
-                    <span class="rating-number" id="avgRatingDisplay">4.3</span>
-                    <span class="big-stars" id="bigStarContainer">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span class="rating-count" id="reviewCountDisplay">Based on 4 reviews</span>
-                </div>
-                <!-- Rating List -->
-                <div id="ratingListContainer"></div>
-            </div>
-            
-            <!-- Write a review -->
-            <div class="product-card form-card animate-fade-up">
-                <h2>Write a Review</h2>
-                <form id="reviewForm" novalidate>
-                    <!-- Star selector -->
-                    <div class="stars-selector-group">
-                        <span class="stars-selector-label">How would you rate this product?</span>
-                        <div id="starRatingInput">
-                            <i class="fas fa-star" data-value="1"></i>
-                            <i class="fas fa-star" data-value="2"></i>
-                            <i class="fas fa-star" data-value="3"></i>
-                            <i class="fas fa-star" data-value="4"></i>
-                            <i class="fas fa-star" data-value="5"></i>
-                        </div>
-                        <div id="ratingError" class="error-message">Please select a star rating</div>
-                    </div>
-
-                    <!-- Name -->
-                    <div>
-                        <label class="input-label" for="reviewerName">Your Name</label>
-                        <input class="input-control" type="text" id="reviewerName" placeholder="Sakura Tanaka" />
-                        <div id="nameError" class="error-message">Name is required</div>
-                    </div>
-
-                    <!-- Feedback -->
-                    <div class="input-group">
-                        <label class="input-label" for="reviewFeedback">Your Feedback</label>
-                        <textarea class="input-control" id="reviewFeedback" placeholder="Light, floral, and perfectly balanced. I love the subtle jasmine fragrance."></textarea>
-                        <div id="commentError" class="error-message">Review comment must be at least 4 characters</div>
-                    </div>
-
-                    <hr class="form-divider" />
-
-                    <button class="solidbutton btn-publish" type="submit">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13" />
-                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                        </svg>
-                        Publish My Review
-                    </button>
-                </form>
-
-                <!-- Toast feedback -->
-                <div id="publishToast" class="toast-message">
-                    <i class="fas fa-check-circle"></i>
-                    <span id="toastText">Thank you! Your review has been published.</span>
-                </div>
-            </div>
-
+            <div id="ratingListSlot"></div>
+            <div id="addReviewFormSlot"></div>
         </section>
-        <script src="../../js/utils.js"></script>
+
+        <script src="../js/utils.js"></script>
         <script src="../js/animations.js"></script>
         <script src="../js/rating.js"></script>
     </main>

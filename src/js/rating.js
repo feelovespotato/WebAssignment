@@ -190,11 +190,13 @@ class RatingList extends HTMLElement {
 customElements.define('rating-list', RatingList);
 
 // Mounting, summary calculation & form submission
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Initialize IntersectionObserver if available
-    if (typeof observeAnimations === 'function') {
-        observeAnimations();
+function initRatingPage() {
+    if (window.__ratingPageInitialized) return;
+    window.__ratingPageInitialized = true;
+
+    // Initialize animations if the shared helper is available
+    if (typeof window.observeAnimations === 'function') {
+        window.observeAnimations();
     }
 
     // Mount rating list component 
@@ -396,4 +398,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+}
+
+window.initRatingPage = initRatingPage;
+
+// Fetches the rating components
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadComponent('ratingListSlot', '../components/rating/RatingList.html');
+    await loadComponent('addReviewFormSlot', '../components/rating/AddReviewForm.html');
+    // RatingStars is inside AddReviewForm's placeholder
+    await loadComponent('ratingStarsContainer', '../components/rating/RatingStars.html');
+    initRatingPage();
 });

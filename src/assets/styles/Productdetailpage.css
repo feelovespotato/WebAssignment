@@ -1,0 +1,286 @@
+/*=====================================================================*/
+/* ProductDetailPage.css                                               */
+/* Page-specific styles only — colors/fonts come from variables.css,   */
+/* shared components (.card, .solidbutton, .img-wrapper, etc.) come    */
+/* from global.css and are reused, not redefined, below.               */
+/*=====================================================================*/
+
+/*---------------------------------------------------------------*/
+/* NOTE: .breadcrumb styles moved to global.css — now shared with   */
+/* CategoryProductsPage.css too.                                    */
+/*---------------------------------------------------------------*/
+
+/*---------------------------------------------------------------*/
+/* in pages ProductDetailpage: gallery + info */
+.product-detail-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+    padding-bottom: clamp(3rem, 4vw, 4rem);
+}
+
+@media (max-width: 900px) {
+    .product-detail-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*---------------------------------------------------------------*/
+/*for the Detail product page img + thumbnail*/
+.detail-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 1.5vw, 1.5rem);
+    /* background driven by inline var(--xxxbg) per product, same
+       pattern used on .card in productcategory.html */
+    border-radius: 2.5rem;
+    padding: clamp(2rem, 4vw, 3rem);
+   
+}
+
+/*increase size of the container img (overwriting the global height)*/
+.detail-gallery .img-wrapper {
+    height: clamp(16rem, 30vw, 26rem);
+    padding-top: 0;
+}
+
+/*thumbnail container*/
+.thumbnail-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+/*thumbnail img wrapper (overwriting the global one*/
+.thumbnail-row .img-wrapper {
+    height: clamp(4rem, 6vw, 5.5rem);
+    width: clamp(4rem, 6vw, 5.5rem);
+    background-color: var(--bg);
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding-top: 0.5rem;
+    transition: border-color 0.2s ease;
+}
+
+.thumbnail-row .img-wrapper.active,
+.thumbnail-row .img-wrapper:hover {
+    border-color: var(--redborderbutton);
+}
+
+/*---------------------------------------------------------------*/
+/*container for the whole detail part*/
+.detail-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/*small category tag */
+.category-tag {
+    align-self: flex-start;
+    font-weight: 600;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
+    color: var(--redtext);
+    border: 2px solid var(--redborderbutton);
+    border-radius: 100vw;
+    padding: 0.45rem 1rem;
+}
+
+/*price for the product (overwrite the font-size)*/
+.detail-info .price {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    color: var(--redtext);
+}
+
+/*---------------------------------------------------------------*/
+/* variant / size picker                                           */
+/*---------------------------------------------------------------*/
+/*container for option selection in details*/
+.option-group {
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+/*label text for the options ( overwrite the margin-bottom)*/
+.option-label {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+<!--ABOVE CHECKED BRIEFLY-->
+
+.option-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.option-pill {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+    border: 1px solid var(--grayborder);
+    border-radius: 100vw;
+    padding: 0.6rem 1.4rem;
+    background-color: var(--bg);
+    color: var(--title);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.option-pill.active,
+.option-pill:hover {
+    border-color: var(--redborderbutton);
+    background-color: var(--redbutton);
+    color: var(--textwhite);
+}
+
+/*---------------------------------------------------------------*/
+/* quantity stepper + add-to-cart row                               */
+/*---------------------------------------------------------------*/
+.purchase-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+    flex-wrap: wrap;
+}
+
+.quantity-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--grayborder);
+    border-radius: 100vw;
+    overflow: hidden;
+}
+
+.quantity-stepper button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 1rem + 0.3vw, 1.3rem);
+    background: none;
+    border: none;
+    color: var(--title);
+    width: clamp(2.5rem, 2rem + 1vw, 3rem);
+    height: clamp(2.5rem, 2rem + 1vw, 3rem);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.quantity-stepper button:hover {
+    background-color: var(--bgpink);
+    color: var(--redtext);
+}
+
+.quantity-stepper .quantity-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1rem, 0.9rem + 0.2vw, 1.15rem);
+    min-width: clamp(2rem, 2vw, 2.5rem);
+    text-align: center;
+}
+
+/* reuse .solidbutton from global.css for the add-to-cart CTA;
+   this just lets it grow to fill remaining row space */
+.purchase-row .solidbutton {
+    flex: 1;
+    text-align: center;
+    border: none;
+}
+
+/*---------------------------------------------------------------*/
+/* stock / delivery meta strip                                     */
+/*---------------------------------------------------------------*/
+.meta-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: clamp(1.5rem, 2vw, 2rem);
+    border-top: 1px solid var(--grayborder);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 0.8rem + 0.2vw, 1rem);
+    color: var(--halfvisibletext);
+}
+
+.meta-strip .meta-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meta-strip .meta-row span:first-child {
+    color: var(--title);
+    font-weight: 500;
+}
+
+/*---------------------------------------------------------------*/
+/* tabs: description / nutrition facts                             */
+/*---------------------------------------------------------------*/
+.detail-tabs {
+    display: flex;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    border-bottom: 1px solid var(--grayborder);
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+}
+
+.detail-tabs .tab-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
+    background: none;
+    border: none;
+    color: var(--halfvisibletext);
+    padding-bottom: 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.detail-tabs .tab-btn.active {
+    color: var(--title);
+    border-bottom-color: var(--redbutton);
+}
+
+/* nutrition facts card, mirrors .bio-card treatment from portfolio.css */
+.nutrition-card {
+    background-color: var(--functionalbg);
+    border-radius: 2rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 600px) {
+    .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.nutrition-item {
+    text-align: center;
+}
+
+.nutrition-item .value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.3rem, 1.1rem + 0.6vw, 1.6rem);
+    color: var(--drinktitle);
+    display: block;
+}
+
+.nutrition-item .label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.9rem);
+    color: var(--halfvisibletext);
+}
+
+/*---------------------------------------------------------------*/
+/* related products heading spacing (grid/card reused as-is)       */
+/*---------------------------------------------------------------*/
+#related-products .title {
+    margin-bottom: 0;
+}
