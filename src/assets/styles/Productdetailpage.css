@@ -3,8 +3,9 @@
 .product-detail-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: repeat(4, auto);
     gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
+    align-items: stretch;
     padding-bottom: clamp(3rem, 4vw, 4rem);
 }
 
@@ -14,14 +15,28 @@
     }
 }
 
+#gallery {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+}
+
+#Summary {
+    grid-column: 1;
+    grid-row: 4 / span 1;
+}
+
+#info {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+}
+
 /*---------------------------------------------------------------*/
 /*for the Detail product page img + thumbnail*/
 .detail-gallery {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: clamp(1rem, 1.5vw, 1.5rem);
-    /* background driven by inline var(--xxxbg) per product, same
-       pattern used on .card in productcategory.html */
     border-radius: 2.5rem;
     padding: clamp(2rem, 4vw, 3rem);
    

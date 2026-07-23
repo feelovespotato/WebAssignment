@@ -1,40 +1,93 @@
+
+/*container for the review list*/
+.customer-review-container{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  align-items: center;
+
+}
+/*----------------------------------------------------------------------------------------*/
+/*container for summary average rating star icon + text title + total review*/
+.summary-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width:100%;
+  align-items: flex-start;
+  height: clamp(15rem, 15rem + 5vw, 20rem);
+
+  border: 1px solid var(--reviewborder);
+  background-color:var(--offwhitebg);
+  
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+  
+  border-radius: 2.5rem;
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.summary-container h2{
+  font-size: clamp(1rem, 1rem + 1vw, 2rem);
+}
+
+/*container for rating numstar (inline) and rating count (column)*/
+.rating-summary{
+  display:flex; 
+  flex-direction: column;
+  width: 100%;
+  height:100%;
+}
+/*container for number rating and star (for inline purpose)*/
+.rating-numstar{
+  display: flex; /*span tag have to apply this*/
+  align-items: center;
+  gap: clamp(2rem, 1.5vw, 3rem);
+}
+
+/*average star average*/
+.rating-number {
+  font-weight: 700;
+  font-size: clamp(3rem, 3rem + 1vw, 5rem);
+  color: var(--title);
+}
+
+/*the star font size for summary*/
+.big-stars {
+  display: inline-flex; /*span tag have to apply this*/
+  align-items: center;
+  font-size: clamp(3rem, 3rem + 1vw, 5rem);
+  gap: clamp(0.5rem, 1vw, 1rem);
+  position: relative;  
+}
+/* for rendering the star colored parts*/
+.star-row {
+  display: flex;
+  gap: clamp(0.15rem, 0.3vw, 0.3rem);
+  white-space: nowrap;
+}
+/*layer empty star*/
+.star-row-empty {
+  position: relative;
+}
+/*layer colored star*/
+.star-row-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+/*the text below the average rating "based on ..."*/
+.rating-count{
+  margin-top: clamp(0.5rem, 0.5rem + 1vw, 1rem);
+  font-size: clamp(0.5rem, 0.5rem + 0.8vw, 1.5rem);
+}
+/*------------------------------------------------------------------------*/
 .reviews-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
   width: 100%;
-  margin-top: 2rem;
-}
-
-/* Shared product card */
-.product-card {
-  width: 100%;
-  background: var(--cardwhitebg);
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-  box-sizing: border-box;
-}
-
-.product-card.form-card {
-  max-width: 810px;
-}
-
-.product-card.list-card {
-  width: 820px;
-}
-
-/* Write a review form */
-/* Form title */
-.form-card h2 {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--darktext);
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  text-align: left;
 }
 
 /* Star selector */
@@ -44,33 +97,58 @@
 
 .stars-selector-label {
   display: block;
-  font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 1rem;
   margin-bottom: 0.6rem;
   color: var(--darktext-hover);
   text-align: left;
 }
-
+/*------------------------------------------------------------------------------------------------------------*/
+/*container for the form star input*/
 #starRatingInput {
   display: flex;
-  gap: 0.25rem;
-  font-size: 2.4rem;
-  color: var(--staremptycolor);
+  gap: 0.85rem;
 }
 
-#starRatingInput i {
-  cursor: pointer;
+.star-full, 
+.star-half, 
+.star-empty {
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 5 Free', 'FontAwesome';
+  font-style: normal;
+  display: inline-block;
   transition: color 0.15s, transform 0.1s;
 }
 
-#starRatingInput i:active {
+/* Map the classes to their shapes */
+.star-full::before  { 
+  content: "\f005";
+  font-weight: 900; 
+}
+.star-half::before  { 
+  content: "\f123"; 
+  font-weight: 900;
+}
+.star-empty::before { 
+  content: "\f006";
+  font-weight: 900; 
+}
+
+/* star colors for js to render */
+.star-full,
+.star-half { 
+  color: var(--starcolor); 
+}
+.star-empty { 
+  color: var(--staremptycolor); 
+}
+
+/*----------------------------------------------*/
+#starRatingInput svg:active {
   transform: scale(0.9);
 }
 
 /* Form labels */
 .input-label {
   display: block;
-  font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
   color: var(--darktext-hover);
@@ -87,7 +165,7 @@
   box-sizing: border-box;
   color: var(--darktext-hover);
   transition: border 0.15s, box-shadow 0.15s;
-  font-family: sans-serif;
+  
 }
 
 .input-control::placeholder {
@@ -105,7 +183,6 @@ textarea.input-control {
   border-radius: 1.25rem;
   resize: vertical;
   min-height: 120px;
-  font-family: 'Courier New', Courier, monospace;
   line-height: 1.5;
 }
 
@@ -116,7 +193,7 @@ textarea.input-control {
   margin-top: 0.35rem;
   display: none;
   text-align: left;
-  font-family: sans-serif;
+  
 }
 
 /* Form divider */
@@ -157,43 +234,21 @@ textarea.input-control {
   display: none;
   align-items: center;
   gap: 0.5rem;
-  font-family: sans-serif;
+  
 }
 
 .toast-message.show {
   display: flex;
 }
 
+.toast-message svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* Review list*/
 /* Rating summary */
-.rating-summary {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem 1rem;
-  margin-bottom: 1.8rem;
-  background: var(--offwhitebg);
-  padding: 0.8rem 1.2rem;
-  border-radius: 3rem;
-}
-
-.big-stars {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-}
-
-.big-stars i {
-  color: var(--starcolor);
-  font-size: 1.6rem;
-}
-
-.rating-number {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--title);
-}
 
 /* Review controls */
 .reviews-controls {
@@ -277,7 +332,7 @@ textarea.input-control {
   flex-direction: column;
   gap: 1.5rem;
   text-align: left;
-  font-family: sans-serif;
+  
 }
 
 .comment-card {
@@ -292,6 +347,8 @@ textarea.input-control {
   border-color: var(--reviewborder-hover);
 }
 
+/*----------------------------------------------------------*/
+/*container for stars + user info + avatar + meta(name + date)*/
 .comment-card-header {
   display: flex;
   justify-content: space-between;
@@ -299,35 +356,37 @@ textarea.input-control {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
-
+/*container for avatar + meta(name + date)*/
 .comment-user-info {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  
 }
-
+/*the avatar section + text in it*/
 .comment-user-avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+
   background: var(--title);
-  color: white;
+  color: var(--bg);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  flex-shrink: 0;
-}
 
-.comment-user-meta h4 {
-  font-size: 1rem;
   font-weight: 600;
-  margin: 0;
-  color: var(--title);
-  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  
+}
+/*container for meta (name + date)*/
+.comment-user-meta{
+  display:flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .comment-date {
@@ -339,21 +398,13 @@ textarea.input-control {
   display: flex;
   gap: 0.1rem;
   color: var(--starcolor);
-  flex-shrink: 0;
-}
-
-.comment-stars svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 2;
 }
 
 .comment-text {
   margin: 0.5rem 0 0.75rem;
   line-height: 1.6;
   font-size: 0.98rem;
-  color: var(--commenttext);
+  color: var(--title);
 }
 
 .comment-text mark {
@@ -366,50 +417,6 @@ textarea.input-control {
   display: flex;
   gap: 1rem;
   align-items: center;
-}
-
-.comment-upvote-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: transparent;
-  border: none;
-  padding: 0.3rem 0.8rem;
-  border-radius: 2rem;
-  font-size: 0.85rem;
-  font-family: 'Montserrat', sans-serif;
-  color: var(--halfvisibletext);
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  font-weight: 600;
-}
-
-.comment-upvote-btn:hover {
-  background: var(--reviewbg-hover);
-}
-
-.comment-upvote-btn.voted {
-  color: var(--starcolor);
-}
-
-.comment-upvote-btn.voted:hover {
-  background: var(--upvotehoverbg);
-}
-
-.comment-upvote-btn svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  fill: none;
-}
-
-.comment-upvote-btn.voted svg {
-  fill: currentColor;
-}
-
-.comment-upvote-btn .count {
-  font-weight: 600;
 }
 
 /* Empty state */
@@ -449,13 +456,6 @@ textarea.input-control {
 }
 
 @media (max-width: 480px) {
-  .product-card {
-    padding: 1.5rem;
-  }
-  .rating-summary {
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .reviews-controls {
     flex-direction: column;
     align-items: stretch;
@@ -467,4 +467,10 @@ textarea.input-control {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* Forces the custom web component to render as a block */
+rating-list {
+  display: block;
+  width: 100%;
 }

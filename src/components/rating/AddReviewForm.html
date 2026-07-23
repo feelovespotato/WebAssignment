@@ -1,22 +1,27 @@
-<section id="addReviewForm" class="product-card list-card animate-fade-up">
+<section id="addReviewForm" class="product-card list-card">
     <h2>Write a Review</h2>
+    
     <form id="reviewForm" novalidate>
+        <!-- Slot where RatingStars.html is loaded -->
         <div id="ratingStarsContainer"></div>
 
-        <div>
+        <!-- Reviewer Name Input -->
+        <div class="input-group">
             <label class="input-label" for="reviewerName">Your Name</label>
-            <input class="input-control" type="text" id="reviewerName" placeholder="Sakura Tanaka" />
+            <input class="input-control" type="text" id="reviewerName" placeholder="e.g. Sakura Tanaka" autocomplete="name" />
             <div id="nameError" class="error-message">Name is required</div>
         </div>
 
+        <!-- Review Feedback Input -->
         <div class="input-group">
             <label class="input-label" for="reviewFeedback">Your Feedback</label>
-            <textarea class="input-control" id="reviewFeedback" placeholder="Light, floral, and perfectly balanced. I love the subtle jasmine fragrance."></textarea>
+            <textarea class="input-control" id="reviewFeedback" placeholder="What did you think of this drink?"></textarea>
             <div id="commentError" class="error-message">Review comment must be at least 4 characters</div>
         </div>
 
         <hr class="form-divider" />
 
+        <!-- Submit Button -->
         <button class="solidbutton btn-publish" type="submit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
@@ -26,8 +31,12 @@
         </button>
     </form>
 
-    <div id="publishToast" class="toast-message">
-        <i class="fas fa-check-circle"></i>
+    <!-- Toast Notification -->
+    <div id="publishToast" class="toast-message" role="status" aria-live="polite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="8 12 11 15 16 9" />
+        </svg>
         <span id="toastText">Thank you! Your review has been published.</span>
     </div>
 </section>

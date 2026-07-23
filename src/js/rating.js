@@ -1,24 +1,44 @@
-// Rating List 
+
+
+//define each state for star rating
+function buildStarIcon(state) {
+    if (state === 'half') {
+        return `<span class="star-half"></span>`;
+    }
+    if (state === 'empty') {
+        return `<span class="star-empty"></span>`;
+    }
+    return `<span class="star-full"></span>`;
+}
+
+// for the summary stars
+function buildStarsProportional(avgNum) {
+    const percent = Math.max(0, Math.min(100, (avgNum / 5) * 100));
+    const emptyRow = Array(5).fill(`<span class="star-empty"></span>`).join('');
+    const fullRow = Array(5).fill(`<span class="star-full"></span>`).join('');
+    return `
+        <span class="star-row star-row-empty">${emptyRow}</span>
+        <span class="star-row star-row-full" style="width:${percent}%">${fullRow}</span>
+    `;
+}
+// Rating List Component
 class RatingList extends HTMLElement {
     constructor() {
         super();
         this._reviews = [
             { id: 1, name: "Alex Lau", rating: 5,
                 comment: "This Green Tea is absolutely perfect! Just the right amount of sweetness and very refreshing after a hot afternoon walk. Best tea in the market!",
-                date: "May 12, 2026", upvotes: 14, hasUpvoted: false },
+                date: "May 12, 2026"},
             { id: 2, name: "Benjamin Lim", rating: 4,
                 comment: "Really delicious flavor, but I wish the jasmine aroma was just a little stronger. Still, a solid beverage from Pokka that I buy almost every week.",
-                date: "Jun 04, 2026", upvotes: 8, hasUpvoted: false },
+                date: "Jun 04, 2026"},
             { id: 3, name: "Chloe Tan", rating: 5,
                 comment: "Incredibly refreshing! Clean, crisp taste. It isn't overly sweetened like some of the other brands. Reminds me of the authentic tea in Japan.",
-                date: "Jun 18, 2026", upvotes: 23, hasUpvoted: false },
+                date: "Jun 18, 2026"},
             { id: 4, name: "Zul bin Kassim", rating: 3,
                 comment: "The taste is okay but it's a bit too sweet for my diet. If Pokka launches a zero-sugar version of this exact blend, it would be a 5-star easily.",
-                date: "Jun 29, 2026", upvotes: 3, hasUpvoted: false }
+                date: "Jun 29, 2026"}
         ];
-        this._searchQuery = "";
-        this._sortBy = "helpful";
-        this._filterStar = 0;
     }
 
     connectedCallback() { this.render(); }
@@ -38,108 +58,25 @@ class RatingList extends HTMLElement {
     render() {
         this.innerHTML = `
             <div class="rating-list-wrapper">
-                <div class="reviews-controls">
-                    <div class="search-bar-container">
-                        <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                        <input class="input-control search-input" type="text" id="review-search" placeholder="Filter reviews by keyword...">
-                    </div>
-                    <div class="filter-sort-group">
-                        <select class="filter-sort-select" id="review-filter">
-                            <option value="0">All Stars</option>
-                            <option value="5">5 Stars only</option>
-                            <option value="4">4 Stars &amp; above</option>
-                            <option value="3">3 Stars &amp; below</option>
-                        </select>
-                        <select class="filter-sort-select" id="review-sort">
-                            <option value="helpful">Most Helpful</option>
-                            <option value="recent">Most Recent</option>
-                            <option value="high">Highest Rating</option>
-                            <option value="low">Lowest Rating</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="comments-list" id="list-container"></div>
             </div>
         `;
-        this.setupToolbarLogic();
         this.updateList();
-    }
-
-    setupToolbarLogic() {
-        const searchInput = this.querySelector('#review-search');
-        const filterSelect = this.querySelector('#review-filter');
-        const sortSelect = this.querySelector('#review-sort');
-        searchInput.addEventListener('input', (e) => {
-            this._searchQuery = e.target.value.toLowerCase().trim();
-            this.updateList();
-        });
-        filterSelect.addEventListener('change', (e) => {
-            this._filterStar = parseInt(e.target.value);
-            this.updateList();
-        });
-        sortSelect.addEventListener('change', (e) => {
-            this._sortBy = e.target.value;
-            this.updateList();
-        });
     }
 
     updateList() {
         const container = this.querySelector('#list-container');
         if (!container) return;
 
-        let filtered = this._reviews.filter(review => {
-            const matchesSearch = review.comment.toLowerCase().includes(this._searchQuery) ||
-                review.name.toLowerCase().includes(this._searchQuery);
-            let matchesStar = true;
-            if (this._filterStar === 5) matchesStar = review.rating === 5;
-            else if (this._filterStar === 4) matchesStar = review.rating >= 4;
-            else if (this._filterStar === 3) matchesStar = review.rating <= 3;
-            return matchesSearch && matchesStar;
-        });
-
-        filtered.sort((a, b) => {
-            if (this._sortBy === "recent") return new Date(b.date) - new Date(a.date);
-            else if (this._sortBy === "high") return b.rating - a.rating;
-            else if (this._sortBy === "low") return a.rating - b.rating;
-            else return b.upvotes - a.upvotes;
-        });
-
-        if (filtered.length === 0) {
-            container.innerHTML = `
-                <div class="empty-reviews-state">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px; stroke: #ccc; margin-bottom: 0.75rem;">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="8" y1="12" x2="16" y2="12" />
-                    </svg>
-                    <h3>No reviews found</h3>
-                    <p>Try adjusting your search keywords or filter criteria.</p>
-                </div>
-            `;
-            return;
-        }
-
         container.innerHTML = "";
-        filtered.forEach(review => {
+        this._reviews.forEach(review => {
             const card = document.createElement('div');
             card.className = 'comment-card animate-fade-in';
             card.id = `review-${review.id}`;
 
-            let highlightedComment = review.comment;
-            if (this._searchQuery !== "") {
-                const regex = new RegExp(`(${this.escapeRegExp(this._searchQuery)})`, 'gi');
-                highlightedComment = review.comment.replace(regex, '<mark>$1</mark>');
-            }
-
             let starHtml = "";
             for (let i = 1; i <= 5; i++) {
-                starHtml += `
-                    <svg viewBox="0 0 24 24" fill="${i <= review.rating ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                `;
+                starHtml += buildStarIcon(i <= review.rating ? 'full' : 'empty');
             }
 
             card.innerHTML = `
@@ -153,37 +90,11 @@ class RatingList extends HTMLElement {
                     </div>
                     <div class="comment-stars">${starHtml}</div>
                 </div>
-                <p class="comment-text">${highlightedComment}</p>
-                <div class="comment-actions">
-                    <button class="comment-upvote-btn ${review.hasUpvoted ? 'voted' : ''}" data-id="${review.id}">
-                        <svg viewBox="0 0 24 24" fill="${review.hasUpvoted ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                        </svg>
-                        <span class="count">${review.upvotes}</span> people found this helpful
-                    </button>
-                </div>
+                <p class="comment-text">${review.comment}</p>
             `;
 
-            const upvoteBtn = card.querySelector('.comment-upvote-btn');
-            upvoteBtn.addEventListener('click', () => this.handleUpvote(review.id));
             container.appendChild(card);
         });
-    }
-
-    handleUpvote(id) {
-        const review = this._reviews.find(r => r.id === id);
-        if (!review) return;
-        review.hasUpvoted ? (review.upvotes--, review.hasUpvoted = false) : (review.upvotes++, review.hasUpvoted = true);
-        this.dispatchEvent(new CustomEvent('review-upvote', {
-            bubbles: true,
-            composed: true,
-            detail: { id, upvotes: review.upvotes, hasUpvoted: review.hasUpvoted }
-        }));
-        this.updateList();
-    }
-
-    escapeRegExp(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 }
 
@@ -194,7 +105,6 @@ function initRatingPage() {
     if (window.__ratingPageInitialized) return;
     window.__ratingPageInitialized = true;
 
-    // Initialize animations if the shared helper is available
     if (typeof window.observeAnimations === 'function') {
         window.observeAnimations();
     }
@@ -215,37 +125,27 @@ function initRatingPage() {
     const avgRatingDisplay = document.getElementById('avgRatingDisplay');
     const bigStarContainer = document.getElementById('bigStarContainer');
 
-    // Function to update top summary header
+    // Function to update summary 
     function updateSummary() {
         if (!ratingList || !reviewCountDisplay || !avgRatingDisplay || !bigStarContainer) return;
+        // review count
         const reviews = ratingList.reviews || [];
         const total = reviews.length;
         reviewCountDisplay.textContent = `Based on ${total} reviews`;
+        // total average and the stars to render
         if (total > 0) {
             const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
             const avg = (sum / total).toFixed(1);
             avgRatingDisplay.textContent = avg;
 
             const avgNum = parseFloat(avg);
-            bigStarContainer.innerHTML = '';
-            for (let i = 1; i <= 5; i++) {
-                const icon = document.createElement('i');
-                if (i <= Math.floor(avgNum)) {
-                    icon.className = 'fas fa-star';
-                } else if (i === Math.ceil(avgNum) && avgNum % 1 >= 0.3) {
-                    icon.className = 'fas fa-star-half-alt';
-                } else {
-                    icon.className = 'far fa-star';
-                }
-                bigStarContainer.appendChild(icon);
-            }
+           
+            bigStarContainer.innerHTML = buildStarsProportional(avgNum);
         }
     }
 
-    // Summary event listeners
     if (ratingList) {
         ratingList.addEventListener('reviews-updated', updateSummary);
-        ratingList.addEventListener('review-upvote', updateSummary);
         setTimeout(updateSummary, 50);
     }
 
@@ -266,28 +166,21 @@ function initRatingPage() {
         let selectedRating = 0;
         let hoveredRating = 0;
 
+        
         function updateStars() {
-            const display = hoveredRating || selectedRating || 0;
-            stars.forEach((star, idx) => {
-                const color = (idx + 1 <= display) ? '#f5b342' : '#e2e8f0';
-                try {
-                    star.style.color = color;
-                    if (star.tagName && star.tagName.toLowerCase() === 'svg') {
-                        star.style.fill = color;
-                    } else {
-                        const innerSvg = star.querySelector && star.querySelector('svg');
-                        if (innerSvg) innerSvg.style.fill = color;
-                    }
-                } catch (err) {
-                }
-            });
+        const display = hoveredRating || selectedRating || 0;
+        stars.forEach((star, idx) => {
+        // css star colors
+        if (idx + 1 <= display) {
+            star.className = 'star star-full';
+        } else {
+            star.className = 'star star-empty';
         }
+    });
+}
 
         function resetHover() { hoveredRating = 0; updateStars(); }
 
-        if (stars.length === 0) {
-            console.debug('rating.js: no stars found inside #starRatingInput');
-        }
         stars.forEach(star => {
             star.addEventListener('pointerenter', function() {
                 hoveredRating = parseInt(this.dataset.value) || 0;
@@ -309,7 +202,6 @@ function initRatingPage() {
                 e.preventDefault();
                 let hasError = false;
 
-                // Validate rating
                 if (selectedRating === 0) {
                     if (ratingError) ratingError.style.display = 'block';
                     hasError = true;
@@ -317,7 +209,6 @@ function initRatingPage() {
                     ratingError.style.display = 'none';
                 }
 
-                // Validate name 
                 const name = nameInput ? nameInput.value.trim() : '';
                 if (name === '') {
                     if (nameError) nameError.style.display = 'block';
@@ -328,7 +219,6 @@ function initRatingPage() {
                     if (nameInput) nameInput.style.borderColor = '#e2e8f0';
                 }
 
-                // Validate comment
                 const comment = feedbackInput ? feedbackInput.value.trim() : '';
                 if (comment.length < 4) {
                     if (commentError) commentError.style.display = 'block';
@@ -341,7 +231,6 @@ function initRatingPage() {
 
                 if (hasError) return;
 
-                // Build review data
                 const now = new Date();
                 const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 const reviewData = {
@@ -350,37 +239,28 @@ function initRatingPage() {
                     rating: selectedRating,
                     comment: comment,
                     date: dateStr,
-                    upvotes: 0,
-                    hasUpvoted: false
+                    
                 };
 
-                // Add review to the rating list component 
                 if (ratingList && typeof ratingList.addReview === 'function') {
                     ratingList.addReview(reviewData);
-                } else {
-                    console.warn('rating-list component missing; cannot append new review.');
                 }
 
-                // Show success toast
                 if (toastText) toastText.textContent = `⭐ ${selectedRating} stars · Thank you, ${name}! Review published.`;
                 if (toast) {
                     toast.classList.add('show');
                     setTimeout(() => toast.classList.remove('show'), 4000);
                 }
 
-                // Reset form
                 form.reset();
                 selectedRating = 0;
-                stars.forEach(s => s.style.color = '#e2e8f0');
+                hoveredRating = 0;
+                updateStars();
                 if (nameInput) nameInput.style.borderColor = '#e2e8f0';
                 if (feedbackInput) feedbackInput.style.borderColor = '#e2e8f0';
-                if (ratingError) ratingError.style.display = 'none';
-                if (nameError) nameError.style.display = 'none';
-                if (commentError) commentError.style.display = 'none';
             });
         }
 
-        // Real-time error clearing
         if (nameInput) {
             nameInput.addEventListener('input', function() {
                 if (this.value.trim() !== '') {
@@ -404,9 +284,25 @@ window.initRatingPage = initRatingPage;
 
 // Fetches the rating components
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadComponent('ratingListSlot', '../components/rating/RatingList.html');
-    await loadComponent('addReviewFormSlot', '../components/rating/AddReviewForm.html');
-    // RatingStars is inside AddReviewForm's placeholder
+    // 1. Load the main page-level slots first
+    await Promise.all([
+        loadComponent('ratingListSlot', '../components/rating/RatingList.html'),
+        loadComponent('addReviewFormSlot', '../components/rating/AddReviewForm.html'),
+        loadComponent('Summary', '../components/rating/Ratingaverage.html')
+    ]);
+    
+    // 2. NOW that the form exists in the DOM, load the stars wrapper into it
     await loadComponent('ratingStarsContainer', '../components/rating/RatingStars.html');
+    
+    // 3. NOW that the stars wrapper exists, fetch the shared interactive icons
+    const response = await fetch('../components/rating/Stars.html');
+    const starsHtml = await response.text();
+
+    const inputContainer = document.getElementById('starRatingInput');
+    if (inputContainer) {
+        inputContainer.innerHTML = starsHtml;
+    }
+
+    // 4. Boot up the interactive logic
     initRatingPage();
 });
