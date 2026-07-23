@@ -233,7 +233,6 @@ input {
     align-items: center;
     gap: 0.5rem;
 
-    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color:var(--title);
     font-size: clamp(1rem, 1rem + 0.3vw, 1.5rem);
