@@ -6,7 +6,7 @@
 }
 
 body{
-    background:#F8F5EF;
+    background-color: var(--page-background);
     margin:0;
 }
 
@@ -222,17 +222,6 @@ body{
     color:#F39A1E
 }
 
-:root{
-    background-color: #FFFFFF;
-    text-decoration-color: #1A1A1A;
-    border-color: #ddd;
-}
-
-[data-theme="dark"]{
-    background-color:#1a1a1a;
-    text-decoration-color: #f0f0f0;
-    border-color: #444;
-}
 
 .themeToggle {
   padding: 10px 24px;
@@ -254,48 +243,46 @@ body{
   transform: scale(0.97);
 }
 
+/* =================================
+   NAVBAR LIGHT AND DARK MODE
+================================= */
+
 .navbar {
-    background-color: var(--surface-color);
-    color: var(--text-color);
-}
+    background: var(--navbar-background);
+    color: var(--navbar-text);
 
-.navbar a {
-    color: var(--text-color);
-}
-
-/* Navbar always keeps the same colours */
-.navbar {
-    background-color: #232323;
-    color: #ffffff;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 
-/* Pokka logo */
-.navbar .navbarlogo {
-    color: #ffffff;
-}
-
-
-/* Navigation links */
-.navbar .navLinks a {
-    color: #ffffff;
-}
-
-
-/* Navigation hover colour */
-.navbar .navLinks a:hover {
+/* Pokka logo stays yellow */
+.navbar .navbarlogo,
+.navbar .navbarlogo:visited {
     color: var(--pokka-yellow);
 }
 
 
-/* Login button */
-.navbar .loginButton {
-    color: #ffffff;
+/* Navigation and login text */
+.navbar .navLinks a,
+.navbar .navLinks a:visited,
+.navbar .loginButton,
+.navbar .loginButton:visited {
+    color: var(--navbar-text);
 }
 
 
-/* Signup button always stays yellow */
-.navbar .signupButton {
+/* Hover stays yellow */
+.navbar .navLinks a:hover,
+.navbar .loginButton:hover {
+    color: var(--pokka-yellow);
+}
+
+
+/* Signup button stays yellow */
+.navbar .signupButton,
+.navbar .signupButton:visited {
     background-color: var(--pokka-yellow);
     color: #ffffff;
 }
@@ -308,64 +295,76 @@ body{
     border: 2px solid var(--pokka-yellow);
 }
 
-
-/* Theme button hover */
 .navbar .themeToggle:hover {
     background-color: var(--pokka-yellow);
-    color: #232323;
-}
-
-
-.navbarlogo,
-.navLinks a,
-.loginButton {
     color: #ffffff;
 }
 
-.signupButton {
-    background-color: #ff9d32;
-    color: #ffffff;
-}
 
-.themeToggle {
-    color: #ff9d32;
-    border-color: #ff9d32;
-}
-
-.navbar {
-    background-color: var(--navbar-background);
-    transition: background-color 0.3s ease;
-}
-
-/* Logo stays yellow */
-.navbar .navbarlogo {
-    color: var(--pokka-yellow);
-}
-
-/* Links change black/white depending on theme */
-.navbar .navLinks a {
-    color: var(--navbar-text);
-}
-
-/* Login button text */
-.navbar .loginButton {
-    color: var(--navbar-text);
-}
-
-/* Signup button stays yellow */
-.navbar .signupButton {
+/* Cart button has yellow background so white icon is visible */
+.navbar .cartButton,
+.navbar .cartButton:visited {
     background-color: var(--pokka-yellow);
     color: #ffffff;
+    border-color: var(--pokka-yellow);
 }
 
-/* Theme button stays yellow */
-.navbar .themeToggle {
+.navbar .cartButton i {
+    color: #ffffff;
+}
+
+.navbar .cartButton:hover {
+    background-color: #d98300;
+    color: #ffffff;
+}
+
+
+.cartButton {
+    position: relative;
+
+    width: 44px;
+    height: 44px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--navbar-text);
     background-color: transparent;
-    color: var(--pokka-yellow);
+
     border: 2px solid var(--pokka-yellow);
+    border-radius: 50%;
+
+    text-decoration: none;
+    font-size: 18px;
+
+    transition: 0.3s;
 }
 
-.navbar .themeToggle:hover {
-    background-color: var(--pokka-yellow);
+
+.cartButton:hover {
     color: #ffffff;
+    background-color: var(--pokka-yellow);
+    transform: translateY(-2px);
 }
+
+#cartCount {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+
+    min-width: 21px;
+    height: 21px;
+    padding: 0 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e51938;
+    color: #ffffff;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 700;}

@@ -1,70 +1,104 @@
+<section class="container">
 
- <main class="container">
     <div class="login">
-<header>
-    
-    <h1> Welcome back to Pokka! </h1>
-<p class="description">
-        Please sign in to continue to your Pokka account.
-    </p>
-</header>
 
-<form action="#" method="post">
-    <label for ="email address"> Email Address </label>
-    <input
-        type="email"
-        id="email"
-        placeholder="Email Address"
-        required>
+        <header>
+            <h1>Welcome back to Pokka!</h1>
 
-       
+            <p class="description">
+                Please sign in to continue to your Pokka account.
+            </p>
+        </header>
 
-    <label for="password"> Password</label>
-    <div class="passwordContainer">
-    <input
-        type="password"
-        id="password"
-        placeholder="Password"
-        required>
+        <form
+            id="loginFormElement"
+            action="#"
+            method="post"
+        >
 
-        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
-        </div>
+            <label for="email">
+                Email Address
+            </label>
 
-         <a href="#" class="forgot"> Forgot your Password? </a>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                required
+            >
 
-    <label for="pin"> 4 Digit Pin Code</label>
-    <input
-        type="text"
-        id="pin"
-        placeholder="4 Digit Pin Code"
-        maxlength="4"
-        pattern="[0-9]{4}"
-        inputmode="numeric"
-        oninput="this.value = this.value.replace(/[^0-9]/g,'')"
-        required>
-    
-    <div class="remember-selection">
 
-        <label class="remember">
-            <input type="checkbox">
-            Remember My ID
-        </label>
+            <label for="password">
+                Password
+            </label>
 
-        
-       </div>
-        
-       <button type="submit" class="login-button">
-        Login
-       </button>
-</form>
+            <div class="passwordContainer">
 
-<p class="signup">
-    Don't have an account? 
-    <a href="SignupPage.html"> Join us! </a>
-</p>
-<a href="index.html" class:"home-button">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
 
-</a>
+                <i class="fa-solid fa-eye-slash"
+                    id="togglePassword"
+                    role="button"
+                    aria-label="Show or hide password"></i>
+
+            </div>
+
+
+            <a href="#" class="forgot">
+                Forgot your Password?
+            </a>
+
+
+            <label for="pin"> 4 Digit PIN Code </label>
+
+            <input
+                type="text"
+                id="pin"
+                name="pin"
+                placeholder="4 Digit PIN Code"
+                minlength="4"
+                maxlength="4"
+                pattern="[0-9]{4}"
+                inputmode="numeric"
+                oninput="this.value=this.value.replace(/[^0-9]/g, '')"
+                required
+            >
+
+
+            <div class="remember-selection">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        name="remember">
+                    Remember My ID </label>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <p class="signup">
+            Don't have an account?
+            <a href="SignupPage.html">Join us!</a>
+        </p>
+
     </div>
-</main>
-</html>
+
+</section>
