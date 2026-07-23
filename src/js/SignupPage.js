@@ -1,45 +1,73 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         await Promise.all([
-            loadHTML("navbar", "navbar.html"),
-            loadHTML("signupForm", "SignupForm.html"),
-            loadHTML("footer", "footer.html")
+            loadComponent(
+                "navbarContainer",
+                "../components/layout/navbar.html"
+            ),
+
+            loadComponent(
+                "signupContainer",
+                "../components/Signup&Login/SignupForm.html"
+            ),
+
+            loadComponent(
+                "footerContainer",
+                "../components/layout/footer.html"
+            )
         ]);
 
-        // Run signup functions only after the form has been loaded
         initialiseSignupPage();
+        initialiseTheme();
+        initialiseFooter();
 
-        console.log("Signup page components loaded successfully.");
+        console.log("All components loaded successfully.");
     } catch (error) {
-        console.error("Error loading signup page:", error);
+        console.error("Signup page loading error:", error);
     }
 });
 
 
-async function loadHTML(elementId, filePath) {
-    const container = document.getElementById(elementId);
+async function loadComponent(containerId, filePath) {
+    const container = document.getElementById(containerId);
 
     if (!container) {
-        throw new Error(`Element with ID "${elementId}" was not found.`);
+        throw new Error(
+            `Container "${containerId}" was not found.`
+        );
     }
 
     const response = await fetch(filePath);
 
     if (!response.ok) {
         throw new Error(
-            `Unable to load ${filePath}. HTTP status: ${response.status}`
+            `${filePath} failed to load. Status: ${response.status}`
         );
     }
 
     container.innerHTML = await response.text();
+
+    console.log(`${filePath} loaded successfully.`);
 }
 
 
-function initialiseSignupPage() {
-    setupPasswordToggle("password", "passwordToggle");
-    setupPasswordToggle("confirmPassword", "confirmPasswordToggle");
+/* =========================
+   SIGNUP FORM
+========================= */
 
-    const signupForm = document.getElementById("signupFormElement");
+function initialiseSignupPage() {
+    setupPasswordToggle(
+        "password",
+        "togglePassword"
+    );
+
+    setupPasswordToggle(
+        "confirmPassword",
+        "toggleConfirmPassword"
+    );
+
+    const signupForm =
+        document.getElementById("signupFormElement");
 
     if (!signupForm) {
         console.error("Signup form was not found.");
@@ -49,12 +77,22 @@ function initialiseSignupPage() {
     signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const password = document.getElementById("password").value;
+        const password =
+            document.getElementById("password").value;
+
         const confirmPassword =
             document.getElementById("confirmPassword").value;
 
+        const pin =
+            document.getElementById("pin").value;
+
         if (password !== confirmPassword) {
             alert("The passwords do not match.");
+            return;
+        }
+
+        if (pin.length !== 4) {
+            alert("Your PIN must contain exactly 4 digits.");
             return;
         }
 
@@ -63,31 +101,110 @@ function initialiseSignupPage() {
 }
 
 
-function setupPasswordToggle(inputId, buttonId) {
-    const passwordInput = document.getElementById(inputId);
-    const toggleButton = document.getElementById(buttonId);
+/* =========================
+   PASSWORD TOGGLE
+========================= */
 
-    if (!passwordInput || !toggleButton) {
+function setupPasswordToggle(inputId, toggleId) {
+    const passwordInput =
+        document.getElementById(inputId);
+
+    const toggleIcon =
+        document.getElementById(toggleId);
+
+    if (!passwordInput || !toggleIcon) {
+        console.error(
+            `Password toggle was not found: ${toggleId}`
+        );
+
         return;
     }
 
-    toggleButton.addEventListener("click", function () {
-        const icon = toggleButton.querySelector("i");
+    toggleIcon.addEventListener("click", function () {
+        const passwordIsHidden =
+            passwordInput.type === "password";
 
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
+        passwordInput.type =
+            passwordIsHidden ? "text" : "password";
 
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
+        toggleIcon.classList.toggle(
+            "fa-eye",
+            passwordIsHidden
+        );
 
-            toggleButton.setAttribute("aria-label", "Hide password");
-        } else {
-            passwordInput.type = "password";
-
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-
-            toggleButton.setAttribute("aria-label", "Show password");
-        }
+        toggleIcon.classList.toggle(
+            "fa-eye-slash",
+            !passwordIsHidden
+        );
     });
+}
+
+
+/* =========================
+   LIGHT AND DARK MODE
+========================= */
+
+function initialiseTheme() {
+    const themeButton =
+        document.getElementById("WebsiteTheme");
+
+    if (!themeButton) {
+        console.error("Theme button was not found.");
+        return;
+    }
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+    const startingTheme =
+        savedTheme === "dark" ? "dark" : "light";
+
+    setTheme(startingTheme);
+
+    themeButton.addEventListener("click", function () {
+        const currentTheme =
+            document.documentElement.dataset.theme;
+
+        const nextTheme =
+            currentTheme === "dark"
+                ? "light"
+                : "dark";
+
+        setTheme(nextTheme);
+    });
+}
+
+
+function setTheme(theme) {
+    document.documentElement.setAttribute(
+        "data-theme",
+        theme
+    );
+
+    localStorage.setItem("theme", theme);
+
+    const themeButton =
+        document.getElementById("WebsiteTheme");
+
+    if (themeButton) {
+        themeButton.textContent =
+            theme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode";
+    }
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+function initialiseFooter() {
+    const footerYear =
+        document.getElementById("footerYear");
+
+    if (footerYear) {
+        footerYear.textContent =
+            new Date().getFullYear();
+    }
 }

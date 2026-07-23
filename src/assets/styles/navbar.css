@@ -253,3 +253,119 @@ body{
 .themeToggle:active {
   transform: scale(0.97);
 }
+
+.navbar {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.navbar a {
+    color: var(--text-color);
+}
+
+/* Navbar always keeps the same colours */
+.navbar {
+    background-color: #232323;
+    color: #ffffff;
+}
+
+
+/* Pokka logo */
+.navbar .navbarlogo {
+    color: #ffffff;
+}
+
+
+/* Navigation links */
+.navbar .navLinks a {
+    color: #ffffff;
+}
+
+
+/* Navigation hover colour */
+.navbar .navLinks a:hover {
+    color: var(--pokka-yellow);
+}
+
+
+/* Login button */
+.navbar .loginButton {
+    color: #ffffff;
+}
+
+
+/* Signup button always stays yellow */
+.navbar .signupButton {
+    background-color: var(--pokka-yellow);
+    color: #ffffff;
+}
+
+
+/* Theme button */
+.navbar .themeToggle {
+    background-color: transparent;
+    color: var(--pokka-yellow);
+    border: 2px solid var(--pokka-yellow);
+}
+
+
+/* Theme button hover */
+.navbar .themeToggle:hover {
+    background-color: var(--pokka-yellow);
+    color: #232323;
+}
+
+
+.navbarlogo,
+.navLinks a,
+.loginButton {
+    color: #ffffff;
+}
+
+.signupButton {
+    background-color: #ff9d32;
+    color: #ffffff;
+}
+
+.themeToggle {
+    color: #ff9d32;
+    border-color: #ff9d32;
+}
+
+.navbar {
+    background-color: var(--navbar-background);
+    transition: background-color 0.3s ease;
+}
+
+/* Logo stays yellow */
+.navbar .navbarlogo {
+    color: var(--pokka-yellow);
+}
+
+/* Links change black/white depending on theme */
+.navbar .navLinks a {
+    color: var(--navbar-text);
+}
+
+/* Login button text */
+.navbar .loginButton {
+    color: var(--navbar-text);
+}
+
+/* Signup button stays yellow */
+.navbar .signupButton {
+    background-color: var(--pokka-yellow);
+    color: #ffffff;
+}
+
+/* Theme button stays yellow */
+.navbar .themeToggle {
+    background-color: transparent;
+    color: var(--pokka-yellow);
+    border: 2px solid var(--pokka-yellow);
+}
+
+.navbar .themeToggle:hover {
+    background-color: var(--pokka-yellow);
+    color: #ffffff;
+}

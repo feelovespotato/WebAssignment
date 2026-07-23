@@ -198,3 +198,141 @@ a{
     visibility: visible;
     opacity: 1;
 } 
+
+.signup {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.signup input {
+    background-color: var(--input-background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Signup card */
+.signup {
+    background-color: var(--signup-background);
+    color: var(--signup-text);
+}
+
+
+/* Main signup heading */
+.signup h1,
+.signup h2,
+.signup h3 {
+    color: #ffffff;
+}
+
+
+/* Description under heading */
+.signup .description {
+    color: var(--signup-description);
+}
+
+
+/* Form labels such as Email Address and First Name */
+.signup label {
+    color: #ffffff;
+}
+
+
+/* Input boxes */
+.signup input {
+    background-color: var(--input-background);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+}
+
+
+/* Text inside empty inputs */
+.signup input::placeholder {
+    color: var(--input-placeholder);
+    opacity: 1;
+}
+
+
+/* Password eye icons */
+.signup .passwordContainer i {
+    color: #ffffff;
+}
+
+
+/* Bottom login sentence */
+.signup .SignupFooter {
+    color: #ffffff;
+}
+
+.signup .SignupFooter a {
+    color: var(--pokka-yellow);
+}
+
+/* Page background */
+body {
+    background-color: var(--page-background);
+    transition: background-color 0.3s ease;
+}
+
+
+/* Signup card */
+.signup {
+    background-color: var(--signup-background);
+    color: var(--main-text);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* Heading and labels */
+.signup h1,
+.signup h2,
+.signup h3,
+.signup label,
+.signup .SignupFooter {
+    color: var(--main-text);
+}
+
+
+/* Description text */
+.signup .description {
+    color: var(--secondary-text);
+}
+
+
+/* Input boxes */
+.signup input {
+    background-color: var(--input-background);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* Placeholder text */
+.signup input::placeholder {
+    color: var(--secondary-text);
+    opacity: 1;
+}
+
+
+/* Password eye icons */
+.signup .passwordContainer i {
+    color: var(--main-text);
+}
+
+
+/* Login link */
+.signup .SignupFooter a {
+    color: var(--pokka-yellow);
+}
+
+
+/* Submit button stays orange */
+.signup .SignupButton {
+    background-color: var(--pokka-yellow);
+    color: #ffffff;
+}
