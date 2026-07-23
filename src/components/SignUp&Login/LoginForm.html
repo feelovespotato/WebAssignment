@@ -1,0 +1,70 @@
+
+ <main class="container">
+    <div class="login">
+<header>
+    
+    <h1> Welcome back to Pokka! </h1>
+<p class="description">
+        Please sign in to continue to your Pokka account.
+    </p>
+</header>
+
+<form action="#" method="post">
+    <label for ="email address"> Email Address </label>
+    <input
+        type="email"
+        id="email"
+        placeholder="Email Address"
+        required>
+
+       
+
+    <label for="password"> Password</label>
+    <div class="passwordContainer">
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        required>
+
+        <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+        </div>
+
+         <a href="#" class="forgot"> Forgot your Password? </a>
+
+    <label for="pin"> 4 Digit Pin Code</label>
+    <input
+        type="text"
+        id="pin"
+        placeholder="4 Digit Pin Code"
+        maxlength="4"
+        pattern="[0-9]{4}"
+        inputmode="numeric"
+        oninput="this.value = this.value.replace(/[^0-9]/g,'')"
+        required>
+    
+    <div class="remember-selection">
+
+        <label class="remember">
+            <input type="checkbox">
+            Remember My ID
+        </label>
+
+        
+       </div>
+        
+       <button type="submit" class="login-button">
+        Login
+       </button>
+</form>
+
+<p class="signup">
+    Don't have an account? 
+    <a href="SignupPage.html"> Join us! </a>
+</p>
+<a href="index.html" class:"home-button">
+
+</a>
+    </div>
+</main>
+</html>

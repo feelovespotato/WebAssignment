@@ -121,3 +121,29 @@
         text-align: center;
     }
 }
+
+.siteFooter {
+    background-color: var(--footer-background);
+    color: var(--footer-text);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.siteFooter p,
+.siteFooter h3,
+.siteFooter a,
+.siteFooter span,
+.siteFooter i {
+    color: var(--footer-text);
+}
+
+.siteFooter .footerLogo {
+    color: var(--footer-logo);
+}
+
+
+/* Keep the POKKA logo pink/red */
+.siteFooter .footerLogo {
+    color: #ff0050;
+}

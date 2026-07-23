@@ -83,3 +83,44 @@
   --upvotehoverbg: #fdf0d6;
   --emptystateicon: #ccc;
 }
+
+/*For light mode and dark mode*/
+:root {
+    /* Light mode */
+    --page-background: #f7f4ef;
+    --signup-background: #ffffff;
+    --main-text: #1f1f1f;
+    --secondary-text: #666666;
+
+    --input-background: #ffffff;
+    --input-text: #1f1f1f;
+    --input-border: #cccccc;
+
+    --navbar-background: #ffffff;
+    --navbar-text: #1f1f1f;
+
+     --footer-background: #ffffff;
+    --footer-text: #1f1f1f;
+    --footer-logo: #ff0050;
+
+    --pokka-yellow: #ff9d32;
+}
+
+html[data-theme="dark"] {
+    /* Dark mode */
+    --page-background: #000000;
+    --signup-background: #232323;
+    --main-text: #ffffff;
+    --secondary-text: #bdbdbd;
+
+    --input-background: #303030;
+    --input-text: #ffffff;
+    --input-border: #555555;
+
+    --navbar-background: #000000;
+    --navbar-text: #ffffff;
+
+     --footer-background: #000000;
+    --footer-text: #ffffff;
+    --footer-logo: #ff0050;
+}
