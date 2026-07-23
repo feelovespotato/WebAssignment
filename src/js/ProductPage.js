@@ -7,6 +7,9 @@ async function init() {
         loadComponent('Search', '../components/productpage/Searchbar.html')
     ]);
     
+    await loadComponent('search-component', '../components/productpage/Searchcomponent.html');
+
+    initSearchBar();
     observeAnimations(); // runs after all components are in the DOM
    
 }

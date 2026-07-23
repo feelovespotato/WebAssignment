@@ -43,9 +43,7 @@ async function initProductDetailPage() {
 
 document.addEventListener("DOMContentLoaded", initProductDetailPage);
 
-/*---------------------------------------------------------------*/
-/* breadcrumb                                                       */
-/*---------------------------------------------------------------*/
+// for breadcrumb (back to the previous category fromm the detail product page)
 function renderBreadcrumb(product) {
     const categoryLink = document.getElementById("breadcrumb-category");
     const current = document.getElementById("breadcrumb-current");
@@ -58,9 +56,7 @@ function renderBreadcrumb(product) {
     if (current) current.textContent = product.name;
 }
 
-/*---------------------------------------------------------------*/
-/* gallery                                                          */
-/*---------------------------------------------------------------*/
+// for rendering the product img - main detail, main product , thumbnail
 function renderGallery(product) {
     const galleryEl = document.getElementById("detail-gallery");
     const mainImage = document.getElementById("main-product-image");
@@ -85,9 +81,8 @@ function renderGallery(product) {
     }
 }
 
-/*---------------------------------------------------------------*/
+//---------------------------------------------------------------------------------------
 //info panel for each product details                                      
-//CHECKED
 function renderInfo(product) {
     setText("product-category-tag", product.category);
     setText("product-title", product.name);
@@ -182,9 +177,7 @@ function initOptionPills(product) {
     });
 }
 
-/*---------------------------------------------------------------*/
-/* quantity stepper: min 1, no upper cap set here                  */
-/*---------------------------------------------------------------*/
+// quantity stepper for the number text
 function initQuantityStepper() {
     const stepper = document.querySelector(".quantity-stepper");
     if (!stepper) return;

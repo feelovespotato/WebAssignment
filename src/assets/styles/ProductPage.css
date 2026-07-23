@@ -42,18 +42,106 @@
 }
 
 /*-----------------------------------------------------------------------------------------*/
-/*search section*/
-.search-container {
+/*search section container include search button*/
+.search-container{
   display: flex;
+  position:relative;
+  z-index:999;
   width:100%;
   height:100%;
   justify-content: center;
-  margin-top: clamp(4rem, 2rem + 4vw, 6rem);
-  margin-bottom: clamp(3rem, 2rem + 4vw , 4rem);
   gap:15px;
 }
+/*---------------------------------------------*/
+/*container for the input + dropdown*/
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    width: clamp(15rem, 50vw, 40rem); 
+    
+}
 
-/* wrapper for button + track */
+.search-input-wrapper input {
+    width: 100%;
+}
+/*container for the suggestions*/
+.search-suggestions {
+    display: none;
+    position: absolute; /*stick to the search bar*/
+    top: calc(100% + 0.5rem); /*leave gap*/
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--bg);
+    border: 1px solid var(--grayborder); 
+    border-radius: 1rem; 
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22); 
+    overflow-y: auto;
+    max-height: 19rem; /*limit height*/
+}
+
+/*overwrite display: none for each suggesstion*/
+.search-suggestions.open {
+    display: block;
+}
+
+/*container img + text block for name and category*/
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* small square thumbnail, same override pattern as
+   .thumbnail-row .img-wrapper in Productdetailpage.css */
+.suggestion-thumb {
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.suggestion-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*for name and category*/
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* lets suggestion-name actually ellipsis inside flex */
+}
+
+.suggestion-name {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*show the same searched part/text highlight in red color*/
+.suggestion-name mark {
+    background: none;
+    color: var(--redtext);
+    font-weight: 700;
+}
+
+.suggestion-empty {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* wrapper for button + track 
 .carousel-container {
   display: flex;
   flex-direction: row;
@@ -62,4 +150,4 @@
   overflow: hidden; 
   width:100%;
 }
-
+*/

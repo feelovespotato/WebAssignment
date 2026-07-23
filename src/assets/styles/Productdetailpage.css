@@ -150,11 +150,7 @@
     height: clamp(2.5rem, 2rem + 1vw, 3rem);
     
 }
-/*plus minus section when hovering*/
-.quantity-stepper button:hover {
-    background-color: var(--bgpink);
-    color: var(--redtext);
-}
+
 
 /*the step value text*/
 .quantity-value {

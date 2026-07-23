@@ -1,20 +1,16 @@
-/*=====================================================================*/
-/* CategoryProductsPage.js                                             */
-/*                                                                      */
-/* Shows every product in productsData.js whose category matches       */
-/* ?category=... in the URL. Add products to productsData.js and they  */
-/* automatically show up here — no page changes needed.                */
-/*=====================================================================*/
 
 const categoryComponents = {
     breadcrumb: "../components/productpage/CategoryBreadcrumb.html",
     grid:       "../components/productpage/CategoryProductGrid.html",
+    "search-component":     "../components/productpage/Searchcomponent.html",
 };
 
 async function initCategoryProductsPage() {
     await Promise.all(
         Object.entries(categoryComponents).map(([id, url]) => loadComponent(id, url))
     );
+
+    initSearchBar();
 
     const category = new URLSearchParams(window.location.search).get("category");
     const products = productsData.filter((p) => p.category === category);

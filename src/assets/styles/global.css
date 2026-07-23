@@ -71,6 +71,12 @@ button {
     font-family: 'Montserrat', sans-serif;
 }
 
+/*for hover button effect (used in quantity and search suggestion)*/
+.hover-pink-highlight:hover,
+.hover-pink-highlight.active {
+    background-color: var(--bgpink);
+    color: var(--redtext);
+}
 
 /*--------------------------------------------------------------------*/
 /*used in caroussel, product category*/
