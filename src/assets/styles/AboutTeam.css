@@ -26,6 +26,35 @@
   text-justify: inter-word; 
   hyphens: auto;
 }
+/*container for github button*/
+.github-button{
+  display: flex;
+  justify-content: center;
+}
+/*the a tag for link*/
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: clamp(1rem, 1.5vw, 1.5rem);
+  padding: clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem) clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  font-size: clamp(1.2rem, 1.2rem + 1vw, 8rem);
+  font-weight: 500;
+  color: var(--title);
+  border: 2px solid var(--title);
+  border-radius: 100vw;
+  transition: opacity 0.2s ease;
+}
+
+.github-link:hover {
+  opacity:0.6;
+}
+/*icon for button*/
+.github-link .github-icon {
+  height: 1em;
+  width: auto;
+  flex-shrink: 0;
+}
 
 /*------------------------------------------------------------------*/
 /* container for all zig-zag team rows */
