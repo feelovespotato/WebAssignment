@@ -99,17 +99,6 @@
     flex-direction: column;
 }
 
-/*small category tag */
-.category-tag {
-    align-self: flex-start;
-    font-weight: 600;
-    font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
-    color: var(--redtext);
-    border: 2px solid var(--redborderbutton);
-    border-radius: 100vw;
-    padding: 0.45rem 1rem;
-}
-
 /*price for the product (overwrite the font-size)*/
 .detail-info .price {
     font-weight: 700;

@@ -262,7 +262,30 @@ input {
     font-size: clamp(1rem, 1rem + 0.3vw, 1.5rem);
 }
 
+/*---------------------------------------------------------------------*/
+/*tag used in team and productdetail*/
+.category-tag {
+    align-self: flex-start;
+    font-weight: 600;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
+    color: var(--redtext);
+    border: 2px solid var(--redborderbutton);
+    border-radius: 100vw;
+    padding: 0.45rem 1rem;
+}
+
 /*---------------------------------------------------------------------------------------*/
+/*about team h1 centered*/
+.cta-section {
+    text-align: center;
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.cta-section h1 {
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+/*-------------------------------------------------------------------------------------------*/
 /*used in productpage carousel*/
 /*carousel properties*/
 
