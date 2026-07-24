@@ -61,27 +61,10 @@
   --starcolor: #f5b342;
   --offwhitebg: #faf9f7;
   --reviewborder: #edeae4;
-  --inputborder: #e2e8f0;
-  --placeholdergray: #a0aec0;
-  --errorred: #e53e3e;
   --successbg: #f0fdf4;
   --successtext: #166534;
   --successborder: #bbf7d0;
-  --commenttext: #2b2b3a;
-  --marktextbg: #fdebb3;
   --staremptycolor: #e2e8f0;
-  --reviewborder-hover: #d6d2ca;
-  --reviewbg-hover: #edeae4;
-  --cardwhitebg: #ffffff;
-  --avatarborder: #ffffff;
-  --avatarbg: #f0f4f8;
-  --metricsdivider: #e8edf2;
-  --inputwhitebg: #fcfcfb;
-  --formdivider: #edf2f7;
-  --focusaccent: #b8a78f;
-  --icongray: #888899;
-  --upvotehoverbg: #fdf0d6;
-  --emptystateicon: #ccc;
 }
 
 /*For light mode and dark mode*/
