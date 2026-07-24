@@ -43,7 +43,7 @@ h2{
 }
 
 h4 {
-    font-size: clamp(0.7rem, 0.7rem + 1vw, 1rem);
+    font-size: clamp(0.7rem, 0.7rem + 1vw, 1.2rem);
     font-weight: 600;
     margin: 0;
     color: var(--title);
@@ -71,6 +71,22 @@ a, a:visited {
     font-weight: 500;
     border-radius: 100vw;
     text-decoration: none;
+}
+
+label {
+  display:block;
+  font-size:clamp(1rem, 1rem + 0.4vw, 1.8rem);
+  font-weight: 600;
+  color:var(--drinktitle);
+}
+
+textarea{
+    display:block;
+    padding:clamp(0.8rem , 0.8rem + 1vw , 1.2rem);
+    font-size:clamp(1rem, 1rem + 0.4vw, 1.8rem);
+
+    border: 2px solid var(--reviewborder);
+    border-radius: 1rem;
 }
 
 button {
