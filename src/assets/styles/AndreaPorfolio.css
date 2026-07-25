@@ -95,38 +95,6 @@ section {
     gap: 1rem;
 }
 
-/* CV Button Styles*/
-.action-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.8rem;
-    font-size: 0.95rem;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: var(--transition);
-    border: 2px solid transparent;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-}
-
-.btn-cv {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
-    padding: 0.8rem 1.8rem;
-    font-size: 0.95rem;
-}
-
-.btn-cv:hover {
-    background-color: var(--bg-secondary);
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-}
-
 /* Navigation */
 header {
     position: fixed;
@@ -193,11 +161,6 @@ header {
 
 .nav-link.active {
     color: var(--accent);
-}
-
-/* Remove any default from visited links */
-.nav-link:visited {
-    color: var(--text-secondary);
 }
 
 .nav-link.active:visited {
@@ -325,11 +288,6 @@ header {
     height: 3px;
     background-color: var(--accent);
     border-radius: 2px;
-}
-
-.section-subtext {
-    color: var(--text-secondary);
-    max-width: 640px;
 }
 
 /* Bio section */
@@ -478,9 +436,8 @@ header {
 
 .timeline-company {
     font-size: 1rem;
-    font-weight: bold;
-    color: var(--text-secondary);
     font-weight: 500;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
 }
 
@@ -634,7 +591,8 @@ header {
     color: var(--text-secondary);
 }
 
-.cert-verify {
+.cert-verify,
+.cert-verify:visited {
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -813,7 +771,7 @@ header {
     height: 100%;
     width: 0%;
     border-radius: 100vw;
-    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    background: linear-gradient(90deg, var(--accent));
     transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1080,11 +1038,6 @@ footer {
     to { transform: translateX(100%); }
 }
 
-@keyframes glow-pulse {
-    0%, 100% { box-shadow: var(--shadow), 0 0 0 0 rgba(56, 189, 248, 0.35); }
-    50% { box-shadow: var(--shadow), 0 0 0 8px rgba(56, 189, 248, 0); }
-}
-
 /* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -1221,11 +1174,11 @@ footer {
     }
 
     p, .bio-text p, .timeline-desc, .project-desc, .education-list li,
-    .contact-info p, .section-subtext {
+    .contact-info p {
         color: #333 !important;
     }
 
-    .bio-image, .featured-media, .project-image {
+    .bio-image, .project-image {
         display: none !important;
     }
 
@@ -1266,7 +1219,7 @@ footer {
         color: #333 !important;
     }
 
-    .skill-tag, .project-tag, .featured-badge {
+    .skill-tag, .project-tag {
         border: 1px solid #999 !important;
         background: #fff !important;
         color: #111 !important;
