@@ -3,31 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drinks - Home </title>
+    <title>Pokka </title>
   <link rel="stylesheet" href="../assets/styles/variables.css"> <!-- Loads in any fonts or colours -->
   <link rel="stylesheet" href="../assets/styles/global.css">    <!-- Applies any website-wide styles we have -->
   <link rel="stylesheet" href="../assets/styles/home.css">      <!-- Applies any preset home-page specific styles we have setup in the css-->
+  <link rel="stylesheet" href="../assets/styles/navbar.css">
+  <link rel="stylesheet" href="../assets/styles/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <header>   
-        <nav>
-      <div id="logo">
-        <img src="../assets/images/drinklogo.png" alt="Drink Logo">
-      </div>
-      <ul>
-        <li><a href="#">More Information</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <div id="NavButtons">
-        <a href="LoginPage.html">Login</a>
-        <a href="SignupPage.html">Sign Up</a>
-        <button id="WebsiteTheme" class="themeToggle">Want to change the theme?</button>
-      </div>
-    </nav>
-  </header>
-
+  <header id="navbar"></header>
   <div id="MainDisplay"></div>
   
 <main> 
@@ -39,10 +27,15 @@
 </main>
 
 
- <script src="../js/utils.js"></script>
+<footer id="footer"></footer>
+
+
+<script src="../js/utils.js"></script>
 <script src="../js/animations.js"></script>
+<script src="../js/navbar.js"></script>
+<script src="../js/footer.js"></script>
 <script src="../js/HomePage.js"></script>
-<script src="../js/theme.js"></script>
+
 
 </body>
 </html>

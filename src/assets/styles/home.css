@@ -12,82 +12,27 @@ h1 {
 
 /*Heading 2*/
 h2 { 
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
+}
+
+p { 
+  color: var(--color-text-dark);
 }
 
 /*The Body Content*/
 body {
-  overflow-x: hidden; /*Hides any thing that goes beyond the vision of the screen, overflow being too much and x being x-axis */
-  color: var(--color-text-dark); /*Sets the default text color */
+  overflow-x: clip; /*Hides any thing that goes beyond the vision of the screen, overflow being too much and x being x-axis */
+  color: var(--color-text-light); /*Sets the default text color */
   background-color: var(--color-body-bg);/*Sets the default background color */
 }
 
-/*The Header Content*/
+
+
 header {
-  position: sticky; /*Makes the header "stick" to the top of the page to follow you as you scroll */
-  top: 0; /*adjusts how far from the top of the screen that it sticks */
-  z-index: 100; /* makes sure it stays on top of everything */
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
-
-/*Navigation bar*/
-nav { 
-  color: var(--color-text-light); /*Sets the default text color for things inside the navigation bar */
-  display: flex;/*Flex lets you edit everything inside */
-  align-items: center;/*Vertical Alignment*/
-  gap: 32px;/*Gap between elements */
-  padding: 16px 32px; /*The 16 px is applied to top and bottom, where 32 is applied to left and right */
-  background-color: #ffffff;
-  width:100%;
-  background-color: var(--color-navbar);/*Makes the background color follow the navigation bar color*/
-  
-}
-
-nav ul {
-  display: flex;  
-  list-style: none;
-  gap: 24px;
-  margin-left: 32px;
-  color: var(--color-text-light);
-}
-
-nav ul a:hover {
-  color: var(--color-hover); /* changes to follow the  pink body color */
-}
-
-nav ul a {
-  color: var(--color-text-light);
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
-    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
-    font-size: clamp(0.8rem, 1vw, 1rem); /* a font size that scales with the screen size, the base minimum is 0.8
-    1vw is the scale factor and max is 1rem */
-    transition: color 0.3s ease;/* Makes the color transition smoothly */
-    
-}
-
-#NavButtons {
-   color: var(--color-text-light);
-  display: flex;
-  align-items: center;/* align is for vertical, justify for horizontal */
-  gap: 32px;
-  margin-left: auto;
-  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
-    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
-    font-size: clamp(0.8rem, 1vw, 1rem);
-    
-}
-
-#NavButtons a {
-  color: var(--color-text-light);
-  text-decoration: none;
-}
-
-#NavButtons a:hover {
-  color: var(--color-hover);
-  transition: color 0.3s ease;
-}
-
-
 
 #logo img {
   width: 100px;
@@ -117,6 +62,7 @@ nav ul a {
   object-position: center;
   z-index: 0;
 }
+
 #MainButtons {
   color: var(--color-text-light);
   display: flex;
@@ -141,7 +87,6 @@ nav ul a {
 }
 
 #MainButtons a:first-child {
-  background-color: var(--color-navbar);
   color: #fff;
 }
 
@@ -182,23 +127,88 @@ nav ul a {
   transform: translateY(0);
 }
 
-#WebsiteTheme { 
-    font-family: 'Montserrat', sans-serif; 
-    border: none;
-  cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #333;
-  font-size: clamp(0.8rem, 1vw, 1rem);
+
+#DrinkCategories a, #CustomerReviews a {
+  color: var(--color-text-dark);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-#WebsiteTheme:hover {
-  background-color: var(--color-body-bg);
-  color: #000000;
-  transition: background-color 0.3s ease, color 0.3s ease;
+#DrinkCategories a:hover, #CustomerReviews a:hover {
+  color: var(--color-hover);
 }
 
+.drink-row img {
+  width: 45% !important;
+  max-width: 400px !important;
+  height: 300px !important;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+#DrinkCategories h2 {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.drink-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 48px;
+  padding: 48px 64px;
+}
+
+.drink-row.reverse {
+  flex-direction: row-reverse !important;
+}
+
+.drink-text h3 {
+  color: var(--color-text-dark);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 12px;
+}
+
+.drink-text p {
+  color: var(--color-text-dark);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  margin-bottom: 16px;
+}
+
+.drink-text {
+  flex: 0 0 65%;
+  max-width: 65%;
+  background-color: #F39A1E;
+  color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.drink-text h3 {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 12px;
+}
+
+.drink-text p {
+  color: #ffffff;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  margin-bottom: 16px;
+}
+
+.drink-text a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+}
+
+#tea-row {
+  background-image: url('../../assets/images/greenteabg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
 
 /* LIGHT MODE */
 :root {
@@ -207,24 +217,12 @@ nav ul a {
   --color-text-dark: #000000;
   --color-text-light: #ffffff;
   --color-hover: #f4c0d1;
-  /* keep all the existing variables too */
 }
 
-/* DARK MODE */
 [data-theme="dark"] {
   --color-navbar: #751B70;
   --color-body-bg: #1a1a1a;
   --color-text-dark: #ffffff;
   --color-text-light: #ffffff;
   --color-hover: #ffffff;
-}
-
-[data-theme="dark"] #WebsiteTheme {
-  background-color: #333;
-  color: #ffffff;
-}
-
-[data-theme="dark"] #WebsiteTheme:hover {
-  background-color: #ffffff;
-  color: #000000;
 }
