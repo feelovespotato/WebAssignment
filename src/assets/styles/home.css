@@ -127,87 +127,159 @@ header {
   transform: translateY(0);
 }
 
-
-#DrinkCategories a, #CustomerReviews a {
-  color: var(--color-text-dark);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-#DrinkCategories a:hover, #CustomerReviews a:hover {
-  color: var(--color-hover);
-}
-
-.drink-row img {
-  width: 45% !important;
-  max-width: 400px !important;
-  height: 300px !important;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
 #DrinkCategories h2 {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+  animation: fadeSlideDown 0.8s ease forwards;
+  color: #F39A1E;
 }
 
-.drink-row {
-  display: flex !important;
-  flex-direction: row !important;
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#drink-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 16px;
+  display: flex;
   align-items: center;
-  gap: 48px;
-  padding: 48px 64px;
+  justify-content: center;
 }
 
-.drink-row.reverse {
-  flex-direction: row-reverse !important;
-}
-
-.drink-text h3 {
-  color: var(--color-text-dark);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 12px;
-}
-
-.drink-text p {
-  color: var(--color-text-dark);
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  margin-bottom: 16px;
-}
-
-.drink-text {
-  flex: 0 0 65%;
-  max-width: 65%;
-  background-color: #F39A1E;
+#carousel-content {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
   color: #ffffff;
-  padding: 40px;
+  padding: 30px 60px;
   border-radius: 12px;
+  text-align: center;
+  width: 60%;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.drink-text h3 {
-  color: #ffffff;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+#carousel-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+#carousel-content h3 {
+  font-size: 2rem;
   margin-bottom: 12px;
+  color: #ffffff;
 }
 
-.drink-text p {
-  color: #ffffff;
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+#carousel-content p {
+  font-size: 1rem;
   margin-bottom: 16px;
+  color: #ffffff;
 }
 
-.drink-text a {
-  color: #ffffff;
+#carousel-content a {
+  color: #F39A1E;
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 2px solid #ffffff;
 }
 
-#tea-row {
-  background-image: url('../../assets/images/greenteabg.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: left center;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: #F39A1E;
+  border: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background: #D98300;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow.left {
+  left: 20px;
+}
+
+.carousel-arrow.right {
+  right: 20px;
+}
+
+#CustomerReviews h2 {
+  text-align: center;
+  color: #F39A1E;
+  margin-bottom: 32px;
+}
+
+#CustomerReviews .comment-date {
+  color: #888888;
+}
+
+#CustomerReviews h4 {
+  color: var(--color-text-dark);
+}
+
+[data-theme="dark"] #CustomerReviews h4 {
+  color: #ffffff;
+}
+
+#CustomerReviews .comment-card {
+  background-color: var(--color-body-bg);
+  border: 1px solid #F39A1E;
+  border-radius: 12px;
+  padding: 24px;
+  filter: brightness(1.2);
+}
+
+[data-theme="dark"] #CustomerReviews .comment-card {
+  background-color: #2a2a2a;
+  border: 1px solid #F39A1E;
+}
+
+#CustomerReviews a {
+  display: inline-block;
+  background-color: #F39A1E;
+  color: #ffffff;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 2px;
+}
+
+#CustomerReviews a:hover {
+  background-color: #D98300;
+  transform: translateY(-4px);
 }
 
 /* LIGHT MODE */

@@ -1,4 +1,3 @@
-
 loadComponent('navbar', '../components/layout/navbar.html').then(() => {
   const toggleBtn = document.getElementById('WebsiteTheme');
   const root = document.documentElement;
@@ -19,9 +18,7 @@ loadComponent('footer', '../components/layout/footer.html');
 
 loadComponent('MainDisplay', '../components/homepage/MainDisplay.html').then(() => {
   const video = document.getElementById('MainVideo');
-  
   observeAnimations();
-
   video.addEventListener('loadedmetadata', () => {
     video.addEventListener('timeupdate', () => {
       if (video.currentTime >= video.duration - 1) {
@@ -31,5 +28,12 @@ loadComponent('MainDisplay', '../components/homepage/MainDisplay.html').then(() 
   });
 });
 
-loadComponent('DrinkCategories', '../components/homepage/DrinkCategories.html');
-loadComponent('CustomerReviews', '../components/homepage/CustomerReviews.html');
+loadComponent('DrinkCategories', '../components/homepage/DrinkCategories.html').then(() => {
+  initCarousel();
+  observeAnimations();
+});
+
+loadComponent('CustomerReviews', '../components/homepage/CustomerReviews.html').then(() => {
+  initHomeRatings();
+  observeAnimations();
+});
