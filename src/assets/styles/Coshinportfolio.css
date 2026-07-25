@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background-color: var(--brownboardbg);
 
 }
 
@@ -49,13 +48,16 @@
     background-color: var(--bg);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
-/*personal img*/
-
 
 /*bio text for alignment*/
 .name-bio-sec p {
     text-align: justify; 
     text-justify: inter-word;
+}
+
+.name-bio-sec .solidbutton {
+    display: inline-block;
+    margin: clamp(0.2rem, 0.2rem + 0.5vw , 0.6rem) clamp(0.2rem, 0.2rem + 0.5vw , 0.4rem);
 }
 
 /*bring the name + bio part down avoid breaking and not nice*/
@@ -64,6 +66,11 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+    .name-bio-sec .solidbutton {
+    display: inline-block;
+    width:100%;
+    margin: clamp(0.2rem, 0.2rem + 0.5vw , 0.6rem) 0;
     }
     
 }
@@ -369,11 +376,11 @@
 .project-row {
     display: flex;
     align-items: flex-start;
-    gap: clamp(2rem, 4vw, 4rem); /* Space between image and text */
+    gap: clamp(2rem, 4vw, 4rem); /* Space image and text */
     flex-wrap: wrap;
     background-color: var(--brownboardbg);
     border-radius: 2rem;
-    padding: clamp(2rem, 4vw, 4rem);
+    padding: clamp(3rem, 3rem + 1vw , 5rem);
     width: 100%;
 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -383,7 +390,7 @@
 .pin-item {
     position: relative;
     flex: 0 0 auto; /*dont sllow it to grow*/
-    margin-top: clamp(3rem, 5vw, 4rem);
+    margin-top: clamp(2.3rem, 2rem + 0.5vw, 2.75rem);
 }
  
 /* the pin dot on photo */
@@ -407,7 +414,7 @@
     
     background-color: var(--bg);
     padding: 0.75rem 0.75rem 2.25rem;
-    width: clamp(14rem, 20vw, 18rem);
+    width: clamp(18rem, 20vw, 20rem);
 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
     transform: rotate(-4deg);
@@ -445,7 +452,7 @@
 }
  
 .pin-caption p{
-    margin-bottom: clamp(2rem, 1rem + 3vw, 3rem);
+    margin-bottom: clamp(2rem, 2rem + 3vw, 3rem);
 }
 
 @media (max-width: 700px) {
@@ -453,6 +460,10 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+    .project-row {
+        flex-direction: column;
+        align-items: center;
     }
     .pin-caption {
         text-align: center;

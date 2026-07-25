@@ -1,13 +1,7 @@
 
-/*container for the review list*/
-.customer-review-container{
-  display:flex;
-  flex-direction: column;
-  width:100%;
-  align-items: center;
 
-}
 /*----------------------------------------------------------------------------------------*/
+/*Summary part*/
 /*container for summary average rating star icon + text title + total review*/
 .summary-container{
   display:flex;
@@ -27,7 +21,7 @@
 }
 
 .summary-container h2{
-  font-size: clamp(1rem, 1rem + 1vw, 2rem);
+  font-size: clamp(1.2rem, 1.2rem + 1vw, 2rem);
 }
 
 /*container for rating numstar (inline) and rating count (column)*/
@@ -41,7 +35,7 @@
 .rating-numstar{
   display: flex; /*span tag have to apply this*/
   align-items: center;
-  gap: clamp(2rem, 1.5vw, 3rem);
+  gap: clamp(1.6rem, 1.5vw, 3rem);
 }
 
 /*average star average*/
@@ -56,14 +50,14 @@
   display: inline-flex; /*span tag have to apply this*/
   align-items: center;
   font-size: clamp(3rem, 3rem + 1vw, 5rem);
-  gap: clamp(0.5rem, 1vw, 1rem);
-  position: relative;  
+  position: relative;   /*cannot share bc of this */
 }
-/* for rendering the star colored parts*/
+/* for rendering the star rows*/
 .star-row {
   display: flex;
-  gap: clamp(0.15rem, 0.3vw, 0.3rem);
+  gap: clamp(0.4rem, 0.4rem +  0.1vw, 2rem);
   white-space: nowrap;
+
 }
 /*layer empty star*/
 .star-row-empty {
@@ -79,35 +73,96 @@
 /*the text below the average rating "based on ..."*/
 .rating-count{
   margin-top: clamp(0.5rem, 0.5rem + 1vw, 1rem);
-  font-size: clamp(0.5rem, 0.5rem + 0.8vw, 1.5rem);
+  font-size: clamp(0.8rem, 0.8rem + 0.8vw, 1.5rem);
 }
 /*------------------------------------------------------------------------*/
-.reviews-layout {
+/*container for the review list*/
+.customer-review-container{
+  width:100%;
+  align-items: center;
+  padding-top: 0; /*overwrite section padding*/
+
+}
+/*container for all commented review*/
+.ratingListContainer{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
+  gap:clamp(0.7rem, 0.7vw, 1.2rem);
+
+}
+/*container for each commented reviews*/
+.comment-card{
   width: 100%;
+  background-color: var(--offwhitebg);
+  padding: clamp(2rem, 4vw, 3rem);
+  border: 2px solid var(--reviewborder);
+  border-radius: 1rem;
 }
 
-/* Star selector */
-.stars-selector-group {
-  margin-bottom: 1.5rem;
-}
-
-.stars-selector-label {
-  display: block;
-  font-size: 1rem;
-  margin-bottom: 0.6rem;
-  color: var(--darktext-hover);
-  text-align: left;
-}
-/*------------------------------------------------------------------------------------------------------------*/
-/*container for the form star input*/
-#starRatingInput {
+/*container for stars + user info + avatar + meta(name + date)*/
+.comment-card-header {
   display: flex;
-  gap: 0.85rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: clamp(0.4rem, 0.35rem + 0.3vw, 0.5rem);
+  margin-bottom: clamp(0.4rem, 0.35rem + 0.3vw, 0.5rem);
+  flex-shrink: 0;
 }
+/*container for avatar + meta(name + date)*/
+.comment-user-info {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 0.5rem + 0.5vw, 0.75rem);
+  
+}
+/*the avatar section + text in it*/
+.comment-user-avatar {
+  width: clamp(2rem, 2rem + 1vw, 3.5rem);
+  height: clamp(2rem, 2rem + 1vw, 3.5rem);
+  border-radius: 50%;
+
+  background: var(--title);
+  color: var(--bg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+  
+}
+/*container for meta (name + date)*/
+.comment-user-meta{
+  display:flex;
+  flex-direction: column;
+  gap: clamp(0.3rem, 0.28rem + 0.1vw, 0.35rem);
+}
+/*commented date*/
+.comment-date {
+  font-size: clamp(0.75rem, 0.75rem + 0.4vw, 1.4rem);
+  color: var(--halfvisibletext);
+}
+/*star rated*/
+.comment-stars {
+  display: flex;
+  gap: clamp(0.2rem, 0.2rem + 0.1vw, 0.4rem);
+  color: var(--starcolor);
+  font-size: clamp(1.4rem, 1.4rem + 0.5vw, 2rem);
+  margin-top: clamp(0.4rem, 0.35rem + 0.3vw, 0.5rem);
+  margin-right: clamp(0.4rem, 0.35rem + 0.3vw, 0.5rem);
+}
+/*p tag for content of commented reviews*/
+.comment-text {
+  margin: clamp(0.8rem, 0.8rem + 0.3vw, 1.5rem) clamp(0.4rem, 0.4rem + 0.3vw, 1rem);
+  line-height: 1.6;
+  font-size: clamp(0.9rem, 0.9rem + 0.4vw, 1.5rem);
+  color: var(--title);
+}
+
+/*------------------------------------------------------------------------------------------------------------*/
+/*star properties*/
 
 .star-full, 
 .star-half, 
@@ -142,51 +197,32 @@
 }
 
 /*----------------------------------------------*/
-#starRatingInput svg:active {
-  transform: scale(0.9);
-}
+/*review form*/
 
-/* Form labels */
-.input-label {
-  display: block;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  color: var(--darktext-hover);
-}
+/*comtainer for review form + notifications*/
+.Reviewform-container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width:100%;
 
-/* Custom input styles */
-.input-control {
-  width: 100%;
-  padding: 0.85rem 1.25rem;
-  border: 1px solid var(--inputborder);
-  border-radius: 2rem;
-  font-size: 0.95rem;
-  background: var(--cardwhitebg);
-  box-sizing: border-box;
-  color: var(--darktext-hover);
-  transition: border 0.15s, box-shadow 0.15s;
+  border: 1px solid var(--reviewborder);
+  background-color:var(--offwhitebg);
   
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+  
+  border-radius: 2.5rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(3rem, 3rem + 1vw, 5rem);
 }
 
-.input-control::placeholder {
-  color: var(--placeholdergray);
+/*container for the form star input */
+#starRatingInput {
+  display: flex;
+  gap: clamp(0.4rem, 0.4rem +  0.1vw, 2rem);
+  font-size: clamp(2.5rem, 2.5rem + 1vw, 4rem);
 }
-
-.input-control:focus {
-  outline: none;
-  border-color: var(--placeholdergray);
-  box-shadow: 0 0 0 3px rgba(226, 232, 240, 0.5);
-}
-
-/* Textarea specific */
-textarea.input-control {
-  border-radius: 1.25rem;
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.5;
-}
-
-/* Error messages */
+/*error message must choose atleast 1 star*/
 .error-message {
   color: var(--errored);
   font-size: 0.8rem;
@@ -196,281 +232,34 @@ textarea.input-control {
   
 }
 
-/* Form divider */
-.form-divider {
-  border: none;
-  border-top: 1px solid var(--formdivider);
-  margin: 2rem 0 1.5rem;
+/*input container for name and feedback*/
+.input-group{
+  display: flex;
+  flex-direction: column;
+  margin:clamp(1.5rem, 1.5rem + 0.2vw, 2rem) 0;
+  gap: clamp(0.4rem, 0.4rem + 1vw, 1.2rem);
 }
-
-/* Button to publish the reviews */
+/*publish button overwrite global width*/
 .btn-publish {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
   width: 100%;
 }
 
-.btn-publish svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
-
-/* Toast notification */
+/*pop up after submitting*/
 .toast-message {
-  margin-top: 1rem;
-  padding: 0.8rem 1.2rem;
-  background: var(--successbg);
-  color: var(--successtext);
-  border: 1px solid var(--successborder);
-  border-radius: 2rem;
-  font-size: 0.95rem;
-  display: none;
+  display: none; /* hidden by default */
   align-items: center;
   gap: 0.5rem;
-  
+  background: var(--successbg);
+  padding: clamp(1rem, 0.9rem + 1vw, 1.5rem) clamp(1.2rem, 1.1rem + 1vw, 2rem);
+  border: 1px solid var(--successborder);
+  border-radius: 1rem;
 }
-
+/*when showing*/
 .toast-message.show {
   display: flex;
 }
-
-.toast-message svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
+/*message color*/
+.toast-message span {
+  color: var(--successtext);
 }
 
-/* Review list*/
-/* Rating summary */
-
-/* Review controls */
-.reviews-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--reviewborder);
-  min-width: 0;
-}
-
-/* Search bar container */
-.search-bar-container {
-  display: flex;
-  align-items: center;
-  background: var(--inputwhitebg);
-  border: 1px solid var(--grayborder);
-  border-radius: 3rem;
-  padding: 0 1rem;
-  transition: border 0.15s, box-shadow 0.15s;
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.search-bar-container:focus-within {
-  border-color: var(--focusaccent);
-  box-shadow: 0 0 0 3px rgba(184, 167, 143, 0.2);
-}
-
-.search-icon-svg {
-  width: 18px;
-  height: 18px;
-  stroke: var(--icongray);
-  flex-shrink: 0;
-}
-
-.search-bar-container .input-control {
-  border: none;
-  background: transparent;
-  padding: 0.6rem 0.6rem;
-  font-size: 0.95rem;
-  flex: 1 1 auto;
-  width: 100%;
-  outline: none;
-  opacity: 0.85;
-  box-sizing: border-box;
-}
-
-.search-bar-container .input-control:focus {
-  opacity: 1;
-}
-
-.filter-sort-group {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.filter-sort-select {
-  padding: 0.5rem 1.2rem 0.5rem 1rem;
-  border: 1px solid var(--grayborder);
-  border-radius: 3rem;
-  background: var(--inputwhitebg);
-  font-size: 0.9rem;
-  color: #1e1e2a;
-  cursor: pointer;
-  outline: none;
-  transition: border 0.15s;
-  min-width: 140px;
-}
-
-.filter-sort-select:focus {
-  border-color: var(--focusaccent);
-}
-
-/* Comments list */
-.comments-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  text-align: left;
-  
-}
-
-.comment-card {
-  background: var(--offwhitebg);
-  border-radius: 1.5rem;
-  padding: 1.2rem 1.5rem;
-  border: 1px solid var(--reviewborder);
-  transition: border 0.15s;
-}
-
-.comment-card:hover {
-  border-color: var(--reviewborder-hover);
-}
-
-/*----------------------------------------------------------*/
-/*container for stars + user info + avatar + meta(name + date)*/
-.comment-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  flex-shrink: 0;
-}
-/*container for avatar + meta(name + date)*/
-.comment-user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  
-}
-/*the avatar section + text in it*/
-.comment-user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-
-  background: var(--title);
-  color: var(--bg);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 600;
-  font-size: 1rem;
-  
-}
-/*container for meta (name + date)*/
-.comment-user-meta{
-  display:flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.comment-date {
-  font-size: 0.8rem;
-  color: var(--halfvisibletext);
-}
-
-.comment-stars {
-  display: flex;
-  gap: 0.1rem;
-  color: var(--starcolor);
-}
-
-.comment-text {
-  margin: 0.5rem 0 0.75rem;
-  line-height: 1.6;
-  font-size: 0.98rem;
-  color: var(--title);
-}
-
-.comment-text mark {
-  background: var(--marktextbg);
-  padding: 0 0.15rem;
-  border-radius: 2px;
-}
-
-.comment-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-/* Empty state */
-.empty-reviews-state {
-  text-align: center;
-  padding: 2.5rem 1rem;
-  color: var(--halfvisibletext);
-}
-
-.empty-reviews-state svg {
-  width: 48px;
-  height: 48px;
-  stroke: var(--emptystateicon);
-  margin-bottom: 0.75rem;
-}
-
-.empty-reviews-state h3 {
-  font-size: 1.1rem;
-  color: var(--title);
-  margin-bottom: 0.2rem;
-}
-
-/* Animation */
-.animate-fade-in {
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 480px) {
-  .reviews-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .filter-sort-select {
-    width: 100%;
-  }
-  .comment-card-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* Forces the custom web component to render as a block */
-rating-list {
-  display: block;
-  width: 100%;
-}

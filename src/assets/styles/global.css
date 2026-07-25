@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #fff;
+    background-color: var(--bg);
     min-height: 100%;
     margin: 0;
 }
@@ -43,7 +43,7 @@ h2{
 }
 
 h4 {
-    font-size: clamp(0.7rem, 0.7rem + 1vw, 1rem);
+    font-size: clamp(0.7rem, 0.7rem + 1vw, 1.2rem);
     font-weight: 600;
     margin: 0;
     color: var(--title);
@@ -71,6 +71,22 @@ a, a:visited {
     font-weight: 500;
     border-radius: 100vw;
     text-decoration: none;
+}
+
+label {
+  display:block;
+  font-size:clamp(1rem, 1rem + 0.4vw, 1.8rem);
+  font-weight: 600;
+  color:var(--drinktitle);
+}
+
+textarea{
+    display:block;
+    padding:clamp(0.8rem , 0.8rem + 1vw , 1.2rem);
+    font-size:clamp(1rem, 1rem + 0.4vw, 1.8rem);
+
+    border: 2px solid var(--reviewborder);
+    border-radius: 1rem;
 }
 
 button {
@@ -230,7 +246,7 @@ input {
     /*seach bar text*/
     font-family: "Montserrat", sans-serif;
     font-weight:500;
-    font-size: clamp(0.5rem, 0.5rem + 1vw, 1.5rem);
+    font-size: clamp(0.8rem, 0.8rem + 1vw, 1.5rem);
     width: clamp(15rem, 50vw, 40rem);
 }
 /*----------------------------------------------------------------------------*/
@@ -246,19 +262,30 @@ input {
     font-size: clamp(1rem, 1rem + 0.3vw, 1.5rem);
 }
 
-/*For light and dark mode*/
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    margin: 0;
-    background-color: var(--page-background);
-    transition: background-color 0.3s ease;
+/*---------------------------------------------------------------------*/
+/*tag used in team and productdetail*/
+.category-tag {
+    align-self: flex-start;
+    font-weight: 600;
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
+    color: var(--redtext);
+    border: 2px solid var(--redborderbutton);
+    border-radius: 100vw;
+    padding: 0.45rem 1rem;
 }
 
 /*---------------------------------------------------------------------------------------*/
+/*about team h1 centered*/
+.cta-section {
+    text-align: center;
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.cta-section h1 {
+    margin-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+/*-------------------------------------------------------------------------------------------*/
 /*used in productpage carousel*/
 /*carousel properties*/
 

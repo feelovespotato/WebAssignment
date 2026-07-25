@@ -53,6 +53,10 @@
   gap:15px;
 }
 /*---------------------------------------------*/
+.search-outer-container{
+    margin:clamp(5rem, 5rem + 1vw, 8rem) 0;
+}
+
 /*container for the input + dropdown*/
 .search-input-wrapper {
     position: relative;
@@ -63,6 +67,7 @@
 
 .search-input-wrapper input {
     width: 100%;
+    
 }
 /*container for the suggestions*/
 .search-suggestions {

@@ -9,10 +9,10 @@
     padding-bottom: clamp(3rem, 4vw, 4rem);
 }
 
-@media (max-width: 900px) {
-    .product-detail-container {
-        grid-template-columns: 1fr;
-    }
+#gallery,
+#info,
+#Summary {
+    min-width: 0;
 }
 
 #gallery {
@@ -29,6 +29,21 @@
     grid-column: 2;
     grid-row: 1 / span 4;
 }
+/*when screnn small 1 column*/
+@media (max-width: 1200px) {
+    .product-detail-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    #gallery,
+    #Summary,
+    #info {
+        grid-column: 1;
+        grid-row: auto; 
+    }
+}
+
 
 /*---------------------------------------------------------------*/
 /*for the Detail product page img + thumbnail*/
@@ -46,6 +61,11 @@
 .detail-gallery .img-wrapper {
     height: clamp(16rem, 30vw, 26rem);
     padding-top: 0;
+}
+
+.detail-gallery img {
+    max-width: 100%;
+    height: auto; 
 }
 
 /*thumbnail container*/
@@ -79,17 +99,6 @@
     flex-direction: column;
 }
 
-/*small category tag */
-.category-tag {
-    align-self: flex-start;
-    font-weight: 600;
-    font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
-    color: var(--redtext);
-    border: 2px solid var(--redborderbutton);
-    border-radius: 100vw;
-    padding: 0.45rem 1rem;
-}
-
 /*price for the product (overwrite the font-size)*/
 .detail-info .price {
     font-weight: 700;
@@ -98,6 +107,11 @@
 }
 
 /*---------------------------------------------------------------*/
+
+#info h1,
+#info p {
+    overflow-wrap: break-word;
+}
 /*container for option selection in details in productinfo*/
 .option-group {
     margin-bottom: clamp(1.5rem, 2vw, 2rem);
