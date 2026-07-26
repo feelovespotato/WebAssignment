@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Pokka Cart</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../assets/styles/variables.css">
+    <link rel="stylesheet" href="../assets/styles/global.css">
+    <link rel="stylesheet" href="../assets/styles/navbar.css">
+    <link rel="stylesheet" href="../assets/styles/CartPage.css">
+    <link rel="stylesheet" href="../assets/styles/footer.css">
+</head>
+<button
+    type="button"
+    class="addToCartButton"
+    data-id="test-drink-001"
+    data-name="Test Pokka Drink"
+    data-price="3.50"
+    data-image=""
+>
+    Test Add to Cart
+</button>
+<body data-page="cart">
+
+    <!-- Navbar inserted here -->
+    <div id="navbarContainer"></div>
+
+    <main class="cartPage">
+
+        <section class="cartContainer">
+
+            <header class="cartHeader">
+                <p class="cartEyebrow">POKKA STORE</p>
+                <h1>Your Cart</h1>
+
+                <p class="cartDescription">
+                    Review your selected drinks before proceeding to checkout.
+                </p>
+            </header>
+
+
+            <!-- Displayed when the cart is empty -->
+            <div id="emptyCart" class="emptyCart">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <h2>Your cart is empty</h2>
+
+                <p>
+                    Add some refreshing Pokka drinks to get started.
+                </p>
+
+                <a href="ProductPage.html" class="continueShoppingButton">
+                    View Products
+                </a>
+
+            </div>
+
+
+            <!-- Displayed when the cart has products -->
+            <div id="cartContent" class="cartContent">
+
+                <section class="cartItemsSection">
+
+                    <div class="cartSectionHeader">
+                        <h2>Cart Items</h2>
+
+                        <button
+                            type="button"
+                            id="clearCartButton"
+                            class="clearCartButton"
+                        >
+                            Clear Cart
+                        </button>
+                    </div>
+
+                    <div id="cartItems" class="cartItems"></div>
+
+                </section>
+
+
+                <aside class="cartSummary">
+
+                    <h2>Order Summary</h2>
+
+                    <div class="summaryRow">
+                        <span>Items</span>
+                        <span id="summaryItemCount">0</span>
+                    </div>
+
+                    <div class="summaryRow">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal">RM0.00</span>
+                    </div>
+
+                    <div class="summaryRow">
+                        <span>Delivery</span>
+                        <span>Free</span>
+                    </div>
+
+                    <div class="summaryDivider"></div>
+
+                    <div class="summaryRow summaryTotal">
+                        <span>Total</span>
+                        <span id="cartTotal">RM0.00</span>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="checkoutButton"
+                        class="checkoutButton"
+                    >
+                        Proceed to Checkout
+                    </button>
+
+                    <a
+                        href="ProductPage.html"
+                        class="continueShoppingLink"
+                    >
+                        Continue Shopping
+                    </a>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer inserted here -->
+    <div id="footerContainer"></div>
+
+    <script src="../js/cart.js"></script>
+
+</body>
+
+</html>

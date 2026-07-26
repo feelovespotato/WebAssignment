@@ -1,0 +1,129 @@
+
+/* ── LIGHT MODE (default) ── */
+:root {
+    /*font color*/
+  --halfvisibletext: #515151;
+  --redtext: #e51938;
+  --title: #252525;
+  --textwhite:#fafafa;
+  --grayhovertext:#a3a3a3;
+
+  /*button and bg*/
+  --redbutton: #E51938;
+  --hoverredbutton: #890f22;
+  --whitehoverbutton: #e51938;
+  --bg:#fff;
+  --redbg:#ea4760;
+  --bgpink:#ffeaf3;
+  --whiteborderbutton:#fafafa;
+  --redborderbutton:#e51938;
+  --grayborder:#a8a8a8;
+
+  /*drinks bg colours*/
+  --teabg:#E9F4C4;
+  --coffeebg:#F3D6C3;
+  --juicebg:#FBDFBE;
+  --sodabg:#FCE9B9;
+  --functionalbg:#D8EDFA;
+  --dairybg:#FEEAE9;
+  --localdrinkbg:#FDF4DB;
+  --otherbg:#EAE4D4;
+
+  /*drink title color*/
+  --drinktitle: #34410b;
+
+  /*portfolio section*/
+  --skillcardbg:var(--bgpink);
+  --bgteagreen:var(--teabg);
+  --greenborder: #3e432c;
+  --herobordergreen:#BFD98A;
+  --brownboardbg:#ECE3D3;
+
+  --bluecardbg:#6dcaf5;
+  --purplecardbg:hsl(268, 100%, 93%);
+
+  /*about team section*/
+  --teamsubtext: #64748b;
+  --teammembertitle: #18188b;
+  --teamheaderborder: #f0f0f0;
+  --cardborder: #e8e8e8;
+  --metricsbg: #f8fafc;
+  --metricsborder: #eef2f6;
+  --metricstext: #334155;
+  --metricslabel: #0f172a;
+  --darktext: #1a202c;
+  --darktext-hover: #2d3748;
+  --cvborder: #d0d7de;
+  --cvhoverbg: #f1f5f9;
+  --cvhoverborder: #b0b8c0;
+
+  /*rating section*/
+  --starcolor: #f5b342;
+  --offwhitebg: #faf9f7;
+  --reviewborder: #edeae4;
+  --successbg: #f0fdf4;
+  --successtext: #166534;
+  --successborder: #bbf7d0;
+  --staremptycolor: #e2e8f0;
+
+  --orange: #F39A1E;
+  --orange-hover: #D98300;
+  --card-title: #252525
+}
+
+/*For light mode and dark mode*/
+:root {
+    /* Light mode */
+    --page-background: #f7f4ef;
+    --signup-background: #ffffff;
+    --main-text: #1f1f1f;
+    --secondary-text: #666666;
+
+    --input-background: #ffffff;
+    --input-text: #1f1f1f;
+    --input-border: #cccccc;
+
+    --navbar-background: #ffffff;
+    --navbar-text: #1f1f1f;
+
+     --footer-background: #ffffff;
+    --footer-text: #1f1f1f;
+    --footer-logo: #ff0050;
+
+    --pokka-yellow: #ff9d32;
+}
+
+html[data-theme="dark"] {
+    /* Dark mode */
+    --page-background: #000000;
+    --signup-background: #232323;
+    --main-text: #ffffff;
+    --secondary-text: #bdbdbd;
+
+    --input-background: #303030;
+    --input-text: #ffffff;
+    --input-border: #555555;
+
+    --navbar-background: #000000;
+    --navbar-text: #ffffff;
+
+    --footer-background: #000000;
+    --footer-text: #ffffff;
+    --footer-logo: #ff0050;
+
+    
+    --title: #ffffff;
+    --drinktitle: #ffffff;
+    --halfvisibletext: #c0c0c0;
+    --bg: #1a1a1a;
+    --offwhitebg: #2a2a2a;
+    --reviewborder: #444444;
+    --grayborder: #666666;
+    --bg: #1a1a1a;
+    --card-title: #252525;
+}
+
+[data-theme="dark"] .subtitle {
+  color: #cccccc;
+}
+

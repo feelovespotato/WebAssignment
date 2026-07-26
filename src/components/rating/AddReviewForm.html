@@ -1,0 +1,26 @@
+<section id="addReviewForm" class="Reviewform-container animate-fade-up">
+    <h2>How was your experience?</h2>
+    
+    <form id="reviewForm">
+        <!-- Slot where RatingStars.html is loaded -->
+            <div id="starRatingInput"></div>
+            <div id="ratingError" class="error-message">Please select a star rating</div>
+
+        <!-- Review Feedback Input -->
+        <div class="input-group">
+            <label for="reviewFeedback">Your Feedback</label>
+            <textarea class="input-control" id="reviewFeedback" placeholder="What did you think of this product?" required minlength="4"></textarea>
+        </div>
+
+
+        <!-- Submit Button -->
+        <button class="solidbutton btn-publish" type="submit">
+            Publish My Review
+        </button>
+    </form>
+
+    <!-- Toast Notification -->
+    <div id="publishToast" class="toast-message" role="status" aria-live="polite">
+        <span id="toastText">Thank you! Your review has been published.</span>
+    </div>
+</section>
