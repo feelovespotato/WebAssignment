@@ -103,7 +103,22 @@ html[data-theme="dark"] {
     --navbar-background: #000000;
     --navbar-text: #ffffff;
 
-     --footer-background: #000000;
+    --footer-background: #000000;
     --footer-text: #ffffff;
     --footer-logo: #ff0050;
+
+    
+    --title: #ffffff;
+    --drinktitle: #ffffff;
+    --halfvisibletext: #c0c0c0;
+    --bg: #1a1a1a;
+    --offwhitebg: #2a2a2a;
+    --reviewborder: #444444;
+    --grayborder: #666666;
+    --bg: #1a1a1a;
 }
+
+[data-theme="dark"] .subtitle {
+  color: #cccccc;
+}
+
