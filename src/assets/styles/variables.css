@@ -65,6 +65,10 @@
   --successtext: #166534;
   --successborder: #bbf7d0;
   --staremptycolor: #e2e8f0;
+
+  --orange: #F39A1E;
+  --orange-hover: #D98300;
+  --card-title: #252525
 }
 
 /*For light mode and dark mode*/
@@ -116,6 +120,7 @@ html[data-theme="dark"] {
     --reviewborder: #444444;
     --grayborder: #666666;
     --bg: #1a1a1a;
+    --card-title: #252525;
 }
 
 [data-theme="dark"] .subtitle {

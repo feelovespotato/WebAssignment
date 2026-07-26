@@ -46,7 +46,7 @@
 .search-container{
   display: flex;
   position:relative;
-  z-index:999;
+  z-index:99;
   width:100%;
   height:100%;
   justify-content: center;
@@ -157,7 +157,7 @@
 }
 */
 
-[data-theme="dark"] .card h2,
-[data-theme="dark"] .card h3 {
-  color: #252525;
+.card h2,
+.card h3 {
+  color: var(--card-title);
 }

@@ -1,32 +1,25 @@
-
-/*universal box-sizing rule which counts for all paddings and applies to all elements */
-
+/* universal box-sizing rule */
 * {
   box-sizing: border-box;
 }
 
-/*Heading 1*/
 h1 { 
-  color: var(--color-text-dark);
+  color: var(--title);
 }
 
-/*Heading 2*/
 h2 { 
-  color: var(--color-text-dark);
+  color: var(--title);
 }
 
 p { 
-  color: var(--color-text-dark);
+  color: var(--title);
 }
 
-/*The Body Content*/
 body {
-  overflow-x: clip; /*Hides any thing that goes beyond the vision of the screen, overflow being too much and x being x-axis */
-  color: var(--color-text-light); /*Sets the default text color */
-  background-color: var(--color-body-bg);/*Sets the default background color */
+  overflow-x: clip;
+  color: var(--title);
+  background-color: var(--bg);
 }
-
-
 
 header {
   position: sticky;
@@ -38,8 +31,6 @@ header {
   width: 100px;
   height: auto;
 }
-
-
 
 #MainDisplay {
   position: relative;
@@ -53,30 +44,27 @@ header {
 }
 
 #MainVideo {
-  position: absolute;/* Allows this element to be connected to a parent that has relative  */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills the section without stretching */
+  object-fit: cover;
   object-position: center;
   z-index: 0;
 }
 
 #MainButtons {
-  color: var(--color-text-light);
+  color: var(--textwhite);
   display: flex;
-  align-items: center;/* align is for vertical, justify for horizontal */
+  align-items: center;
   gap: 16px;
   margin-left: 0;
   margin-top: 16px;
-  font-family: 'Montserrat', sans-serif; /* makes the font monserrat, if fail return to sans serif */ 
-    font-weight: 700; /* bolding value, 900 is extra bold, 700 is normal bold */
-    font-size: clamp(0.8rem, 1vw, 1rem);
- 
-    
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
-
 
 #MainButtons a {
   text-decoration: none;
@@ -87,33 +75,33 @@ header {
 }
 
 #MainButtons a:first-child {
-  color: #fff;
+  color: var(--textwhite);
 }
 
 #MainButtons a:last-child {
   background-color: transparent;
-  color: #fff;
-  border: 2px solid #fff;
+  color: var(--textwhite);
+  border: 2px solid var(--textwhite);
 }
 
 #MainText {
   position: relative;
   z-index: 2;
-  color: var(--color-text-light);
+  color: var(--textwhite);
   padding: 0 64px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 #MainText h1 {
   position: relative;
-  z-index: 1; /* sits on top of the video */
-  color: var(--color-text-light);
+  z-index: 1;
+  color: var(--textwhite);
 }
 
 #MainText p {
   position: relative;
-  z-index: 1; /* sits on top of the video */
-  color: var(--color-text-light);
+  z-index: 1;
+  color: var(--textwhite);
 }
 
 .animate-fade-up {
@@ -131,7 +119,7 @@ header {
   text-align: center;
   margin-bottom: 24px;
   animation: fadeSlideDown 0.8s ease forwards;
-  color: #F39A1E;
+  color: var(--orange);
 }
 
 @keyframes fadeSlideDown {
@@ -164,7 +152,7 @@ header {
   margin: 0 auto;
   z-index: 2;
   background: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
+  color: var(--textwhite);
   padding: 30px 60px;
   border-radius: 12px;
   text-align: center;
@@ -187,17 +175,17 @@ header {
 #carousel-content h3 {
   font-size: 2rem;
   margin-bottom: 12px;
-  color: #ffffff;
+  color: var(--textwhite);
 }
 
 #carousel-content p {
   font-size: 1rem;
   margin-bottom: 16px;
-  color: #ffffff;
+  color: var(--textwhite);
 }
 
 #carousel-content a {
-  color: #F39A1E;
+  color: var(--orange);
   font-weight: 700;
   text-decoration: none;
 }
@@ -207,9 +195,9 @@ header {
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  background: #F39A1E;
+  background: var(--orange);
   border: none;
-  color: #ffffff;
+  color: var(--textwhite);
   font-size: 1.2rem;
   width: 44px;
   height: 44px;
@@ -222,7 +210,7 @@ header {
 }
 
 .carousel-arrow:hover {
-  background: #D98300;
+  background: var(--orange-hover);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -236,39 +224,35 @@ header {
 
 #CustomerReviews h2 {
   text-align: center;
-  color: #F39A1E;
+  color: var(--orange);
   margin-bottom: 32px;
 }
 
 #CustomerReviews .comment-date {
-  color: #888888;
+  color: var(--halfvisibletext);
 }
 
 #CustomerReviews h4 {
-  color: var(--color-text-dark);
-}
-
-[data-theme="dark"] #CustomerReviews h4 {
-  color: #ffffff;
+  color: var(--title);
 }
 
 #CustomerReviews .comment-card {
-  background-color: var(--color-body-bg);
-  border: 1px solid #F39A1E;
+  background-color: var(--offwhitebg);
+  border: 1px solid var(--orange);
   border-radius: 12px;
   padding: 24px;
   filter: brightness(1.2);
 }
 
 [data-theme="dark"] #CustomerReviews .comment-card {
-  background-color: #2a2a2a;
-  border: 1px solid #F39A1E;
+  background-color: var(--offwhitebg);
+  border: 1px solid var(--orange);
 }
 
 #CustomerReviews a {
   display: inline-block;
-  background-color: #F39A1E;
-  color: #ffffff;
+  background-color: var(--orange);
+  color: var(--textwhite);
   padding: 12px 26px;
   border-radius: 50px;
   font-weight: 600;
@@ -278,23 +262,6 @@ header {
 }
 
 #CustomerReviews a:hover {
-  background-color: #D98300;
+  background-color: var(--orange-hover);
   transform: translateY(-4px);
-}
-
-/* LIGHT MODE */
-:root {
-  --color-navbar: #72243e;
-  --color-body-bg: #FFFFFF;
-  --color-text-dark: #000000;
-  --color-text-light: #ffffff;
-  --color-hover: #f4c0d1;
-}
-
-[data-theme="dark"] {
-  --color-navbar: #751B70;
-  --color-body-bg: #1a1a1a;
-  --color-text-dark: #ffffff;
-  --color-text-light: #ffffff;
-  --color-hover: #ffffff;
 }

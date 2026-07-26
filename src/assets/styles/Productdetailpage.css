@@ -9,8 +9,8 @@
     padding-bottom: clamp(3rem, 4vw, 4rem);
 }
 
-[data-theme="dark"] .option-label {
-  color: #ffffff;
+.option-label {
+  color: var(--drinktitle);
 }
 
 #gallery,
