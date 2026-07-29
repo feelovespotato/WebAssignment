@@ -240,10 +240,7 @@ function closeMobileNavigation() {
     }
 }
 
-
-/* =========================================
-   ACTIVE NAVIGATION LINK
-========================================= */
+/*Active Navigation Link*/
 
 function initialiseActiveNavigation() {
     const sections = Array.from(
@@ -298,23 +295,19 @@ function initialiseActiveNavigation() {
 }
 
 
-/* =========================================
-   SCROLL REVEAL ANIMATION
-========================================= */
+/*Scroll reveal animation*/
 
 function initialiseScrollReveal() {
     const revealSelectors = [
-        ".sectionHeading",
         ".aboutText",
         ".aboutDetails",
         ".skillCategory",
         ".projectCard",
-        ".timelineItem",
-        ".educationCard",
-        ".activityCard",
-        ".certificationCard",
-        ".contactItem",
-        ".contactForm"
+        ".timeline-item",
+        ".cardEducation",
+        ".cardActivities",
+        ".itemContact",
+        ".formContact"
     ];
 
     const revealElements =
@@ -352,37 +345,17 @@ function initialiseScrollReveal() {
     });
 }
 
-
-/* =========================================
-   CONTACT FORM
-========================================= */
+/*Contact Form*/
 
 function initialiseContactForm() {
-    const contactForm =
-        document.getElementById("contactForm");
+    const formContact =
+        document.getElementById("formContact");
 
-    if (!contactForm) {
+    if (!formContact) {
         return;
     }
 
-    let contactStatus =
-        contactForm.querySelector(".contactStatus");
-
-    if (!contactStatus) {
-        contactStatus =
-            document.createElement("p");
-
-        contactStatus.className = "contactStatus";
-
-        contactStatus.setAttribute(
-            "aria-live",
-            "polite"
-        );
-
-        contactForm.appendChild(contactStatus);
-    }
-
-    contactForm.addEventListener(
+    formContact.addEventListener(
         "submit",
         function (event) {
             event.preventDefault();
@@ -404,14 +377,8 @@ function initialiseContactForm() {
                 !emailInput ||
                 !subjectInput ||
                 !messageInput
-            ) {
-                showContactStatus(
-                    contactStatus,
-                    "The contact form is missing one or more fields.",
-                    "error"
-                );
+            );
 
-                return;
             }
 
             const name = nameInput.value.trim();
