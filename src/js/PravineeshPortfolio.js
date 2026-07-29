@@ -1,64 +1,70 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    try {
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
         await loadPortfolioComponents();
+
         initialisePortfolioYear();
         initialiseSmoothScrolling();
         initialiseMobileNavigation();
         initialiseActiveNavigation();
         initialiseScrollReveal();
         initialiseContactForm();
-        console.log("Portfolio loaded successfully.");
-    } catch (error) {
-        console.error("Portfolio loading error:", error);
+
+        console.log(
+            "Portfolio initialisation completed."
+        );
     }
-});
+);
 
-/*Component*/
+
+/* =========================================
+   COMPONENTS
+========================================= */
+
 async function loadPortfolioComponents() {
-    const components = [
-        {
-            containerId: "headerContainer",
-            filePath: "../components/portfolio/header.html"
-        },
-        {
-            containerId: "heroContainer",
-            filePath: "../components/portfolio/hero.html"
-        },
-        {
-            containerId: "aboutMeContainer",
-            filePath: "../components/portfolio/aboutMe.html"
-        },
-        {
-            containerId: "skillsContainer",
-            filePath: "../components/portfolio/skills.html"
-        },
-        {
-            containerId: "projectsContainer",
-            filePath: "../components/portfolio/projects.html"
-        },
-        {
-            containerId: "experienceContainer",
-            filePath: "../components/portfolio/experience.html"
-        },
-        {
-            containerId: "educationContainer",
-            filePath: "../components/portfolio/education.html"
-        },
-        {
-            containerId: "activitiesContainer",
-            filePath: "../components/portfolio/activities.html"
-        },
-        {
-            containerId: "contactContainer",
-            filePath: "../components/portfolio/contact.html"
-        },
-        {
-            containerId: "footerContainer",
-            filePath: "../components/portfolio/footer.html"
-        }
-    ];
-
-    await Promise.all(
+   const components = [
+    {
+        containerId: "headerContainer",
+        filePath: "/src/components/portfolio/Pravineesh/header.html"
+    },
+    {
+        containerId: "heroContainer",
+        filePath: "/src/components/portfolio/Pravineesh/hero.html"
+    },
+    {
+        containerId: "aboutMeContainer",
+        filePath: "/src/components/portfolio/Pravineesh/aboutMe.html"
+    },
+    {
+        containerId: "skillsContainer",
+        filePath: "/src/components/portfolio/Pravineesh/skills.html"
+    },
+    {
+        containerId: "projectsContainer",
+        filePath: "/src/components/portfolio/Pravineesh/projects.html"
+    },
+    {
+        containerId: "experienceContainer",
+        filePath: "/src/components/portfolio/Pravineesh/experience.html"
+    },
+    {
+        containerId: "educationContainer",
+        filePath: "/src/components/portfolio/Pravineesh/education.html"
+    },
+    {
+        containerId: "activitiesContainer",
+        filePath: "/src/components/portfolio/Pravineesh/activities.html"
+    },
+    {
+        containerId: "contactContainer",
+        filePath: "/src/components/portfolio/Pravineesh/contact.html"
+    },
+    {
+        containerId: "footerContainer",
+        filePath: "/src/components/portfolio/Pravineesh/footer.html"
+    }
+];
+    const results = await Promise.allSettled(
         components.map(function (component) {
             return loadPortfolioComponent(
                 component.containerId,
@@ -66,33 +72,62 @@ async function loadPortfolioComponents() {
             );
         })
     );
+
+    results.forEach(function (result, index) {
+        if (result.status === "rejected") {
+            console.error(
+                `Could not load ${components[index].filePath}:`,
+                result.reason
+            );
+        }
+    });
 }
 
-async function loadPortfolioComponent(containerId, filePath) {
-    const container = document.getElementById(containerId);
+
+async function loadPortfolioComponent(
+    containerId,
+    filePath
+) {
+    const container =
+        document.getElementById(containerId);
 
     if (!container) {
-        console.warn(
-            `Portfolio container "${containerId}" was not found.`
+        throw new Error(
+            `Container "${containerId}" was not found.`
         );
-
-        return;
     }
 
     const response = await fetch(filePath);
 
     if (!response.ok) {
+        container.innerHTML = `
+            <p style="
+                padding: 20px;
+                color: #e51938;
+                text-align: center;
+            ">
+                Failed to load ${filePath}
+            </p>
+        `;
+
         throw new Error(
             `${filePath} failed to load. Status: ${response.status}`
         );
     }
 
-    container.innerHTML = await response.text();
+    container.innerHTML =
+        await response.text();
 
-    console.log(`${filePath} loaded successfully.`);
+    console.log(
+        `${filePath} loaded successfully.`
+    );
 }
 
-/*Footer Year*/
+
+/* =========================================
+   FOOTER YEAR
+========================================= */
+
 function initialisePortfolioYear() {
     const portfolioYear =
         document.getElementById("portfolioYear");
@@ -103,66 +138,90 @@ function initialisePortfolioYear() {
     }
 }
 
-/*Seamless scrolling*/
+
+/* =========================================
+   SMOOTH SCROLLING
+========================================= */
+
 function initialiseSmoothScrolling() {
-    document.addEventListener("click", function (event) {
-        const anchor = event.target.closest('a[href^="#"]');
+    document.addEventListener(
+        "click",
+        function (event) {
+            const anchor =
+                event.target.closest(
+                    'a[href^="#"]'
+                );
 
-        if (!anchor) {
-            return;
+            if (!anchor) {
+                return;
+            }
+
+            const targetId =
+                anchor.getAttribute("href");
+
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
+
+            const targetElement =
+                document.querySelector(targetId);
+
+            if (!targetElement) {
+                return;
+            }
+
+            event.preventDefault();
+
+            targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            closeMobileNavigation();
         }
-
-        const targetId = anchor.getAttribute("href");
-
-        if (!targetId || targetId === "#") {
-            return;
-        }
-
-        const targetElement =
-            document.querySelector(targetId);
-
-        if (!targetElement) {
-            return;
-        }
-
-        event.preventDefault();
-
-        targetElement.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-        closeMobileNavigation();
-    });
+    );
 }
 
 
-/* Mobile Navigation*/
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
 
 function initialiseMobileNavigation() {
     const header =
-        document.querySelector(".headerPortfolio");
+        document.querySelector(
+            ".portfolioHeader"
+        );
 
     const navigation =
-        document.querySelector(".navPortfolio");
+        document.querySelector(
+            ".portfolioNav"
+        );
 
     if (!header || !navigation) {
+        console.warn(
+            "Portfolio header or navigation was not found."
+        );
+
         return;
     }
 
     let mobileMenuButton =
-        document.querySelector(".mobileMenuButton");
+        document.querySelector(
+            ".mobileMenuButton"
+        );
 
-    /*
-        Creates the menu button automatically if it is not
-        already written inside header.html.
-    */
     if (!mobileMenuButton) {
         mobileMenuButton =
             document.createElement("button");
 
         mobileMenuButton.type = "button";
-        mobileMenuButton.className = "mobileMenuButton";
+
+        mobileMenuButton.className =
+            "mobileMenuButton";
 
         mobileMenuButton.setAttribute(
             "aria-label",
@@ -177,14 +236,18 @@ function initialiseMobileNavigation() {
         mobileMenuButton.innerHTML =
             '<i class="fa-solid fa-bars"></i>';
 
-        header.appendChild(mobileMenuButton);
+        header.appendChild(
+            mobileMenuButton
+        );
     }
 
     mobileMenuButton.addEventListener(
         "click",
         function () {
             const menuIsOpen =
-                navigation.classList.toggle("open");
+                navigation.classList.toggle(
+                    "open"
+                );
 
             mobileMenuButton.setAttribute(
                 "aria-expanded",
@@ -205,23 +268,32 @@ function initialiseMobileNavigation() {
         }
     );
 
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 900) {
-            closeMobileNavigation();
+    window.addEventListener(
+        "resize",
+        function () {
+            if (window.innerWidth > 900) {
+                closeMobileNavigation();
+            }
         }
-    });
+    );
 }
 
 
 function closeMobileNavigation() {
     const navigation =
-        document.querySelector(".navPortfolio");
+        document.querySelector(
+            ".portfolioNav"
+        );
 
     const mobileMenuButton =
-        document.querySelector(".mobileMenuButton");
+        document.querySelector(
+            ".mobileMenuButton"
+        );
 
     if (navigation) {
-        navigation.classList.remove("open");
+        navigation.classList.remove(
+            "open"
+        );
     }
 
     if (mobileMenuButton) {
@@ -240,11 +312,16 @@ function closeMobileNavigation() {
     }
 }
 
-/*Active Navigation Link*/
+
+/* =========================================
+   ACTIVE NAVIGATION
+========================================= */
 
 function initialiseActiveNavigation() {
     const sections = Array.from(
-        document.querySelectorAll("main section[id]")
+        document.querySelectorAll(
+            "main section[id]"
+        )
     );
 
     const navigationLinks = Array.from(
@@ -260,34 +337,40 @@ function initialiseActiveNavigation() {
         return;
     }
 
-    const sectionObserver = new IntersectionObserver(
-        function (entries) {
-            entries.forEach(function (entry) {
-                if (!entry.isIntersecting) {
-                    return;
-                }
+    const sectionObserver =
+        new IntersectionObserver(
+            function (entries) {
+                entries.forEach(
+                    function (entry) {
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
 
-                const activeSectionId =
-                    `#${entry.target.id}`;
+                        const activeId =
+                            `#${entry.target.id}`;
 
-                navigationLinks.forEach(
-                    function (navigationLink) {
-                        navigationLink.classList.toggle(
-                            "active",
-                            navigationLink.getAttribute(
-                                "href"
-                            ) === activeSectionId
+                        navigationLinks.forEach(
+                            function (link) {
+                                link.classList.toggle(
+                                    "active",
+                                    link.getAttribute(
+                                        "href"
+                                    ) === activeId
+                                );
+                            }
                         );
                     }
                 );
-            });
-        },
-        {
-            root: null,
-            rootMargin: "-35% 0px -55% 0px",
-            threshold: 0
-        }
-    );
+            },
+            {
+                root: null,
+                rootMargin:
+                    "-35% 0px -55% 0px",
+                threshold: 0
+            }
+        );
 
     sections.forEach(function (section) {
         sectionObserver.observe(section);
@@ -295,10 +378,13 @@ function initialiseActiveNavigation() {
 }
 
 
-/*Scroll reveal animation*/
+/* =========================================
+   SCROLL REVEAL
+========================================= */
 
 function initialiseScrollReveal() {
-    const revealSelectors = [
+    const selectors = [
+        ".sectionHeading",
         ".aboutText",
         ".aboutDetails",
         ".skillCategory",
@@ -310,49 +396,99 @@ function initialiseScrollReveal() {
         ".formContact"
     ];
 
-    const revealElements =
+    const elements =
         document.querySelectorAll(
-            revealSelectors.join(",")
+            selectors.join(",")
         );
 
-    if (revealElements.length === 0) {
+    if (elements.length === 0) {
         return;
     }
 
-    revealElements.forEach(function (element) {
-        element.classList.add("revealElement");
+    elements.forEach(function (element) {
+        element.classList.add(
+            "revealElement"
+        );
     });
 
-    const revealObserver = new IntersectionObserver(
-        function (entries, observer) {
-            entries.forEach(function (entry) {
-                if (!entry.isIntersecting) {
-                    return;
-                }
+    const revealObserver =
+        new IntersectionObserver(
+            function (
+                entries,
+                observer
+            ) {
+                entries.forEach(
+                    function (entry) {
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
 
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            });
-        },
-        {
-            threshold: 0.12,
-            rootMargin: "0px 0px -50px 0px"
-        }
-    );
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-    revealElements.forEach(function (element) {
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+                );
+            },
+            {
+                threshold: 0.12,
+                rootMargin:
+                    "0px 0px -50px 0px"
+            }
+        );
+
+    elements.forEach(function (element) {
         revealObserver.observe(element);
     });
 }
 
-/*Contact Form*/
+
+/* =========================================
+   CONTACT FORM
+========================================= */
 
 function initialiseContactForm() {
     const formContact =
-        document.getElementById("formContact");
+        document.getElementById(
+            "formContact"
+        ) ||
+        document.querySelector(
+            ".formContact"
+        );
 
     if (!formContact) {
+        console.warn(
+            "Contact form was not found."
+        );
+
         return;
+    }
+
+    let contactStatus =
+        formContact.querySelector(
+            ".contactStatus"
+        );
+
+    if (!contactStatus) {
+        contactStatus =
+            document.createElement("p");
+
+        contactStatus.className =
+            "contactStatus";
+
+        contactStatus.setAttribute(
+            "aria-live",
+            "polite"
+        );
+
+        formContact.appendChild(
+            contactStatus
+        );
     }
 
     formContact.addEventListener(
@@ -361,30 +497,51 @@ function initialiseContactForm() {
             event.preventDefault();
 
             const nameInput =
-                document.getElementById("contactName");
+                document.getElementById(
+                    "contactName"
+                );
 
             const emailInput =
-                document.getElementById("contactEmail");
+                document.getElementById(
+                    "contactEmail"
+                );
 
             const subjectInput =
-                document.getElementById("contactSubject");
+                document.getElementById(
+                    "contactSubject"
+                );
 
             const messageInput =
-                document.getElementById("contactMessage");
+                document.getElementById(
+                    "contactMessage"
+                );
 
             if (
                 !nameInput ||
                 !emailInput ||
                 !subjectInput ||
                 !messageInput
-            );
+            ) {
+                showContactStatus(
+                    contactStatus,
+                    "The contact form is missing one or more fields.",
+                    "error"
+                );
 
+                return;
             }
 
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const subject = subjectInput.value.trim();
-            const message = messageInput.value.trim();
+            const name =
+                nameInput.value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            const subject =
+                subjectInput.value.trim();
+
+            const message =
+                messageInput.value.trim();
 
             if (
                 name === "" ||
@@ -401,7 +558,9 @@ function initialiseContactForm() {
                 return;
             }
 
-            if (!emailInput.checkValidity()) {
+            if (
+                !emailInput.checkValidity()
+            ) {
                 showContactStatus(
                     contactStatus,
                     "Please enter a valid email address.",
@@ -413,31 +572,30 @@ function initialiseContactForm() {
             }
 
             const submitButton =
-                contactForm.querySelector(
+                formContact.querySelector(
                     'button[type="submit"]'
                 );
 
             if (submitButton) {
                 submitButton.disabled = true;
-                submitButton.textContent = "Sending...";
+
+                submitButton.textContent =
+                    "Sending...";
             }
 
-            /*
-                Demonstration delay. This does not actually send
-                an email because a backend or email service is
-                required.
-            */
             setTimeout(function () {
                 showContactStatus(
                     contactStatus,
-                    `Thank you, ${name}. Your message form was submitted successfully.`,
+                    `Thank you, ${name}. Your form was submitted successfully.`,
                     "success"
                 );
 
-                contactForm.reset();
+                formContact.reset();
 
                 if (submitButton) {
-                    submitButton.disabled = false;
+                    submitButton.disabled =
+                        false;
+
                     submitButton.textContent =
                         "Send Message";
                 }
@@ -447,7 +605,15 @@ function initialiseContactForm() {
 }
 
 
-function showContactStatus(element, message, type) {
+function showContactStatus(
+    element,
+    message,
+    type
+) {
+    if (!element) {
+        return;
+    }
+
     element.textContent = message;
 
     element.classList.remove(
