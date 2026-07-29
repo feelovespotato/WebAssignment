@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initPage();
 });
 
-/* Fetch every component's HTML*/
+// Fetch every component's HTML
 async function loadAllComponents() {
     const components = [
         ['site-header', '../components/portfolio/Andrea/header.html'],
@@ -45,7 +45,7 @@ async function loadComponent(elementId, filePath) {
 
 function initPage() {
 
-    /* Theme toggle */
+    // Theme toggle 
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
 
@@ -65,7 +65,7 @@ function initPage() {
         themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
     }
 
-    /* Mobile menu */
+    // Mobile menu 
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -87,37 +87,7 @@ function initPage() {
         });
     });
 
-    /* Typewriter */
-    const typewriterElement = document.getElementById('typewrite-text');
-    const roles = ["Software Engineer Student"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentRole = roles[roleIndex];
-        typewriterElement.textContent = isDeleting
-            ? currentRole.substring(0, charIndex - 1)
-            : currentRole.substring(0, charIndex + 1);
-        charIndex += isDeleting ? -1 : 1;
-
-        let typeSpeed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500;
-        }
-
-        setTimeout(type, typeSpeed);
-    }
-
-    setTimeout(type, 1000);
-
-    /* Navigation active-link tracking */
+    // Navigation active-link tracking
     const sections = document.querySelectorAll('section');
     
     // Intersection Observer
@@ -170,7 +140,7 @@ function initPage() {
 
     observeAnimations();
 
-    /* Skill proficiency bars */
+    // Skill proficiency bars 
     const proficiencyItems = document.querySelectorAll('.proficiency-item');
     const barObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
@@ -183,7 +153,7 @@ function initPage() {
 
     proficiencyItems.forEach(item => barObserver.observe(item));
 
-    /* Mock contact form submission */
+    // Contact submission form
     const contactForm = document.getElementById('contact-form');
     const formAlert = document.getElementById('form-alert');
 

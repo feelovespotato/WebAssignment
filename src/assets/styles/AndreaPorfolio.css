@@ -1,26 +1,26 @@
 :root {
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
+    --bg-primary: #170f2e;
+    --bg-secondary: #241a42;
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --accent: #38bdf8;
-    --accent-hover: #0ea5e9;
-    --border-color: #334155;
-    --card-bg: #1e293b;
-    --shadow: 0 10px 30px -15px rgba(2, 6, 23, 0.7);
+    --text-secondary: #a89cc8;
+    --accent: #a855f7;
+    --accent-hover: #9333ea;
+    --border-color: #3f2f5e;
+    --card-bg: #241a42;
+    --shadow: 0 10px 30px -15px rgba(9, 6, 22, 0.7);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="light"] {
-    --bg-primary: #f8fafc;
-    --bg-secondary: #f1f5f9;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --accent: #0284c7;
-    --accent-hover: #0369a1;
-    --border-color: #e2e8f0;
+    --bg-primary: #faf5ff;
+    --bg-secondary: #f3e8ff;
+    --text-primary: #1e1033;
+    --text-secondary: #6d5a85;
+    --accent: #9333ea;
+    --accent-hover: #7e22ce;
+    --border-color: #e9d5ff;
     --card-bg: #ffffff;
-    --shadow: 0 10px 30px -15px rgba(148, 163, 184, 0.15);
+    --shadow: 0 10px 30px -15px rgba(147, 51, 234, 0.15);
 }
 
 /* Reset base */
@@ -69,7 +69,7 @@ section {
 
 .btn-primary {
     background-color: var(--accent);
-    color: #0f172a !important;
+    color: #ffffff !important;
 }
 
 .btn-primary:hover {
@@ -101,7 +101,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(15, 23, 42, 0.85);
+    background-color: rgba(23, 15, 46, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
@@ -110,7 +110,7 @@ header {
 }
 
 [data-theme="light"] header {
-    background-color: rgba(248, 250, 252, 0.85);
+    background-color: rgba(250, 245, 255, 0.85);
 }
 
 .nav-container {
@@ -125,7 +125,7 @@ header {
     font-weight: 800;
     color: var(--text-primary);
     text-decoration: none;
-    background: linear-gradient(45deg, var(--text-primary), var(--accent));
+    background: var(--accent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -239,20 +239,6 @@ header {
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--text-primary);
-}
-
-.hero-typewriter {
-    font-size: clamp(1.4rem, 1rem + 2vw, 1.8rem);
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    min-height: 2.7rem;
-}
-
-.typewrite-text {
-    border-right: 2px solid var(--accent);
-    padding-right: 4px;
-    animation: blink-caret 0.75s step-end infinite;
 }
 
 /* Section headers */
@@ -558,7 +544,7 @@ header {
     max-height: 220px;
     object-fit: contain;
     padding: 0.9rem;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(15, 23, 42, 0.04));
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(23, 15, 46, 0.04));
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -648,7 +634,7 @@ header {
  
 .activity-tag {
     align-self: flex-start;
-    background-color: rgba(56, 189, 248, 0.15);
+    background-color: rgba(168, 85, 247, 0.15);
     color: var(--accent);
     font-size: 0.72rem;
     font-weight: 700;
@@ -722,7 +708,7 @@ header {
     color: var(--accent);
 }
 
-/* Proficiency progress bars (new) */
+/* Proficiency progress bars */
 .proficiency-heading {
     font-size: 1.2rem;
     font-weight: 700;
@@ -849,7 +835,7 @@ header {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--accent);
-    background-color: rgba(56, 189, 248, 0.15);
+    background-color: rgba(168, 85, 247, 0.15);
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
 }
@@ -952,7 +938,7 @@ header {
 }
 
 .social-icon:hover {
-    color: #0f172a;
+    color: #ffffff;
     background-color: var(--accent);
     border-color: var(--accent);
     transform: translateY(-2px);
@@ -993,7 +979,7 @@ header {
 .form-control:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
 }
 
 textarea.form-control {
@@ -1158,11 +1144,6 @@ footer {
 
     h1, h2, .hero-title, .section-title {
         color: #111 !important;
-    }
-
-    .hero-typewriter, .typewrite-text {
-        color: #333 !important;
-        border-right: none;
     }
 
     p, .bio-text p, .timeline-desc, .project-desc, .education-list li,
