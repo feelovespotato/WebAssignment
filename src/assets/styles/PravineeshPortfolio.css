@@ -219,30 +219,47 @@ section {
     width: 100%;
 }
 
-.cvButton {
-    padding: 11px 20px;
+
+.aboutRight .aboutCvButton {
+    width: fit-content;
+    margin-top: 30px;
+    padding: 15px 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
     background-color: var(--primaryColor);
     color: #ffffff;
 
+    border: none;
     border-radius: 50px;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-
     text-decoration: none;
-    white-space: nowrap;
+
+    box-shadow: 0 8px 20px rgba(243, 154, 30, 0.3);
 
     transition:
         background-color 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.cvButton:hover {
+.aboutRight .aboutCvButton i {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.aboutRight .aboutCvButton:hover {
     background-color: var(--primaryHover);
-    transform: translateY(-2px);
-}
 
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(243, 154, 30, 0.4);
+}
 .mobileMenuButton {
     width: 45px;
     height: 45px;

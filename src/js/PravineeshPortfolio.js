@@ -16,10 +16,7 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================
-   COMPONENTS
-========================================= */
+/*Components*/
 
 async function loadPortfolioComponents() {
    const components = [
@@ -123,10 +120,7 @@ async function loadPortfolioComponent(
     );
 }
 
-
-/* =========================================
-   FOOTER YEAR
-========================================= */
+/*Footer Year*/
 
 function initialisePortfolioYear() {
     const portfolioYear =
@@ -138,10 +132,7 @@ function initialisePortfolioYear() {
     }
 }
 
-
-/* =========================================
-   SMOOTH SCROLLING
-========================================= */
+/*For smooth scrolling*/
 
 function initialiseSmoothScrolling() {
     document.addEventListener(
@@ -185,10 +176,7 @@ function initialiseSmoothScrolling() {
     );
 }
 
-
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
+/*Mobile Nav*/
 
 function initialiseMobileNavigation() {
     const header =
@@ -312,10 +300,7 @@ function closeMobileNavigation() {
     }
 }
 
-
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
+/*Active Nav*/
 
 function initialiseActiveNavigation() {
     const sections = Array.from(
@@ -377,10 +362,7 @@ function initialiseActiveNavigation() {
     });
 }
 
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
+/*Scroll Reveal*/
 
 function initialiseScrollReveal() {
     const selectors = [
@@ -447,10 +429,7 @@ function initialiseScrollReveal() {
     });
 }
 
-
-/* =========================================
-   CONTACT FORM
-========================================= */
+/*Contact Form*/
 
 function initialiseContactForm() {
     const formContact =
