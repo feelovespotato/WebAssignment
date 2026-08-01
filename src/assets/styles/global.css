@@ -271,6 +271,14 @@ input {
     font-size: clamp(1rem, 1rem + 0.3vw, 1.5rem);
 }
 
+.breadcrumb a {
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color:var(--redtext);
+}
+
 /*---------------------------------------------------------------------*/
 /*tag used in team and productdetail*/
 .category-tag {
@@ -278,6 +286,7 @@ input {
     font-weight: 600;
     font-size: clamp(1rem, 1rem + 0.2vw, 1.5rem);
     color: var(--redtext);
+    background-color: transparent;
     border: 2px solid var(--redborderbutton);
     border-radius: 100vw;
     padding: 0.45rem 1rem;
@@ -295,6 +304,13 @@ input {
     margin-bottom: clamp(1.5rem, 2vw, 2rem);
 }
 /*-------------------------------------------------------------------------------------------*/
+/*price for productdetail */
+.price {
+    font-weight: 700;
+    color: var(--redtext);
+}
+
+
 /*used in productpage carousel*/
 /*carousel properties*/
 

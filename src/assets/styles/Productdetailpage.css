@@ -105,9 +105,7 @@
 
 /*price for the product (overwrite the font-size)*/
 .detail-info .price {
-    font-weight: 700;
     font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-    color: var(--redtext);
 }
 
 /*---------------------------------------------------------------*/

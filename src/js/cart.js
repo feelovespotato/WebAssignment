@@ -1,57 +1,8 @@
 const CART_STORAGE_KEY = "pokkaCart";
 
-
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", function () {
     setupCartClickEvents();
-
-    /*
-        Only the cart page loads its own navbar and footer here.
-        Other pages can continue using their existing JavaScript.
-    */
-    if (document.body.dataset.page === "cart") {
-        try {
-            await Promise.all([
-                loadCartComponent(
-                    "navbarContainer",
-                    "../components/layout/navbar.html"
-                ),
-
-                loadCartComponent(
-                    "footerContainer",
-                    "../components/layout/footer.html"
-                )
-            ]);
-
-            initialiseCartTheme();
-            initialiseCartFooter();
-        } catch (error) {
-            console.error("Cart page component error:", error);
-        }
-    }
-
-    updateCartCount();
-    renderCartPage();
-    watchForNavbar();
 });
-
-
-async function loadCartComponent(containerId, filePath) {
-    const container = document.getElementById(containerId);
-
-    if (!container) {
-        return;
-    }
-
-    const response = await fetch(filePath);
-
-    if (!response.ok) {
-        throw new Error(
-            `${filePath} failed to load. Status: ${response.status}`
-        );
-    }
-
-    container.innerHTML = await response.text();
-}
 
 
 /* =================================
@@ -69,7 +20,6 @@ function getCart() {
         return [];
     }
 }
-
 
 function saveCart(cart) {
     localStorage.setItem(
@@ -98,15 +48,18 @@ function addToCart(product) {
         return item.id === product.id;
     });
 
+    // Capture custom quantity passed from product page, default to 1
+    const quantityToAdd = product.quantity ? Number(product.quantity) : 1;
+
     if (existingProduct) {
-        existingProduct.quantity += 1;
+        existingProduct.quantity += quantityToAdd;
     } else {
         cart.push({
             id: product.id,
             name: product.name,
             price: product.price,
             image: product.image || "",
-            quantity: 1
+            quantity: quantityToAdd
         });
     }
 
@@ -126,7 +79,6 @@ function removeFromCart(productId) {
 
     saveCart(cart);
 }
-
 
 function changeCartQuantity(productId, change) {
     const cart = getCart();
@@ -148,7 +100,6 @@ function changeCartQuantity(productId, change) {
 
     saveCart(cart);
 }
-
 
 function clearCart() {
     localStorage.removeItem(CART_STORAGE_KEY);
@@ -183,25 +134,6 @@ function updateCartCount() {
         totalQuantity > 0 ? "flex" : "none";
 }
 
-
-/*
-    The navbar is inserted using fetch(), so this watches
-    for the cart counter to appear.
-*/
-function watchForNavbar() {
-    const observer = new MutationObserver(function () {
-        if (document.getElementById("cartCount")) {
-            updateCartCount();
-        }
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-}
-
-
 /* =================================
    CLICK EVENTS
 ================================= */
@@ -216,13 +148,13 @@ function setupCartClickEvents() {
                 id: addButton.dataset.id,
                 name: addButton.dataset.name,
                 price: Number(addButton.dataset.price),
-                image: addButton.dataset.image
+                image: addButton.dataset.image,
+                quantity: Number(addButton.dataset.quantity) || 1
             };
 
             addToCart(product);
             return;
         }
-
 
         const quantityButton =
             event.target.closest(".quantityButton");
@@ -242,7 +174,6 @@ function setupCartClickEvents() {
             return;
         }
 
-
         const removeButton =
             event.target.closest(".removeCartItem");
 
@@ -250,7 +181,6 @@ function setupCartClickEvents() {
             removeFromCart(removeButton.dataset.id);
             return;
         }
-
 
         if (event.target.closest("#clearCartButton")) {
             const confirmed =
@@ -262,7 +192,6 @@ function setupCartClickEvents() {
 
             return;
         }
-
 
         if (event.target.closest("#checkoutButton")) {
             const cart = getCart();
@@ -297,11 +226,15 @@ function renderCartPage() {
     const emptyCart =
         document.getElementById("emptyCart");
 
+    const emptyCartSection =
+        emptyCart ? emptyCart.closest("section") : null;
+
     const cartContent =
         document.getElementById("cartContent");
 
     if (cart.length === 0) {
         emptyCart.style.display = "flex";
+        if (emptyCartSection) emptyCartSection.style.display = "block";
         cartContent.style.display = "none";
 
         updateCartSummary(cart);
@@ -309,7 +242,8 @@ function renderCartPage() {
     }
 
     emptyCart.style.display = "none";
-    cartContent.style.display = "grid";
+    if (emptyCartSection) emptyCartSection.style.display = "none";
+    cartContent.style.display = "flex";
 
     cartItemsContainer.innerHTML = "";
 
@@ -321,36 +255,32 @@ function renderCartPage() {
     updateCartSummary(cart);
 }
 
-
 function createCartItem(product) {
     const cartItem = document.createElement("article");
     cartItem.className = "cartItem";
 
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "img-wrapper ";
 
     const image = document.createElement("img");
-    image.className = "cartItemImage";
     image.src =
         product.image || "../assets/images/product-placeholder.png";
     image.alt = product.name;
 
+    imageWrapper.appendChild(image);
 
     const information = document.createElement("div");
     information.className = "cartItemInformation";
 
-
-    const name = document.createElement("h3");
-    name.className = "cartItemName";
+    const name = document.createElement("h2");
     name.textContent = product.name;
 
-
     const price = document.createElement("p");
-    price.className = "cartItemPrice";
+    price.className = "halfvisibletext";
     price.textContent = formatCurrency(product.price);
-
 
     const quantityControls = document.createElement("div");
     quantityControls.className = "quantityControls";
-
 
     const decreaseButton = document.createElement("button");
     decreaseButton.type = "button";
@@ -363,11 +293,9 @@ function createCartItem(product) {
     );
     decreaseButton.textContent = "−";
 
-
     const quantity = document.createElement("span");
     quantity.className = "quantityNumber";
     quantity.textContent = product.quantity;
-
 
     const increaseButton = document.createElement("button");
     increaseButton.type = "button";
@@ -380,13 +308,11 @@ function createCartItem(product) {
     );
     increaseButton.textContent = "+";
 
-
     quantityControls.append(
         decreaseButton,
         quantity,
         increaseButton
     );
-
 
     information.append(
         name,
@@ -394,10 +320,8 @@ function createCartItem(product) {
         quantityControls
     );
 
-
     const actions = document.createElement("div");
     actions.className = "cartItemActions";
-
 
     const itemTotal = document.createElement("p");
     itemTotal.className = "cartItemTotal";
@@ -405,29 +329,25 @@ function createCartItem(product) {
         product.price * product.quantity
     );
 
-
     const removeButton = document.createElement("button");
     removeButton.type = "button";
     removeButton.className = "removeCartItem";
     removeButton.dataset.id = product.id;
     removeButton.textContent = "Remove";
 
-
     actions.append(
         itemTotal,
         removeButton
     );
 
-
     cartItem.append(
-        image,
+        imageWrapper,
         information,
         actions
     );
 
     return cartItem;
 }
-
 
 function updateCartSummary(cart) {
     const itemCount =
@@ -469,7 +389,6 @@ function updateCartSummary(cart) {
     }
 }
 
-
 function formatCurrency(amount) {
     return `RM${Number(amount).toFixed(2)}`;
 }
@@ -501,65 +420,18 @@ function showCartNotification(message) {
 }
 
 
-/* =================================
-   THEME
-================================= */
+async function initCartPage() {
+    await loadComponent("cartBreadcrumbSection", "../components/shared/breadcrumb.html");
+    await loadComponent("cartHeader", "../components/AddtoCart/cartheader.html");
 
-function initialiseCartTheme() {
-    const themeButton =
-        document.getElementById("WebsiteTheme");
+    setBreadcrumbCurrent("Cart");
+    await loadComponent("emptyCartSection", "../components/AddtoCart/emptycart.html");
+    await loadComponent("cartItemHeaderSection", "../components/AddtoCart/carditemheader.html");
+    await loadComponent("cartSummarySection", "../components/AddtoCart/cartsummary.html");
 
-    if (!themeButton) {
-        return;
-    }
-
-    const savedTheme =
-        localStorage.getItem("theme") === "dark"
-            ? "dark"
-            : "light";
-
-    setCartTheme(savedTheme);
-
-    themeButton.addEventListener("click", function () {
-        const currentTheme =
-            document.documentElement.dataset.theme;
-
-        const nextTheme =
-            currentTheme === "dark"
-                ? "light"
-                : "dark";
-
-        setCartTheme(nextTheme);
-    });
+    renderCartPage();
+    observeAnimations();
 }
 
-
-function setCartTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem("theme", theme);
-
-    const themeButton =
-        document.getElementById("WebsiteTheme");
-
-    if (themeButton) {
-        themeButton.textContent =
-            theme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode";
-    }
-}
-
-
-/* =================================
-   FOOTER YEAR
-================================= */
-
-function initialiseCartFooter() {
-    const footerYear =
-        document.getElementById("footerYear");
-
-    if (footerYear) {
-        footerYear.textContent =
-            new Date().getFullYear();
-    }
-}
+// Execute the component loading on page load
+document.addEventListener("DOMContentLoaded", initCartPage);

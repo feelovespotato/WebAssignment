@@ -1,6 +1,5 @@
-
 const categoryComponents = {
-    breadcrumb: "../components/productpage/CategoryBreadcrumb.html",
+    breadcrumb: "../components/shared/breadcrumb.html",
     grid:       "../components/productpage/CategoryProductGrid.html",
     "search-component":     "../components/productpage/Searchcomponent.html",
 };
@@ -20,7 +19,7 @@ async function initCategoryProductsPage() {
         return;
     }
 
-    renderBreadcrumb(category);
+    setBreadcrumbCurrent(category);
     renderHeading(category);
     renderGrid(products);
 
@@ -29,13 +28,10 @@ async function initCategoryProductsPage() {
 document.addEventListener("DOMContentLoaded", initCategoryProductsPage);
 
 /*---------------------------------------------------------------*/
-//CHECKED 
-//breadcrumb + heading  after select category selection                                            */
-//for the current directory  
-function renderBreadcrumb(category) {
-    const current = document.getElementById("category-breadcrumb-current");
-    if (current) current.textContent = category;
-}
+//CHECKED
+//heading after category selection (breadcrumb is now handled by
+//the shared setBreadcrumbCurrent() in breadcrumb.js)
+//for the current directory
 
 /*for heading after select category */
 function renderHeading(category) {
@@ -75,7 +71,7 @@ function renderGrid(products) {
             <a class="card card-transition" style="background-color:var(${escapeHTML(p.categoryBg)});"
                href="ProductDetailPage.html?id=${escapeHTML(p.id)}">
                 <div class="img-wrapper">
-                    <img src="${escapeHTML(p.images[0])}" alt="${escapeHTML(p.name)}" loading="lazy">
+                    <img src="${escapeHTML(getImageSrc(p.images[0]))}" alt="${escapeHTML(p.name)}" loading="lazy">
                 </div>
                 <div class="product-info">
                     <h2>${escapeHTML(p.name)}</h2>

@@ -16,9 +16,10 @@ const productsData = [
         price: "RM 21.00",
         
         description: "Smooth, milky coffee brewed for an energizing yet balanced taste. Made with real coffee extract and fresh milk, it's the perfect pick-me-up for your everyday routine — no artificial aftertaste, just a clean and comforting sip every time.",
-        images: ["../assets/images/2flavournescafe.webp"
-            ,"../assets/images/coffee.png",
-            "../assets/images/nescafecoffee2.webp"
+         images: [
+            "../assets/images/2flavournescafe.webp",
+            { src: "../assets/images/coffee.png", flavor: "Sweet Vanilla", cartImage: true },
+            { src: "../assets/images/nescafecoffee2.webp", flavor: "Black", cartImage: true },
         ],
         sizes: [ "500ml"],
         defaultSize: "500ml",
@@ -43,14 +44,15 @@ const productsData = [
         price: "RM 16.90",
         
         description: "Rich and creamy white coffee inspired by the taste of traditional Malaysian kopitiams. A smooth blend of coffee, creamer, and sugar for a comforting cup anytime.",
-        images: ["../assets/images/nescafewhitecoffeepacket-front.webp"
-            ,"../assets/images/nescafewhitecoffeepacket-back.webp",
-            "../assets/images/nescafewhitecoffeepacket-singlefront.webp",
-            "../assets/images/nescafewhitecoffeepacket-singleback.webp",
-            "../assets/images/nescafewhitecoffeelesssugar-front.webp",
-            "../assets/images/nescafewhitecoffeelesssugar-back.webp",
-            "../assets/images/nescafewhitecoffeepacketlesssugar-front.webp",
-            "../assets/images/nescafewhitecoffeepacketlesssugar-back.webp",
+       images: [
+            { src: "../assets/images/nescafewhitecoffeepacket-front.webp", flavor: "original", cartImage: true },
+            { src: "../assets/images/nescafewhitecoffeepacket-back.webp", flavor: "original" },
+            { src: "../assets/images/nescafewhitecoffeepacket-singlefront.webp", flavor: "original" },
+            { src: "../assets/images/nescafewhitecoffeepacket-singleback.webp", flavor: "original" },
+            { src: "../assets/images/nescafewhitecoffeelesssugar-front.webp", flavor: "less sugar", cartImage: true },
+            { src: "../assets/images/nescafewhitecoffeelesssugar-back.webp", flavor: "less sugar" },
+            { src: "../assets/images/nescafewhitecoffeepacketlesssugar-front.webp", flavor: "less sugar" },
+            { src: "../assets/images/nescafewhitecoffeepacketlesssugar-back.webp", flavor: "less sugar" },
         ],
         sizes: [ "15 sticks"],
         defaultSize: "15 sticks",
@@ -75,8 +77,10 @@ const productsData = [
         price: "RM 4.99",
        
         description: "Refreshing green tea with a light, clean finish. Brewed for a naturally refreshing taste with none of the bitterness of stronger teas.",
-        images: ["../assets/images/jasminegreentea(no sugar 1500ml).webp"
-            ,"../assets/images/greentea.webp"],
+        images: [
+            {src: "../assets/images/jasminegreentea(no sugar 1500ml).webp",  size: "250ml"},
+            {src: "../assets/images/greentea.webp", size: "500ml"}
+        ],
         sizes: ["500ml", "1500ml"],
         defaultSize: "500ml",
         flavors: ["No sugar jasmine tea"],
@@ -101,9 +105,11 @@ const productsData = [
         price: "RM 2.50",
        
         description: "Smooth and aromatic oolong tea with a balanced taste and a clean finish. Naturally refreshing and enjoyable served chilled or at room temperature.",
-        images: ["../assets/images/pokka-Oolongtea250ml.webp",
-            "../assets/images/pokka-Oolongtea500ml.webp",
-            "../assets/images/pokka-Oolongtea1500ml.webp"],
+        images: [
+            { src: "../assets/images/pokka-Oolongtea250ml.webp", size: "250ml" },
+            { src: "../assets/images/pokka-Oolongtea500ml.webp", size: "500ml" },
+            { src: "../assets/images/pokka-Oolongtea1500ml.webp", size: "1500ml" },
+        ],
         sizes: ["250ml","500ml", "1500ml"],
         defaultSize: "250ml",
         flavors: ["Original"],
@@ -130,9 +136,11 @@ const productsData = [
         price: "RM 2.40",
         
         description: "Fruity and refreshing orange juice made from real fruit flavors, packed for a burst of citrus whenever you need it.",
-        images: ["../assets/images/minutemate-orangecan.webp",
-            "../assets/images/minutemate-orangesmall.png",
-            "../assets/images/minutemate-orangelarge.png"],
+        images: [
+            {src: "../assets/images/minutemate-orangecan.webp", size: "Can"},
+            {src: "../assets/images/minutemate-orangesmall.png", size: "300ml"},
+            {src: "../assets/images/minutemate-orangelarge.png", size: "1L"}
+        ],
         sizes: ["Can","300ml", "1L"],
         defaultSize: "Can",
         flavors: ["Original"],
@@ -162,8 +170,9 @@ const productsData = [
         price: "RM 2.80",
         
         description: "Made from delicious apples for a naturally sweet and refreshing taste. Perfect for enjoying at home, work, or on the go.",
-        images: ["../assets/images/minutemate-applecan.webp",
-            "../assets/images/minutemate-applecarton.png",
+        images: [
+            { src: "../assets/images/minutemate-applecan.webp", size: "Can" },
+            { src: "../assets/images/minutemate-applecarton.png", size: "Carton" }
         ],
         sizes: ["300ml"],
         defaultSize: "300ml",
@@ -184,14 +193,15 @@ const productsData = [
         id: "soda-fantaorange",
         category: "Soda",
         categoryBg: "--sodabg",
-        name: "Fanta Orange",
+        name: "Fanta",
         price: "RM 1.70",
       
         description: "Fizzy, flavorful orange soda perfect for a refreshing treat any time of day.",
-        images: ["../assets/images/fantaorange.png",
-            "../assets/images/fantaorangezerosugar.png",
-            "../assets/images/fantastrawberry.png",
-            "../assets/images/fantagrape.png",
+        images: [
+            { src: "../assets/images/fantaorange.png", flavor: "Original" },
+            { src: "../assets/images/fantaorangezerosugar.png", flavor: "orange (zero sugar)" },
+            { src: "../assets/images/fantastrawberry.png", flavor: "strawberry" },
+            { src: "../assets/images/fantagrape.png", flavor: "grape" }
         ],
         sizes: ["320ml"],
         defaultSize: "320ml",
@@ -217,8 +227,9 @@ const productsData = [
         price: "RM 7.50",
        
         description: "Red Bull Energy Drink contains sugar, a fast-absorbing form of carbohydrate involved in a wide range of biological processes and an energy source for the brain and muscles.",
-        images: ["../assets/images/redbull.webp",
-            "../assets/images/redbullbox.png"
+        images: [
+            { src: "../assets/images/redbull.webp", pack: "Single" },
+            { src: "../assets/images/redbullbox.png", pack: "Pack of 8" }
         ],
         sizes: ["250ml"],
         defaultSize: "250ml",
@@ -244,10 +255,11 @@ const productsData = [
         price: "RM 3.00",
        
         description: "An isotonic drink formulated to help replenish fluids and electrolytes lost through daily activities or exercise. Best enjoyed chilled for maximum refreshment.",
-        images: ["../assets/images/100plus-all.png",
-            "../assets/images/100plus-Can.png",
-            "../assets/images/100plus-medium.png",
-            "../assets/images/100plus-large.png"
+        images: [
+            { src: "../assets/images/100plus-all.png", size: "Can" },
+            { src: "../assets/images/100plus-Can.png", size: "Can" },
+            { src: "../assets/images/100plus-medium.png", size: "500ml" },
+            { src: "../assets/images/100plus-large.png", size: "1.5L" }
         ],
         sizes: ["Can","500ml","1.5L"],
         defaultSize: "Can",
@@ -278,8 +290,10 @@ const productsData = [
         price: "RM 3.50",
        
         description: "Creamy, nutritious dairy beverage for every lifestyle. A wholesome everyday drink for the whole family.",
-        images: ["../assets/images/farmfresh-small.png",
-            "../assets/images/farmfresh.png"],
+        images: [
+            { src: "../assets/images/farmfresh-small.png", size: "200ml" },
+            { src: "../assets/images/farmfresh.png", size: "1L" }
+        ],
         sizes: ["200ml", "1L"],
         defaultSize: "200ml",
         flavors: ["Original"],
@@ -306,8 +320,10 @@ const productsData = [
         price: "RM 3.90",
        
         description: "Creamy enough for a rich mouthfeel, but allowing coffee/tea notes to shine through.",
-        images: ["../assets/images/Oatside-small.png",
-            "../assets/images/Oatside-large.webp"],
+        images: [
+            { src: "../assets/images/Oatside-small.png", size: "180ml" },
+            { src: "../assets/images/Oatside-large.webp", size: "1L" }
+        ],
         sizes: ["180ml", "1L"],
         defaultSize: "180ml",
         flavors: ["Original"],
@@ -334,9 +350,10 @@ const productsData = [
         price: "RM 1.35",
         
         description: "Experience the taste of chrysanthemum tea, a classic local favorite known for its light, floral sweetness.",
-        images: ["../assets/images/Yeoschrysanthemum-small.png",
-            "../assets/images/krisantimum.png",
-            "../assets/images/Yeoschrysanthemum-large.png",
+        images: [
+            { src: "../assets/images/Yeoschrysanthemum-small.png", size: "250ml" },
+            { src: "../assets/images/krisantimum.png", size: "300ml" },
+            { src: "../assets/images/Yeoschrysanthemum-large.png", size: "1.5L" }
         ],
         sizes: ["250ml","300ml","1.5L" ],
         defaultSize: "300ml",
@@ -367,8 +384,9 @@ const productsData = [
         price: "RM 1.36",
         
         description: "A refreshing grass jelly drink with a light herbal sweetness. A classic local favorite that is delicious served cold on hot days.",
-        images: ["../assets/images/Seasonscincau-Can.png",
-            "../assets/images/Seasonscincau-carton.png"
+        images: [
+            { src: "../assets/images/Seasonscincau-Can.png", pack: "Single" },
+            { src: "../assets/images/Seasonscincau-carton.png", pack: "Pack of 24" }
         ],
         sizes: ["300ml"],
         defaultSize: "300ml",
@@ -393,10 +411,11 @@ const productsData = [
         price: "RM 8.90",
       
         description: "A smooth and crisp lager with a refreshing finish. Brewed for an easy-drinking experience that's perfect for relaxing or sharing with friends.",
-        images: ["../assets/images/changbeer-Can.webp",
-            "../assets/images/changbeer-medium.webp",
-            "../assets/images/changbeer.webp",
-            "../assets/images/changbeer-large.webp",
+        images: [
+            { src: "../assets/images/changbeer-Can.webp", size: "320ml (Can)" },
+            { src: "../assets/images/changbeer-medium.webp", size: "320ml (bottle)" },
+            { src: "../assets/images/changbeer.webp", size: "320ml (bottle)" },
+            { src: "../assets/images/changbeer-large.webp", size: "620ml" },
         ],
         sizes: ["320ml (Can)","320ml (bottle)" , "620ml"],
         defaultSize: "320ml (Can)",
@@ -427,9 +446,10 @@ const productsData = [
         price: "RM 8.90",
       
         description: "A premium French wheat beer with delicate citrus notes and a smooth, refreshing finish. Light, fruity, and easy to enjoy.",
-        images: ["../assets/images/1664-Can.png",
-            "../assets/images/1664-bottle.png",
-            "../assets/images/1664-Canrose.png",
+        images: [
+            { src: "../assets/images/1664-Can.png", size: "320ml (Can)" },
+            { src: "../assets/images/1664-bottle.png", size: "320ml (bottle)" },
+            { src: "../assets/images/1664-Canrose.png", flavor: "Rose" },
         ],
         sizes: ["320ml (Can)","320ml (bottle)"],
         defaultSize: "320ml (Can)",
