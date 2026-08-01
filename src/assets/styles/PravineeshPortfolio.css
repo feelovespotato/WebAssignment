@@ -1885,3 +1885,169 @@ details.skillCategory[open] {
 .skillCategory[open] .skillBarFill {
     width: var(--level);
 }
+
+/* Personal details card */
+
+.aboutRight {
+    width: 100%;
+    max-width: 390px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profileDetailsCard {
+    width: 100%;
+    padding: 28px;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: #ffffff;
+
+    border: 1px solid #dedbd4;
+    border-radius: 24px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Orange line at top */
+
+.profileDetailsCard::before {
+    content: "";
+
+    width: 100%;
+    height: 6px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: #f39a1e;
+}
+
+/* Profile card heading */
+
+.profileCardHeader {
+    margin-bottom: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profileInitials {
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f39a1e;
+    color: #ffffff;
+
+    border-radius: 17px;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.profileCardHeader span {
+    display: block;
+
+    color: #f39a1e;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.profileCardHeader h3 {
+    margin: 3px 0 0;
+
+    color: #171717;
+
+    font-size: 20px;
+}
+
+/* Individual information rows */
+
+.profileDetail {
+    width: 100%;
+    padding: 16px 0;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    border-bottom: 1px solid #e4e0d9;
+}
+
+.profileDetail:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.profileDetailIcon {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(243, 154, 30, 0.14);
+    color: #f39a1e;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+}
+
+.profileDetail span {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #777777;
+
+    font-size: 13px;
+}
+
+.profileDetail strong {
+    display: block;
+
+    color: #171717;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Download button spacing */
+
+.aboutRight .aboutCvButton {
+    margin-top: 28px;
+}
+
+/* Dark mode */
+
+html[data-theme="dark"] .profileDetailsCard {
+    background-color: #1d1d1d;
+    border-color: #3a3a3a;
+}
+
+html[data-theme="dark"] .profileCardHeader h3,
+html[data-theme="dark"] .profileDetail strong {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .profileDetail span {
+    color: #bbbbbb;
+}
+
+html[data-theme="dark"] .profileDetail {
+    border-color: #3a3a3a;
+}
