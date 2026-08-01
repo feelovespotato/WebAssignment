@@ -17,7 +17,7 @@
 }
 
 .footerLogo {
-    color: #f51245;
+    color: var(--pokka-yellow);
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 50px;
@@ -44,7 +44,7 @@
 }
 
 .footerSocials a:hover {
-    color: #f51245;
+    color: var(--pokka-yellow);
 }
 
 .footerLinks {
@@ -75,7 +75,7 @@
 }
 
 .footerColumn a:hover {
-    color: #f51245;
+    color: var(--pokka-yellow);
 }
 
 .footerBottom {
@@ -86,7 +86,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background: #f51245;
+    background: var(--pokka-yellow);
     color: white;
 
     font-size: 14px;
@@ -145,5 +145,5 @@
 
 /* Keep the POKKA logo pink/red */
 .siteFooter .footerLogo {
-    color: #ff0050;
+    color: var(--pokka-yellow);
 }
