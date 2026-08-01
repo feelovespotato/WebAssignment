@@ -78,8 +78,8 @@ const productsData = [
        
         description: "Refreshing green tea with a light, clean finish. Brewed for a naturally refreshing taste with none of the bitterness of stronger teas.",
         images: [
-            {src: "../assets/images/jasminegreentea(no sugar 1500ml).webp",  size: "250ml"},
-            {src: "../assets/images/greentea.webp", size: "500ml"}
+            {src: "../assets/images/greentea.webp", size: "500ml"},
+             {src: "../assets/images/jasminegreentea(no sugar 1500ml).webp",  size: "1500ml"}
         ],
         sizes: ["500ml", "1500ml"],
         defaultSize: "500ml",
