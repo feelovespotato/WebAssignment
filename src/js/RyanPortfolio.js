@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   ]);
 
   await loadComponent('ryan-certs-slot', '../components/portfolio/Ryan/certifications.html');
+  await loadComponent('ryan-contact-slot', '../components/portfolio/Ryan/contact.html');
   
   initCerts();
   observeAnimations();
