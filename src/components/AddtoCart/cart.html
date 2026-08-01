@@ -1,0 +1,111 @@
+<section class="cartContainer">
+
+    <header class="cartHeader">
+
+        <p class="cartEyebrow">
+            DRINKS STORE
+        </p>
+
+        <h1>Your Cart</h1>
+
+        <p class="cartDescription">
+            Review your selected drinks before proceeding to checkout.
+        </p>
+
+    </header>
+
+    <!-- Empty cart -->
+
+    <div id="emptyCart" class="emptyCart">
+
+        <div class="emptyCartIcon">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+
+        <h2>Your shopping cart is empty</h2>
+
+        <p>
+            You have not added any drinks yet. Explore our products and
+            find something refreshing!
+        </p>
+
+        <a
+            href="/src/pages/ProductPage.html"
+            class="continueShoppingButton"
+        >
+            <i class="fa-solid fa-bottle-water"></i>
+            Go Shopping Now
+        </a>
+
+    </div>
+
+    <!-- Cart with products -->
+
+    <div id="cartContent" class="cartContent">
+
+        <section class="cartItemsSection">
+
+            <div class="cartSectionHeader">
+
+                <h2>Cart Items</h2>
+
+                <button
+                    type="button"
+                    id="clearCartButton"
+                    class="clearCartButton"
+                >
+                    Clear Cart
+                </button>
+
+            </div>
+
+            <div id="cartItems" class="cartItems"></div>
+
+        </section>
+
+        <aside class="cartSummary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summaryRow">
+                <span>Items</span>
+                <span id="summaryItemCount">0</span>
+            </div>
+
+            <div class="summaryRow">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">RM0.00</span>
+            </div>
+
+            <div class="summaryRow">
+                <span>Delivery</span>
+                <span>Free</span>
+            </div>
+
+            <div class="summaryDivider"></div>
+
+            <div class="summaryRow summaryTotal">
+                <span>Total</span>
+                <span id="cartTotal">RM0.00</span>
+            </div>
+
+            <button
+                type="button"
+                id="checkoutButton"
+                class="checkoutButton"
+            >
+                Proceed to Checkout
+            </button>
+
+            <a
+                href="/src/pages/ProductPage.html"
+                class="continueShoppingLink"
+            >
+                Continue Shopping
+            </a>
+
+        </aside>
+
+    </div>
+
+</section>

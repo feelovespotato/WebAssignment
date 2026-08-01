@@ -3,12 +3,17 @@ document.addEventListener(
     async function () {
         await loadPortfolioComponents();
 
+
+        initialiseSkillBarReplay();
+        initialiseHeroEntranceAnimation();
+        initialiseAnimatedHeroText();
         initialisePortfolioYear();
         initialiseSmoothScrolling();
         initialiseMobileNavigation();
         initialiseActiveNavigation();
         initialiseScrollReveal();
         initialiseContactForm();
+      
 
         console.log(
             "Portfolio initialisation completed."
@@ -16,10 +21,7 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================
-   COMPONENTS
-========================================= */
+/*Components*/
 
 async function loadPortfolioComponents() {
    const components = [
@@ -123,10 +125,7 @@ async function loadPortfolioComponent(
     );
 }
 
-
-/* =========================================
-   FOOTER YEAR
-========================================= */
+/*Footer Year*/
 
 function initialisePortfolioYear() {
     const portfolioYear =
@@ -138,10 +137,7 @@ function initialisePortfolioYear() {
     }
 }
 
-
-/* =========================================
-   SMOOTH SCROLLING
-========================================= */
+/*For smooth scrolling*/
 
 function initialiseSmoothScrolling() {
     document.addEventListener(
@@ -185,10 +181,7 @@ function initialiseSmoothScrolling() {
     );
 }
 
-
-/* =========================================
-   MOBILE NAVIGATION
-========================================= */
+/*Mobile Nav*/
 
 function initialiseMobileNavigation() {
     const header =
@@ -312,10 +305,7 @@ function closeMobileNavigation() {
     }
 }
 
-
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
+/*Active Nav*/
 
 function initialiseActiveNavigation() {
     const sections = Array.from(
@@ -377,10 +367,7 @@ function initialiseActiveNavigation() {
     });
 }
 
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
+/*Scroll Reveal*/
 
 function initialiseScrollReveal() {
     const selectors = [
@@ -447,10 +434,7 @@ function initialiseScrollReveal() {
     });
 }
 
-
-/* =========================================
-   CONTACT FORM
-========================================= */
+/*Contact Form*/
 
 function initialiseContactForm() {
     const formContact =
@@ -622,4 +606,382 @@ function showContactStatus(
     );
 
     element.classList.add(type);
+}
+
+/*Page Entry Animation*/
+
+function initialisePageEntry() {
+    const body = document.body;
+
+    RequestAnimationFrame(function () {
+        body.classList.add(
+            "portfolioLoaded"
+        );
+    });
+}   
+
+/* =========================================
+   HERO ENTRANCE ANIMATION
+========================================= */
+
+function initialiseHeroEntranceAnimation() {
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+        return;
+    }
+
+    requestAnimationFrame(function () {
+        const header =
+            document.querySelector(".portfolioHeader");
+
+        const welcomeText =
+            document.querySelector(".introductionHero");
+
+        const mainHeading =
+            document.querySelector(".hero-content h1");
+
+        /*const subtitle =
+            document.querySelector(".hero-content h2");
+
+        const description =
+            document.querySelector(".descriptionHero");*/
+
+        const buttons =
+            document.querySelectorAll(
+                ".buttonsHero a"
+            );
+
+        const socialIcons =
+            document.querySelectorAll(
+                ".socialsHero a"
+            );
+
+        const imageContainer =
+            document.querySelector(
+                ".imageHeroContainer"
+            );
+
+
+        animateElement(
+            header,
+            [
+                {
+                    opacity: 0,
+                    transform: "translateY(-70px)"
+                },
+                {
+                    opacity: 1,
+                    transform: "translateY(0)"
+                }
+            ],
+            700,
+            0
+        );
+
+
+        animateElement(
+            welcomeText,
+            [
+                {
+                    opacity: 0,
+                    transform: "translateY(-25px)",
+                    letterSpacing: "8px"
+                },
+                {
+                    opacity: 1,
+                    transform: "translateY(0)",
+                    letterSpacing: "normal"
+                }
+            ],
+            700,
+            200
+        );
+
+
+        animateElement(
+            mainHeading,
+            [
+                {
+                    opacity: 0,
+                    transform:
+                        "translateY(60px) scale(0.9)",
+                    filter: "blur(12px)"
+                },
+                {
+                    opacity: 1,
+                    transform:
+                        "translateY(-6px) scale(1.02)",
+                    filter: "blur(0)"
+                },
+                {
+                    opacity: 1,
+                    transform:
+                        "translateY(0) scale(1)",
+                    filter: "blur(0)"
+                }
+            ],
+            1000,
+            350
+        );
+
+
+        /*animateElement(
+            subtitle,
+            [
+                {
+                    opacity: 0,
+                    transform: "translateX(-60px)"
+                },
+                {
+                    opacity: 1,
+                    transform: "translateX(0)"
+                }
+            ],
+            750,
+            650
+        );
+
+
+        animateElement(
+            description,
+            [
+                {
+                    opacity: 0,
+                    transform: "translateY(35px)"
+                },
+                {
+                    opacity: 1,
+                    transform: "translateY(0)"
+                }
+            ],
+            750,
+            850
+        );*/
+
+
+        buttons.forEach(function (button, index) {
+            animateElement(
+                button,
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "translateY(35px) scale(0.85)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "translateY(0) scale(1)"
+                    }
+                ],
+                650,
+                1050 + index * 150,
+                "cubic-bezier(0.34, 1.56, 0.64, 1)"
+            );
+        });
+
+
+        socialIcons.forEach(function (icon, index) {
+            animateElement(
+                icon,
+                [
+                    {
+                        opacity: 0,
+                        transform:
+                            "translateY(35px) scale(0.2) rotate(-25deg)"
+                    },
+                    {
+                        opacity: 1,
+                        transform:
+                            "translateY(0) scale(1) rotate(0deg)"
+                    }
+                ],
+                600,
+                1350 + index * 130,
+                "cubic-bezier(0.34, 1.56, 0.64, 1)"
+            );
+        });
+
+
+        animateElement(
+            imageContainer,
+            [
+                {
+                    opacity: 0,
+                    transform:
+                        "translateX(100px) scale(0.7) rotate(8deg)",
+                    filter: "blur(10px)"
+                },
+                {
+                    opacity: 1,
+                    transform:
+                        "translateX(-8px) scale(1.03) rotate(-1deg)",
+                    filter: "blur(0)"
+                },
+                {
+                    opacity: 1,
+                    transform:
+                        "translateX(0) scale(1) rotate(0deg)",
+                    filter: "blur(0)"
+                }
+            ],
+            1100,
+            450
+        );
+    });
+}
+
+
+function animateElement(
+    element,
+    keyframes,
+    duration,
+    delay,
+    easing = "cubic-bezier(0.16, 1, 0.3, 1)"
+) {
+    if (!element) {
+        return;
+    }
+
+    const animationSpeed= 2.5;
+
+    element.animate(
+        keyframes,
+        {
+            duration: duration * animationSpeed,
+            delay: delay * animationSpeed,
+            easing: easing,
+            fill: "both"
+        }
+    );
+}
+
+/* =========================================
+   CHARACTER AND WORD ANIMATION
+========================================= */
+
+function initialiseAnimatedHeroText() {
+    const subtitle =
+        document.querySelector(".hero-content h2");
+
+    const description =
+        document.querySelector(".descriptionHero");
+
+    if (!subtitle || !description) {
+        return;
+    }
+
+    if (
+        subtitle.dataset.animated === "true" ||
+        description.dataset.animated === "true"
+    ) {
+        return;
+    }
+
+    subtitle.dataset.animated = "true";
+    description.dataset.animated = "true";
+
+
+    /* Software Engineering Student — word by word */
+
+    const subtitleWords =
+        subtitle.textContent
+            .trim()
+            .split(/\s+/);
+
+    subtitle.textContent = "";
+
+    subtitleWords.forEach(function (word, index) {
+        const wordSpan =
+            document.createElement("span");
+
+        wordSpan.className =
+            "subtitleRevealWord";
+
+        wordSpan.textContent = word;
+
+        wordSpan.style.animationDelay =
+            `${700 + index * 250}ms`;
+
+        subtitle.appendChild(wordSpan);
+
+        subtitle.appendChild(
+            document.createTextNode(" ")
+        );
+    });
+
+
+    /* Paragraph — character by character jump */
+
+    const paragraphStartDelay =
+        700 + subtitleWords.length * 250 + 500;
+
+    const paragraphText =
+        description.textContent.trim();
+
+    description.textContent = "";
+
+    let characterCount = 0;
+
+    Array.from(paragraphText).forEach(
+        function (character) {
+            if (character === " ") {
+                description.appendChild(
+                    document.createTextNode(" ")
+                );
+
+                return;
+            }
+
+            const characterSpan =
+                document.createElement("span");
+
+            characterSpan.className =
+                "paragraphJumpCharacter";
+
+            characterSpan.textContent =
+                character;
+
+            characterSpan.style.animationDelay =
+                `${paragraphStartDelay + characterCount * 25}ms`;
+
+            description.appendChild(
+                characterSpan
+            );
+
+            characterCount++;
+        }
+    );
+}
+
+function initialiseSkillBarReplay() {
+    const skillCards =
+        document.querySelectorAll("details.skillCategory");
+
+    skillCards.forEach(function (card) {
+        card.addEventListener("toggle", function () {
+            if (!card.open) {
+                return;
+            }
+
+            const progressBars =
+                card.querySelectorAll(".skillBarFill");
+
+            progressBars.forEach(function (bar) {
+                /*
+                    Temporarily removes the animation,
+                    forces the browser to reset it,
+                    and then starts it again.
+                */
+                bar.style.animation = "none";
+
+                void bar.offsetWidth;
+
+                bar.style.animation = "";
+            });
+        });
+    });
 }

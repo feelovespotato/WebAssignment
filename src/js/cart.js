@@ -4,6 +4,59 @@ document.addEventListener("DOMContentLoaded", function () {
     setupCartClickEvents();
 });
 
+async function initialiseCartPage() {
+    const cartContainer = document.getElementById("cartContainer");
+
+    try {
+        await Promise.all([
+            loadCartComponent(
+                "navbar",
+                "/src/components/layout/navbar.html"
+            ),
+
+            loadCartComponent(
+                "cartContainer",
+                "/src/components/AddtoCart/cart.html"
+            ),
+
+            loadCartComponent(
+                "footer",
+                "/src/components/layout/footer.html"
+            )
+        ]);
+
+        initialiseCartTheme();
+        initialiseCartFooter();
+
+        updateCartCount();
+        renderCartPage();
+    } catch (error) {
+        console.error("Cart page loading error:", error);
+
+        if (cartContainer) {
+            cartContainer.innerHTML = `
+                <div class="emptyCart">
+                    <div class="emptyCartIcon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <h2>The cart could not be loaded</h2>
+
+                    <p>
+                        ${error.message}
+                    </p>
+
+                    
+                        href="/src/pages/ProductPage.html"
+                        class="continueShoppingButton"
+                    >
+                        Return to Products
+                    </a>
+                </div>
+            `;
+        }
+    }
+}
 
 /* =================================
    CART STORAGE
@@ -11,8 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function getCart() {
     try {
-        const savedCart =
-            JSON.parse(localStorage.getItem(CART_STORAGE_KEY));
+        const savedCart = JSON.parse(
+            localStorage.getItem(CART_STORAGE_KEY)
+        );
 
         return Array.isArray(savedCart) ? savedCart : [];
     } catch (error) {
@@ -31,13 +85,14 @@ function saveCart(cart) {
     renderCartPage();
 }
 
-
-/* =================================
-   ADD PRODUCT
-================================= */
+/* Add products */
 
 function addToCart(product) {
-    if (!product.id || !product.name || Number.isNaN(product.price)) {
+    if (
+        !product.id ||
+        !product.name ||
+        !Number.isFinite(product.price)
+    ) {
         console.error("Invalid product information:", product);
         return;
     }
@@ -64,20 +119,20 @@ function addToCart(product) {
     }
 
     saveCart(cart);
-    showCartNotification(`${product.name} added to cart`);
+
+    showCartNotification(
+        product.name + " was added to your cart."
+    );
 }
 
-
-/* =================================
-   REMOVE AND QUANTITY
-================================= */
+/* Remove and change quantity */
 
 function removeFromCart(productId) {
-    const cart = getCart().filter(function (item) {
+    const updatedCart = getCart().filter(function (item) {
         return item.id !== productId;
     });
 
-    saveCart(cart);
+    saveCart(updatedCart);
 }
 
 function changeCartQuantity(productId, change) {
@@ -108,14 +163,10 @@ function clearCart() {
     renderCartPage();
 }
 
-
-/* =================================
-   CART COUNT
-================================= */
+/* Cart counter */
 
 function updateCartCount() {
-    const cartCount =
-        document.getElementById("cartCount");
+    const cartCount = document.getElementById("cartCount");
 
     if (!cartCount) {
         return;
@@ -140,8 +191,9 @@ function updateCartCount() {
 
 function setupCartClickEvents() {
     document.addEventListener("click", function (event) {
-        const addButton =
-            event.target.closest(".addToCartButton");
+        const addButton = event.target.closest(
+            ".addToCartButton"
+        );
 
         if (addButton) {
             const product = {
@@ -160,11 +212,8 @@ function setupCartClickEvents() {
             event.target.closest(".quantityButton");
 
         if (quantityButton) {
-            const productId =
-                quantityButton.dataset.id;
-
-            const action =
-                quantityButton.dataset.action;
+            const productId = quantityButton.dataset.id;
+            const action = quantityButton.dataset.action;
 
             changeCartQuantity(
                 productId,
@@ -183,8 +232,9 @@ function setupCartClickEvents() {
         }
 
         if (event.target.closest("#clearCartButton")) {
-            const confirmed =
-                confirm("Remove all products from your cart?");
+            const confirmed = window.confirm(
+                "Remove all products from your cart?"
+            );
 
             if (confirmed) {
                 clearCart();
@@ -197,31 +247,22 @@ function setupCartClickEvents() {
             const cart = getCart();
 
             if (cart.length === 0) {
-                alert("Your cart is empty.");
+                window.alert("Your cart is empty.");
                 return;
             }
 
-            alert(
-                "Checkout is not connected yet. Your cart is ready!"
+            window.alert(
+                "Checkout is not connected yet, but your cart is ready!"
             );
         }
     });
 }
 
-
-/* =================================
-   DISPLAY CART PAGE
-================================= */
+/* Display cart */
 
 function renderCartPage() {
     const cartItemsContainer =
         document.getElementById("cartItems");
-
-    if (!cartItemsContainer) {
-        return;
-    }
-
-    const cart = getCart();
 
     const emptyCart =
         document.getElementById("emptyCart");
@@ -232,10 +273,22 @@ function renderCartPage() {
     const cartContent =
         document.getElementById("cartContent");
 
+    if (
+        !cartItemsContainer ||
+        !emptyCart ||
+        !cartContent
+    ) {
+        return;
+    }
+
+    const cart = getCart();
+
     if (cart.length === 0) {
         emptyCart.style.display = "flex";
         if (emptyCartSection) emptyCartSection.style.display = "block";
         cartContent.style.display = "none";
+
+        cartItemsContainer.innerHTML = "";
 
         updateCartSummary(cart);
         return;
@@ -248,8 +301,8 @@ function renderCartPage() {
     cartItemsContainer.innerHTML = "";
 
     cart.forEach(function (product) {
-        const item = createCartItem(product);
-        cartItemsContainer.appendChild(item);
+        const cartItem = createCartItem(product);
+        cartItemsContainer.appendChild(cartItem);
     });
 
     updateCartSummary(cart);
@@ -289,7 +342,7 @@ function createCartItem(product) {
     decreaseButton.dataset.action = "decrease";
     decreaseButton.setAttribute(
         "aria-label",
-        `Decrease ${product.name} quantity`
+        "Decrease " + product.name + " quantity"
     );
     decreaseButton.textContent = "−";
 
@@ -304,7 +357,7 @@ function createCartItem(product) {
     increaseButton.dataset.action = "increase";
     increaseButton.setAttribute(
         "aria-label",
-        `Increase ${product.name} quantity`
+        "Increase " + product.name + " quantity"
     );
     increaseButton.textContent = "+";
 
@@ -390,17 +443,15 @@ function updateCartSummary(cart) {
 }
 
 function formatCurrency(amount) {
-    return `RM${Number(amount).toFixed(2)}`;
+    return "RM" + Number(amount).toFixed(2);
 }
 
-
-/* =================================
-   CART NOTIFICATION
-================================= */
+/* Notification */
 
 function showCartNotification(message) {
-    let notification =
-        document.querySelector(".cartNotification");
+    let notification = document.querySelector(
+        ".cartNotification"
+    );
 
     if (!notification) {
         notification = document.createElement("div");
@@ -412,11 +463,14 @@ function showCartNotification(message) {
     notification.textContent = message;
     notification.classList.add("show");
 
-    clearTimeout(notification.hideTimer);
+    window.clearTimeout(notification.hideTimer);
 
-    notification.hideTimer = setTimeout(function () {
-        notification.classList.remove("show");
-    }, 2000);
+    notification.hideTimer = window.setTimeout(
+        function () {
+            notification.classList.remove("show");
+        },
+        2000
+    );
 }
 
 

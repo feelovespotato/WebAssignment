@@ -4,7 +4,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
 header {
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 999;
 }
