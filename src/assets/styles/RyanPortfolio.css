@@ -6,10 +6,8 @@
   --ryan-card-border: var(--reviewborder);
 }
 
-/* ============================
-   NAVBAR
-============================ */
-#ryan-navbar {
+/* ============================  Start of Navbar ============================ */
+#RyanNavigationBar {
   position: sticky;
   top: 0;
   z-index: 999;
@@ -22,20 +20,20 @@
   border-bottom: 1px solid var(--ryan-card-border);
 }
 
-.ryan-nav-logo {
+.RyanNavigationLogo {
   text-decoration: none;
   font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 700;
   color: var(--ryan-accent);
 }
 
-.ryan-nav-links {
+.RyanNavigationLinks {
   display: flex;
   list-style: none;
   gap: clamp(1rem, 2.5vw, 2.5rem);
 }
 
-.ryan-nav-links a {
+.RyanNavigationLinks a {
   text-decoration: none;
   color: var(--title);
   font-weight: 600;
@@ -43,11 +41,11 @@
   transition: color 0.3s ease;
 }
 
-.ryan-nav-links a:hover {
+.RyanNavigationLinks a:hover {
   color: var(--ryan-accent);
 }
 
-.ryan-nav-back {
+.RyanNavigationBack {
   text-decoration: none;
   color: var(--ryan-accent);
   border: 2px solid var(--ryan-accent);
@@ -59,11 +57,12 @@
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.ryan-nav-back:hover {
+.RyanNavigationBack:hover {
   background-color: var(--ryan-accent);
   color: var(--textwhite);
   transform: translateY(-2px);
 }
+/* ============================  End of Navbar Section ============================ */
 
 /* ============================
    HERO
@@ -153,21 +152,19 @@
   }
 }
 
-/* ============================
-   SKILLS
-============================ */
-#ryan-skills {
+/* ============================  Start of Skill Section ============================ */
+#RyanSkills {
   padding: clamp(3rem, 5vw, 5rem) 0;
 }
 
-#ryan-skills-grid {
+#RyanSkillsGrid {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.ryan-skill-label {
+.RyanSkillLabel {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
@@ -175,35 +172,38 @@
   color: var(--title);
 }
 
-.ryan-skill-bar {
+.RyanSkillBar {
   width: 100%;
   height: 12px;
   background-color: var(--ryan-card-border);
   border-radius: 100vw;
-  overflow: hidden;
+  overflow: hidden; /* hides any overflowing info*/
 }
 
-.ryan-skill-fill {
+.RyanSkillFill {
   height: 100%;
   width: var(--fill);
   background-color: var(--ryan-accent);
   border-radius: 100vw;
-  animation: ryan-fill-bar 1.5s ease forwards;
+  animation: RyanSkillFill 1.5s ease forwards; /* runs the RyanSkillFill animation */
 }
 
-@keyframes ryan-fill-bar {
+@keyframes RyanSkillFill { /* This is the RyanSkillFill animation that was being called */
   from { width: 0; }
   to { width: var(--fill); }
 }
 
-/* ============================
-   EDUCATION
-============================ */
-#ryan-education {
+/* ============================  End of Skill Section ============================ */
+
+
+
+/* ============================  Start of Education Section ============================ */
+
+#RyanEducation{
   padding: clamp(3rem, 5vw, 5rem) 0;
 }
 
-.ryan-edu-card {
+.RyanEducationCard {
   background-color: var(--ryan-card-bg);
   border: 1px solid var(--ryan-card-border);
   border-radius: 1.5rem;
@@ -212,23 +212,25 @@
   border-left: 5px solid var(--ryan-accent);
 }
 
-.ryan-edu-card h3 {
+.RyanEducationCard h3 {
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   color: var(--title);
   margin-bottom: 0.5rem;
 }
 
-.ryan-edu-school {
+.RyanEducationSchool {
   color: var(--ryan-accent);
   font-weight: 600;
   margin-bottom: 0.25rem !important;
 }
 
-.ryan-edu-year {
+.RyanEducationYear {
   color: var(--halfvisibletext);
   font-size: 0.9rem !important;
   margin-bottom: 0 !important;
 }
+
+/* ============================  End of Education Section ============================ */
 
 /* ============================
    PROJECTS
