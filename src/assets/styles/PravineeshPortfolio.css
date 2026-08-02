@@ -504,10 +504,36 @@ section {
 }
 
 .aboutText p {
-    margin-bottom: 20px;
+   .aboutText p {
+    opacity: 0;
+    transform: translateY(30px);
 
-    color: var(--secondaryText);
-    font-size: 16px;
+    animation: aboutTextFlowUp 0.9s ease-out forwards;
+}
+
+.aboutText p:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.aboutText p:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.aboutText p:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+@keyframes aboutTextFlowUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 }
 
 .aboutDetails {
