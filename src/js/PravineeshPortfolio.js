@@ -3,7 +3,8 @@ document.addEventListener(
     async function () {
         await loadPortfolioComponents();
 
-
+        initialiseCertificationToggle();
+        initialiseExperienceToggle();
         initialiseSkillBarReplay();
         initialiseHeroEntranceAnimation();
         initialiseAnimatedHeroText();
@@ -54,8 +55,8 @@ async function loadPortfolioComponents() {
         filePath: "/src/components/portfolio/Pravineesh/education.html"
     },
     {
-        containerId: "activitiesContainer",
-        filePath: "/src/components/portfolio/Pravineesh/activities.html"
+        containerId: "certificationsContainer",
+        filePath: "/src/components/portfolio/Pravineesh/certifications.html"
     },
     {
         containerId: "contactContainer",
@@ -378,7 +379,7 @@ function initialiseScrollReveal() {
         ".projectCard",
         ".timeline-item",
         ".cardEducation",
-        ".cardActivities",
+        ".certificationCard",
         ".itemContact",
         ".formContact"
     ];
@@ -885,7 +886,7 @@ function initialiseAnimatedHeroText() {
     description.dataset.animated = "true";
 
 
-    /* Software Engineering Student — word by word */
+    /* Subtitle — word by word */
 
     const subtitleWords =
         subtitle.textContent
@@ -914,47 +915,17 @@ function initialiseAnimatedHeroText() {
     });
 
 
-    /* Paragraph — character by character jump */
+    /* Paragraph — one smooth flow */
 
     const paragraphStartDelay =
-        700 + subtitleWords.length * 250 + 500;
+        700 + subtitleWords.length * 250 + 300;
 
-    const paragraphText =
-        description.textContent.trim();
-
-    description.textContent = "";
-
-    let characterCount = 0;
-
-    Array.from(paragraphText).forEach(
-        function (character) {
-            if (character === " ") {
-                description.appendChild(
-                    document.createTextNode(" ")
-                );
-
-                return;
-            }
-
-            const characterSpan =
-                document.createElement("span");
-
-            characterSpan.className =
-                "paragraphJumpCharacter";
-
-            characterSpan.textContent =
-                character;
-
-            characterSpan.style.animationDelay =
-                `${paragraphStartDelay + characterCount * 25}ms`;
-
-            description.appendChild(
-                characterSpan
-            );
-
-            characterCount++;
-        }
+    description.classList.add(
+        "paragraphFlowIn"
     );
+
+    description.style.animationDelay =
+        `${paragraphStartDelay}ms`;
 }
 
 function initialiseSkillBarReplay() {
@@ -983,5 +954,95 @@ function initialiseSkillBarReplay() {
                 bar.style.animation = "";
             });
         });
+    });
+}
+
+function initialiseExperienceToggle() {
+    const toggleButton =
+        document.getElementById("experienceToggleButton");
+
+    const extraExperiences =
+        document.getElementById("extraExperiences");
+
+    if (!toggleButton || !extraExperiences) {
+        return;
+    }
+
+    const buttonText =
+        toggleButton.querySelector(".experienceToggleText");
+
+    toggleButton.addEventListener("click", function () {
+        const isOpen =
+            extraExperiences.classList.toggle("open");
+
+        toggleButton.classList.toggle("open", isOpen);
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+        extraExperiences.setAttribute(
+            "aria-hidden",
+            String(!isOpen)
+        );
+
+        buttonText.textContent = isOpen
+            ? "View Less"
+            : "View More";
+
+        if (!isOpen) {
+            document
+                .getElementById("experience")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+        }
+    });
+}
+
+function initialiseCertificationToggle() {
+    const toggleButton =
+        document.getElementById("certificationToggleButton");
+
+    const extraCertifications =
+        document.getElementById("extraCertifications");
+
+    if (!toggleButton || !extraCertifications) {
+        return;
+    }
+
+    const buttonText =
+        toggleButton.querySelector(".certificationToggleText");
+
+    toggleButton.addEventListener("click", function () {
+        const isOpen =
+            extraCertifications.classList.toggle("open");
+
+        toggleButton.classList.toggle("open", isOpen);
+
+        toggleButton.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+        extraCertifications.setAttribute(
+            "aria-hidden",
+            String(!isOpen)
+        );
+
+        buttonText.textContent = isOpen
+            ? "View Fewer Certificates"
+            : "View More Certificates";
+
+        if (!isOpen) {
+            document
+                .getElementById("certifications")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+        }
     });
 }
