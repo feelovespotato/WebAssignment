@@ -19,49 +19,49 @@ function initCerts() {
 
   { name: 'Certification 5: Sunway FIST+ Certificate', 
     desc: 'This is a certificate for completing the Sunway FIST+ program, demonstrating my introduction to Sunway University & College and its assignments, as well as my adaptability.', 
-    image: '../assets/images/Ryan/SunwayFIST+.png', pdf: '../assets/images/Ryan/SunwayFIST.pdf' },
+    image: '../assets/images/Ryan/SunwayFIST.png', pdf: '../assets/images/Ryan/SunwayFIST.pdf' },
 ];
   let current = 0;
 
-  const frame = document.getElementById('cert-frame');
-  const name = document.getElementById('cert-name');
-  const desc = document.getElementById('cert-desc');
-  const pdfLink = document.getElementById('cert-pdf-link');
-  const dotsContainer = document.getElementById('cert-dots');
+  const frame = document.getElementById('CertificationFrame');
+  const name = document.getElementById('CertificationName');
+  const desc = document.getElementById('CertificationDesc');
+  const pdfLink = document.getElementById('CertificationPDFLink');
+  const dotsContainer = document.getElementById('CertificationDots');
 
   certs.forEach((_, i) => {
     const dot = document.createElement('span');
-    dot.className = 'cert-dot' + (i === 0 ? ' active' : '');
+    dot.className = 'CertificationDot' + (i === 0 ? ' CertificationActiveDot' : '');
     dot.addEventListener('click', () => { current = i; updateCert(); });
     dotsContainer.appendChild(dot);
   });
 
   function updateCert() {
     const cert = certs[current];
-    const display = document.getElementById('cert-display');
+    const display = document.getElementById('CertificationDisplay');
 
     display.classList.add('fading');
 
     setTimeout(() => {
-      frame.setAttribute('src', cert.image);
+      frame.setAttribute('SRC', cert.image);
       name.textContent = cert.name;
       desc.textContent = cert.desc;
-      pdfLink.setAttribute('href', cert.pdf);
+      pdfLink.setAttribute('HREF', cert.pdf);
 
-      document.querySelectorAll('.cert-dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
+      document.querySelectorAll('.CertificationDot').forEach((dot, i) => {
+        dot.classList.toggle('CertificationActiveDot', i === current);
       });
 
       display.classList.remove('fading');
     }, 250);
   }
 
-  document.getElementById('prevCert').addEventListener('click', () => {
+  document.getElementById('PreviousCert').addEventListener('click', () => {
     current = (current - 1 + certs.length) % certs.length;
     updateCert();
   });
 
-  document.getElementById('nextCert').addEventListener('click', () => {
+  document.getElementById('NextCert').addEventListener('click', () => {
     current = (current + 1) % certs.length;
     updateCert();
   });
