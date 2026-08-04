@@ -1,370 +1,315 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background-color: var(--page-background);
-    margin:0;
-}
-
+/*the container for the navbar*/
 .navbar{
     width:100%;
-    height:85px;
+    height:100px;
     padding: 0 70px;
-    display:grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     position: sticky;
     top:0;
-    background:rgba(255,255,255,.90);
+    background: var(--navbar-background);
+    color: var(--navbar-text);
     backdrop-filter: blur(15px);
     box-shadow: 0 5px 20px rgba(0,0,0,.08);
     z-index:999;
-}
-
-.navbarlogo{
-    text-decoration:none;
-    font-size:36px;
-    font-weight:650;
-    color:#F39A1E;
-    letter-spacing:1px;
-    transition:0.4s;
-    justify-self: start;
-}
-
-.navbarlogo:hover{
-    transform:scale(1.05);
-}
-
-.navLinks{
-
-    display:flex;
-
-    list-style:none;
-
-    gap:45px;
-
-    justify-self: center;
-}
-
-.navLinks li{
-
-    transition:0.4s;
-
-}
-
-.navLinks li:hover{
-
-
-    animation:bounce .35s ease;
-
-}
-
-@keyframes bounce{
-
-    0%{
-        transform:translateY(0);
-    }
-
-    40%{
-        transform:translateY(-8px);
-    }
-
-    70%{
-        transform:translateY(-4px);
-    }
-
-    100%{
-        transform:translateY(0);
-    }
-
-}
-
-
-.navLinks a{
-
-    text-decoration:none;
-
-    color:#333;
-
-    font-weight:600;
-
-    font-size:16px;
-
-    position:relative;
-
-    transition:0.4s;
-}
-
-.navLinks a:visited{
-    color: #333;
-}
-
-.navLinks a::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:0;
-
-    height:3px;
-
-    background:#F39A1E;
-
-    left:50%;
-
-    bottom:-8px;
-
-    border-radius:50px;
-
-    transition:.3s;
-
-    transform:translateX(-50%);
-}
-
-.navLinks a:hover{
-
-    color:#F39A1E;
-
-}
-
-.navLinks a:hover::after{
-
-    width:100%;
-
-}
-
-
-.navButtons{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    justify-self: end;
-}
-
-.loginButton{
-
-    text-decoration:none;
-
-    color:#333;
-
-    font-weight:600;
-
-    transition:.3s;
-
-
-}
-
-.loginButton:hover{
-
-    color:#F39A1E;
-
-    transform:translateY(-4px);
-
-}
-
-.signupButton{
-
-    text-decoration:none;
-
-    color:white;
-
-    background:#F39A1E;
-
-    padding:12px 26px;
-
-    border-radius:50px;
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
-
-.signupButton:hover{
-
-    background:#D98300;
-
-    transform:translateY(-4px);
-
-    box-shadow:0 10px 18px rgba(243,154,30,.35);
-
-}
-
-
-@media(max-width:900px){
-
-.navbar{
-
-    padding:0 30px;
-
-}
-
-.navLinks{
-
-    gap:25px;
-
-}
-
-}
-
-.navbarLogo,
-.navbarLogo:visited{
-    text-decoration: none;
-    color:#F39A1E
-}
-
-
-.themeToggle {
-  padding: 10px 24px;
-  border-radius: 999px; /* pill shape, same as your Signup button */
-  border: 2px solid ;
-  background: transparent;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
-}
-
-.themeToggle:hover {
-  background-color: #1A1A1A;
-  color: #fff;
-}
-
-.themeToggle:active {
-  transform: scale(0.97);
-}
-
-/* =================================
-   NAVBAR LIGHT AND DARK MODE
-================================= */
-
-.navbar {
-    background: var(--navbar-background);
-    color: var(--navbar-text);
-
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
 
-
-/* Pokka logo stays yellow */
-.navbar .navbarlogo,
-.navbar .navbarlogo:visited {
-    color: var(--pokka-yellow);
+/* container for all 3 main sections (links, cart/theme, buttons) */
+.navMenu{
+    display:contents;
+    justify-content:space-between;
 }
-
-
-/* Navigation and login text */
-.navbar .navLinks a,
-.navbar .navLinks a:visited,
-.navbar .loginButton,
-.navbar .loginButton:visited {
+/*container for 3 container navlinks, functionallinks and navbutton*/
+.navLinks{
+    display:flex;
+    list-style:none;
+    gap: clamp(1.5rem, 1.5rem + 1vw, 3rem);
+}
+/*for each navigation pages*/
+.navLinks a,
+.navLinks a:visited{
+    text-decoration:none;
     color: var(--navbar-text);
+    font-weight:600;
+    font-size:clamp(0.6rem, 0.6rem + 1vw, 1.2rem );
+    position:relative;
+    display: inline-block;
+    transition: 0.4s;
+}
+
+.navLinks a:hover{
+    color: var(--redborderbutton);
+}
+
+/* hover bounce animation */
+.navLinks li:hover a {
+  animation: bounce .35s ease;
+}
+
+@keyframes bounce{
+    0%{ transform:translateY(0); }
+    40%{ transform:translateY(-8px); }
+    70%{ transform:translateY(-4px); }
+    100%{ transform:translateY(0); }
+}
+
+/* underline bar, appears on hover */
+.navLinks a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:3px;
+    background-color: var(--redborderbutton);
+    left:50%;
+    bottom:-8px;
+    border-radius:50px;
+    transition:.3s;
+    transform:translateX(-50%);
+}
+/*the line shows when hover*/
+.navLinks a:hover::after{
+    width:100%;
+}
+
+/*login and sign up button*/
+.navButtons{
+    display:flex;
+    align-items:center;
+    gap:clamp(1rem, 1rem + 1vw, 2rem);
+    justify-self: end;
+}
+/*the login button text*/
+.loginButton,
+.loginButton:visited{
+    text-decoration:none;
+    color: var(--navbar-text);
+    font-weight:600;
+    transition:.3s;
+}
+/*login button when hover*/
+.loginButton:hover{
+    color: var(--redborderbutton);
+    transform:translateY(-4px);
+}
+/*sign up button*/
+.signupButton,
+.signupButton:visited{
+    text-decoration:none;
+    color:var(--bg);
+    background-color: var(--redbutton);
+    padding:14px 30px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+/*sign up button when hover*/
+.signupButton:hover{
+    background-color:var(--hoverredbutton);
+    transform:translateY(-4px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);;
 }
 
 
-/* Hover stays yellow */
-.navbar .navLinks a:hover,
-.navbar .loginButton:hover {
-    color: var(--pokka-yellow);
+.navEnd{
+    display:flex;
+    align-items:center;
+    gap:clamp(1rem, 1rem + 1vw, 2rem);
+    justify-self: end;
 }
 
-
-/* Signup button stays yellow */
-.navbar .signupButton,
-.navbar .signupButton:visited {
-    background-color: var(--pokka-yellow);
-    color: #ffffff;
+.functionalLinks{
+    display:flex;
+    align-items:center;
+    gap:clamp(1rem, 1rem + 1vw, 2rem);
 }
 
-
-/* Theme button */
-.navbar .themeToggle {
-    background-color: transparent;
-    color: var(--pokka-yellow);
-    border: 2px solid var(--pokka-yellow);
+/*dark mode toggle button*/
+.category-tag {
+  font-size: clamp(0.6rem , 0.6rem + 0.8vw , 1rem);
+  padding: 1rem 1.2rem;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.category-tag:hover {
+  background-color: var(--redbutton);
+  color:var(--bg);
+}
+.category-tag:active {
+  transform: scale(0.97);
 }
 
-.navbar .themeToggle:hover {
-    background-color: var(--pokka-yellow);
-    color: #ffffff;
-}
-
-
-/* Cart button has yellow background so white icon is visible */
-.navbar .cartButton,
-.navbar .cartButton:visited {
-    background-color: var(--pokka-yellow);
-    color: #ffffff;
-    border-color: var(--pokka-yellow);
-}
-
-.navbar .cartButton i {
-    color: #ffffff;
-}
-
-.navbar .cartButton:hover {
-    background-color: #d98300;
-    color: #ffffff;
-}
-
-
-.cartButton {
+/*cart button*/
+.cartButton,
+.cartButton:visited{
     position: relative;
-
-    width: 44px;
-    height: 44px;
-
+    width: 55px;
+    height: 55px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
-    color: var(--navbar-text);
+    color: var(--redbutton);
     background-color: transparent;
-
-    border: 2px solid var(--pokka-yellow);
+    border: 2px solid var(--redbutton);
     border-radius: 50%;
-
     text-decoration: none;
     font-size: 18px;
-
     transition: 0.3s;
 }
-
+/*the cart font*/
+.cartButton i {
+    color: var(--redbutton); 
+    line-height: 1;       
+    position: relative;
+    top: 1px  
+}
 
 .cartButton:hover {
-    color: #ffffff;
-    background-color: var(--pokka-yellow);
+    color: var(--bg);
+    background-color: var(--redbutton);
     transform: translateY(-2px);
+}
+
+.cartButton:hover i {
+    color:var(--bg);
 }
 
 #cartCount {
     position: absolute;
     top: -7px;
     right: -7px;
-
     min-width: 21px;
     height: 21px;
     padding: 0 5px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: #e51938;
-    color: #ffffff;
-
+    background-color: var(--redbutton);
+    color: var(--bg);
     border-radius: 50%;
-
     font-size: 11px;
-    font-weight: 700;}
+    font-weight: 700;
+}
+
+
+/*the nav bar will collapse when reached the size*/
+.hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+    width:32px;
+    height:32px;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    justify-self:end;
+}
+ 
+.hamburger span{
+    display:block;
+    width:100%;
+    height:3px;
+    background-color: var(--navbar-text);
+    border-radius:2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+ 
+/* turns into an X when the menu is open */
+.hamburger.active span:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+.hamburger.active span:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+
+@media(max-width:1200px){
+ 
+    .navbar{
+        grid-template-columns: 1fr auto;
+        padding: 0 20px;
+        height:100px;
+    }
+ 
+    .hamburger{
+        display:flex;
+    }
+ 
+    .navMenu{
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        max-height:0;
+        overflow:hidden;
+        background: var(--navbar-background);
+        box-shadow:0 10px 20px rgba(0,0,0,.1);
+        transition: max-height .3s ease;
+    }
+ 
+    .navMenu.active{
+        max-height:600px;
+    }
+ 
+    .navLinks{
+        flex-direction:column;
+        gap:0;
+        padding:10px 25px 0;
+    }
+ 
+    .navLinks li{
+        width:100%;
+    }
+ 
+    .navLinks a{
+        display:block;
+        padding:14px 0;
+        
+    }
+ 
+    .navLinks a::after{
+        display:none;
+    }
+
+    .navEnd {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 25px; 
+        justify-content: center;
+    }
+ 
+    .functionalLinks{
+        justify-content:space-between;
+        order: 1;
+    }
+ 
+    .navButtons{
+        flex-direction:column;
+        width:100%;
+        gap:12px;
+        order: 2;
+    }
+ 
+    .loginButton,
+    .signupButton{
+        text-align:center;
+        width:100%;
+    }
+ 
+    .cartButton{
+        align-self:flex-start;
+    }
+ 
+}

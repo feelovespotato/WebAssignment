@@ -230,35 +230,6 @@
     color: var(--redborderbutton);
 }
 /*--------------------------------------------------------------------*/
-
-/* Cart icon inside navbar */
-
-.cartButton {
-    position: relative;
-}
-
-#cartCount {
-    position: absolute;
-    top: -7px;
-    right: -7px;
-
-    min-width: 21px;
-    height: 21px;
-    padding: 0 5px;
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    background-color: #e51938;
-    color: #ffffff;
-
-    border-radius: 50%;
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
 /* Notification */
 
 .cartNotification {

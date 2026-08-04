@@ -1,48 +1,71 @@
 <nav class="navbar">
 
-    <a href="HomePage.html" class="navbarlogo">
-        Drinks
-    </a>
 
-    <ul class="navLinks">
+    <button
+        type="button"
+        id="hamburgerBtn"
+        class="hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <li>
-            <a href="HomePage.html">Home</a>
-        </li>
+    <div class="navMenu" id="navMenu">
 
-        <li>
-            <a href="ProductPage.html">Products</a>
-        </li>
+        <ul class="navLinks">
 
-        <li>
-            <a href="AboutTeam.html">About Us</a>
-        </li>
+            <li>
+                <a href="HomePage.html">Home</a>
+            </li>
 
-    </ul>
+            <li>
+                <a href="ProductPage.html">Products</a>
+            </li>
 
-    <div class="navButtons">
+            <li>
+                <a href="AboutTeam.html">About Us</a>
+            </li>
 
-        <a href="LoginPage.html" class="loginButton">
-            Login
-        </a>
+        </ul>
 
-        <a href="SignupPage.html" class="signupButton">
-            Signup
-        </a>
 
-        <a href="../pages/cart.html" class="cartButton" aria-label="Shopping cart">
-            <i class="fa-solid fa-shopping-cart"></i>
-            <span id="cartCount">0</span>
-        </a>
+        <div class="navEnd ">
 
-        <button
-            type="button"
-            id="WebsiteTheme"
-            class="themeToggle"
-        >
-            Switch to dark mode
-        </button>
+        <div class="navButtons">
+
+            <a href="LoginPage.html" class="loginButton">
+                Login
+            </a>
+
+            <a href="SignupPage.html" class="signupButton">
+                Signup
+            </a>
+
+        </div>
+
+        <div class="functionalLinks">
+            <a href="../pages/cart.html" class="cartButton" aria-label="Shopping cart">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span id="cartCount">0</span>
+            </a>
+
+            <button
+                type="button"
+                id="WebsiteTheme"
+                class="category-tag"
+            >
+                Switch to dark mode
+            </button>
+        </div>
+        </div>
+        
 
     </div>
+
+    
 
 </nav>
