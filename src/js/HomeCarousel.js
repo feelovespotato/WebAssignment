@@ -20,9 +20,9 @@ function initCarousel() {
     setTimeout(() => {
       const drink = drinks[current];
       bg.style.backgroundImage = `url('${drink.bg}')`;
-      document.getElementById('drink-name').textContent = drink.name;
-      document.getElementById('drink-desc').textContent = drink.desc;
-      document.getElementById('drink-link').textContent = drink.link;
+      document.getElementById('DrinkName').textContent = drink.name;
+      document.getElementById('DrinkDesc').textContent = drink.desc;
+      document.getElementById('DrinkLink').textContent = drink.link;
 
       content.style.transform = `translateX(${direction * -60}px)`;
 
@@ -34,12 +34,12 @@ function initCarousel() {
     }, 400);
   }
 
-  document.getElementById('prevDrink').addEventListener('click', () => {
+  document.getElementById('PreviousDrink').addEventListener('click', () => {
     current = (current - 1 + drinks.length) % drinks.length;
     updateCarousel(-1);
   });
 
-  document.getElementById('nextDrink').addEventListener('click', () => {
+  document.getElementById('NextDrink').addEventListener('click', () => {
     current = (current + 1) % drinks.length;
     updateCarousel(1);
   });

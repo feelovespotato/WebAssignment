@@ -2,15 +2,15 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 
 document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([
-    loadComponent('ryan-hero-slot', '../components/portfolio/Ryan/hero.html'),
-    loadComponent('ryan-skills-slot', '../components/portfolio/Ryan/skills.html'),
-    loadComponent('ryan-education-slot', '../components/portfolio/Ryan/education.html'),
-    loadComponent('ryan-projects-slot', '../components/portfolio/Ryan/projects.html'),
+    loadComponent('RyanHeroSlot', '../components/portfolio/Ryan/hero.html'),
+    loadComponent('RyanSkillsSlot', '../components/portfolio/Ryan/skills.html'),
+    loadComponent('RyanEducationSlot', '../components/portfolio/Ryan/education.html'),
+    loadComponent('RyanProjectsSlot', '../components/portfolio/Ryan/projects.html'),
   ]);
 
-  await loadComponent('ryan-certs-slot', '../components/portfolio/Ryan/certifications.html');
-  await loadComponent('ryan-contact-slot', '../components/portfolio/Ryan/contact.html');
-  
+  await loadComponent('RyanCertsSlot', '../components/portfolio/Ryan/certifications.html');
+  await loadComponent('RyanContactSlot', '../components/portfolio/Ryan/contact.html');
+
   initCerts();
   observeAnimations();
 });
