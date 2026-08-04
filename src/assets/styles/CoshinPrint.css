@@ -1,131 +1,149 @@
-/* ==========================================================
-   PRINT STYLESHEET — Coshin Portfolio
-   Loaded only when printing (media="print").
-   Goal: strip decorative/interactive chrome (carousel arrows,
-   hover shadows, rotated polaroid photos), unroll the carousel
-   so every achievement slide prints, and reflow all grid/flex
-   layouts into a single readable column.
-========================================================== */
 
-/* ---- Hide interactive-only controls ---- */
-.carousel-arrow,
-button,
-.solidbutton[download],
-.no-print {
-    display: none !important;
+@page {
+    margin: 2cm;
 }
 
-/* Keep normal links (github, linkedin) visible and show their URL,
-   but the CV download button is meaningless on paper so it's hidden above. */
+/*force light, high-contrast palette for print regardless of on-screen theme*/
+:root,
+html[data-theme="dark"] {
+    --title: #000 !important;
+    --bg: #fff !important;
+    --halfvisibletext: #333 !important;
+    --redtext: #000 !important;
+    --redborderbutton: #333 !important;
+    --grayborder: #999 !important;
+}
 
-/* ---- Reset colour/shadow/animation noise ---- */
 * {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    color: #000 !important;
-    animation: none !important;
     transition: none !important;
+    animation: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important; 
 }
 
-html, body {
-    background: #fff !important;
-    margin: 0;
-    font-size: 12pt;
-    line-height: 1.4;
-}
-
-main {
-    padding: 0 !important;
+body {
+    background-color: var(--bg)!important;
+    color: var(--title);
 }
 
 section {
-    padding: 0.5em 0 !important;
     page-break-inside: avoid;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
-
-/* Fade-up animation should never leave content invisible on print */
+/*hide animations*/
 .animate-fade-up {
     opacity: 1 !important;
     transform: none !important;
 }
 
-/* ---- Hero / bio section ---- */
+/*hide navbar - sticky positioning + interactive-only elements don't belong in print*/
+.navbar {
+    display: none !important;
+}
+
+/*hide controls*/
+.carousel-arrow{
+    display: none !important;
+}
+
+.solidbutton {
+    display: none !important;
+}
+
+/*making sure the font-size is fixed*/
+h1 { font-size: 19pt }
+h2 { font-size: 13pt }
+h4 { font-size: 10.5pt; }
+p  { font-size: 11pt; margin-bottom: 0.75em; }
+
+/*underline*/
+a {
+    color: inherit;
+    text-decoration: underline;
+    font-size: 11pt
+}
+/* print the URL*/
+a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    font-weight: normal;
+}
+
+/*make it in A4 column*/
 .hero-card {
-    display: block !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     width: 100% !important;
-    margin: 0 0 1em 0 !important;
-    padding: 0 !important;
 }
-
+/*img container*/
 .img-sec {
-    width: 6rem !important;
-    height: 6rem !important;
-    margin: 0 auto 1em auto !important;
-    border: 1px solid #000 !important;
+    width: 5cm !important;
+    height: 5cm !important;
     box-shadow: none !important;
+    border: 1px solid var(--title) !important;
 }
-
+/*flex align left*/
 .name-bio-sec p {
     text-align: left;
 }
 
-.bio-card-container {
-    display: block !important;
-}
-
 .bio-card {
-    padding: 0 !important;
-    margin-bottom: 1em !important;
+    background-color:var(--bg) !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc;
+    padding: 1em !important;
+    margin-bottom: 1em;
     page-break-inside: avoid;
 }
 
-/* ---- Skills section: collapse grids to a single column ---- */
-.skills-layout-container,
-.productcard-container,
-.bento-container {
-    display: block !important;
-    grid-template-columns: none !important;
+.bio-card h1 {
+    font-size: 13pt !important;
+}
+
+.bio-card a {
+    border: none;
+    padding: 0;
+}
+
+/* ---- Skills section: reuse single-column layout
+   (normally max-width: 768px / 480px) ---- */
+.skills-layout-container {
+    grid-template-columns: 1fr !important;
 }
 
 .skills-card {
+    background: transparent !important;
     padding: 0 !important;
-    margin-bottom: 1.5em !important;
+    margin-bottom: 1.5em;
     page-break-inside: avoid;
 }
 
-.progress-card-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em;
-    padding: 0.25em 0 !important;
+.productcard-container {
+    grid-template-columns: repeat(4, 1fr) !important;
+    padding: 0.5em 0 !important;
 }
 
+/*progress bar*/
 .progress-bar progress {
-    border: 1px solid #000 !important;
+    border: 1px solid var(--redbutton) !important;
+}
+/*progress bar filling*/
+.progress-bar progress::-webkit-progress-value {
+    background-color: var(--redbutton) !important;
+    animation: none !important;
 }
 
-.card,
-.bento-item {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    margin-bottom: 0.75em !important;
-    page-break-inside: avoid;
+.progress-bar progress::-moz-progress-bar {
+    background-color: var(--redbutton) !important;
+    animation: none !important;
 }
-
-.img-wrapper {
-    height: auto !important;
-    padding: 0 !important;
+.skills-card .img-wrapper {
+    height: 2.5cm !important;
+    padding-top: 0 !important;
 }
-
-.img-wrapper img {
-    max-width: 3cm !important;
-    max-height: 3cm !important;
-}
-
-/* ---- Achievements carousel: unroll every slide for print ---- */
+/*------------------------------------------------------------------*/
 .carousel-viewport {
     overflow: visible !important;
 }
@@ -138,24 +156,73 @@ section {
 .carousel-slide {
     display: block !important;
     width: 100% !important;
-    margin-bottom: 1.5em !important;
+    margin-bottom: 1.5em;
+    
+}
+/*-----------------------------------------------------------*/
+.bento-container {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: auto !important;
+    grid-template-rows: none !important;
+    gap: 0.75em !important;
+}
+
+.bento-item {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    background: transparent !important;
+    border: 1px solid #ccc;
+    padding: 0.5em !important;
     page-break-inside: avoid;
 }
 
-/* ---- Projects pinboard: drop the polaroid styling, keep it plain ---- */
+.bento-item a {
+    display: block;
+}
+
+.bento-item a[href^="http"]::after {
+    display: block;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+.bento-item .img-wrapper {
+    height: 5cm !important;
+}
+
+.bento-item .img-wrapper img {
+    object-fit: contain;
+}
+/*to solve bug target more specific*/
+.bento-item.span-tall .img-wrapper {
+    height: 7cm !important;
+}
+/*same here*/
+.bento-item.span-tall .img-wrapper img {
+    max-height: 7cm !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ---- Projects: reuse the stacked/centred layout
+   (normally max-width: 700px) ---- */
 .pinboard {
-    display: block !important;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .project-row {
-    display: block !important;
-    padding: 0 !important;
-    margin-bottom: 1.5em !important;
+    background: transparent !important;
+    border: 1px solid #ccc;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em !important;
+    margin-bottom: 1.5em;
     page-break-inside: avoid;
-}
-
-.pin-item {
-    margin: 0 0 0.5em 0 !important;
 }
 
 .pin-dot {
@@ -164,60 +231,26 @@ section {
 
 .pin-photo {
     transform: none !important;
-    padding: 0 !important;
-    width: 6cm !important;
     box-shadow: none !important;
-}
-
-.pin-photo img {
-    aspect-ratio: 4 / 3;
+    border: 1px solid #ccc;
+    padding: 0.5em 0.5em 1.5em !important;
+    width: 6cm !important;
 }
 
 .pin-tag {
-    position: static !important;
+    position: static;
     display: block;
-    font-family: inherit;
+    margin-top: 0.5em;
     font-style: italic;
 }
 
 .pin-caption {
-    margin-top: 0.5em;
+    text-align: center;
+    margin-top: 0.75em;
 }
 
-/* ---- Typography ---- */
-h1, h2, h4 {
-    page-break-after: avoid;
-}
 
-h1 { font-size: 18pt; }
-h2 { font-size: 13pt; }
-
-p {
-    margin-bottom: 0.5em !important;
-}
-
-/* ---- Links: show the destination since clicking isn't possible on paper ---- */
-a {
-    text-decoration: underline !important;
-}
-
-a[href^="http"]:after {
-    content: " (" attr(href) ")";
-    font-size: 9pt;
-    font-weight: normal;
-}
-
-/* ---- Images ---- */
 img {
     max-width: 100% !important;
     page-break-inside: avoid;
-}
-
-/* ---- CV section starts on its own page ---- */
-#cv {
-    page-break-before: always;
-}
-
-@page {
-    margin: 2cm;
 }

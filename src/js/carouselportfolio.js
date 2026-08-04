@@ -28,4 +28,3 @@ function updateCarousel(track, totalSlides) {
     track.style.transform = `translateX(${offset}%)`;
 }
 
-document.addEventListener('DOMContentLoaded', initCarousel);

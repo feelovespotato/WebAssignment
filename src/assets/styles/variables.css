@@ -121,6 +121,12 @@ html[data-theme="dark"] {
     --grayborder: #666666;
     --bg: #1a1a1a;
     --card-title: #252525;
+
+    --bgpink: #3a2b32;
+    --brownboardbg: #2e2a24;
+    --purplecardbg: #372a4a;
+    --bluecardbg: #1e3a4a;
+    --coffeebg: #3a2c22;
 }
 
 [data-theme="dark"] .subtitle {

@@ -53,6 +53,7 @@
 .name-bio-sec p {
     text-align: justify; 
     text-justify: inter-word;
+    line-height: 1.5;
 }
 
 .name-bio-sec .solidbutton {
@@ -280,6 +281,8 @@
     border: none;
     cursor: pointer;
     font-size: clamp(1.7rem, 2vw, 2rem);
+    color: var(--title); 
+    transition: color 0.3s ease;
 }
 
 .prev-btn {
@@ -445,6 +448,7 @@
 .pin-caption {
     flex: 1 1 18rem;
     min-width: 0;
+
 }
  
 .pin-caption h1{
@@ -453,6 +457,7 @@
  
 .pin-caption p{
     margin-bottom: clamp(2rem, 2rem + 3vw, 3rem);
+    line-height: 1.5;
 }
 
 @media (max-width: 700px) {
