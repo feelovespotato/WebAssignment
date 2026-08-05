@@ -1,16 +1,3 @@
-/*=====================================================================*/
-/* searchbar.js                                                        */
-/*                                                                      */
-/* Powers the "Search drinks..." bar (components/productpage/          */
-/* Searchbar.html). Matches against productsData.js — name, category,  */
-/* and flavors — so results can come from ANY category, not just one.  */
-/*                                                                      */
-/* Requires productsData.js to already be loaded on the page (as a     */
-/* <script> tag) BEFORE initSearchBar() runs. Since Searchbar.html is  */
-/* injected into the DOM asynchronously by loadComponent(), call       */
-/* initSearchBar() *after* that component has been loaded — see        */
-/* ProductPage.js.                                                     */
-/*=====================================================================*/
 
 /*limit drop down */
 const MAX_SUGGESTIONS = 8;
@@ -40,6 +27,17 @@ function initSearchBar() {
                 '"': "&quot;"
             }[tag] || tag)
         );
+    }
+
+    // images[] entries can be plain strings OR objects like { src, flavor/size, cartImage }
+    function getThumbSrc(product) {
+        const first = product.images && product.images[0];
+        if (!first) return "";
+        if (typeof first === "string") return first;
+        // prefer an image explicitly marked as the cart/thumbnail image if present
+        const cartImg = product.images.find((img) => img && typeof img === "object" && img.cartImage);
+        if (cartImg) return cartImg.src;
+        return first.src || "";
     }
 
     // pulls every searchable text out into one string
@@ -83,7 +81,7 @@ function initSearchBar() {
         
         if (nameNoSpaces.includes(qNoSpaces)) return 20;
 
-        return 0; // if not not found any
+        return 0; 
     }
 
     // take the score and filter out any product with 0 points and sorts from highest to lowerst
@@ -146,7 +144,7 @@ function initSearchBar() {
                    role="option"
                    href="ProductDetailPage.html?id=${escapeHTML(p.id)}">
                     <div class="suggestion-thumb">
-                        <img src="${escapeHTML(p.images[0])}" alt="${escapeHTML(p.name)}" loading="lazy">
+                        <img src="${escapeHTML(getThumbSrc(p))}" alt="${escapeHTML(p.name)}" loading="lazy">
                     </div>
                     <div class="suggestion-info">
                         <span class="suggestion-name">${highlightMatch(p.name, query)}</span>

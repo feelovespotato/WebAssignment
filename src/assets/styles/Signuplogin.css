@@ -1,0 +1,230 @@
+
+/*section container*/
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:clamp(1.5rem, 1.5rem + 1vw, 8rem);
+    padding: clamp(2.5rem, 2.5rem + 1vw, 3rem);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    background-color: var(--offwhitebg);
+    color: var(--main-text);
+
+    border-radius: 1rem;
+    border: 1px solid var(--input-border);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+/*label*/
+label {
+    font-size: clamp(0.875rem, 0.875rem + 1vw, 1.2rem);
+    font-weight: 700;
+    color: var(--redtext);
+    margin-bottom: clamp(0.6rem , 0.6rem + 1vw, 1rem);
+}
+/*input container*/
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    padding: clamp(0.8rem, 0.8rem + 1vw, 1rem);
+    border-radius: 14px;
+    font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+    background-color: var(--input-background);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    margin-bottom: clamp(1rem, 1rem + 1vw, 1.5rem);
+}
+/*placeholder*/
+input::placeholder {
+    color: var(--text);
+    opacity: 0.5;
+}
+/*user click into the input*/
+input:focus {
+    outline: none;
+    border-color: var(--redborder);
+    box-shadow: 0 0 8px rgba(243, 154, 30, .15);
+}
+
+/*overwrite global solidbutton size*/
+.solidbutton{
+    width: 100%;
+    margin-top: clamp(0.8rem, 0.8rem + 1vw , 1.2rem);
+}
+/*login sign up option below*/
+.authFooter {
+    text-align: center;
+    margin-top: clamp(1rem, 1.5vw, 1.5rem);
+    font-size: clamp(0.875rem, 0.875rem + 1vw, 1.2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+/* wording to login/ sign up*/
+.authFooter a {
+    color: var(--redbutton);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.4s ease;
+
+}
+.authFooter a:hover {
+    text-decoration: underline;
+}
+
+
+.passwordContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: clamp(1rem, 1rem + 1vw, 1.5rem);
+}
+/*cancel thw input there is bug here*/
+.passwordContainer input {
+    width: 100%;
+    padding: 15px 45px 15px 15px;
+    margin-bottom: 0;
+}
+/*for the eye font*/
+.passwordContainer i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--main-text);
+    transition: 0.4s;
+}
+.passwordContainer i:hover {
+    color: var(--redbutton);
+}
+
+.forgot {
+    display: block;
+    text-align: right;
+    margin-bottom: clamp(1rem,1rem + 1vw, 2rem);
+    text-decoration: none;
+    font-size: clamp(0.8rem, 0.8rem + 1vw, 1rem );
+    font-weight: 600;
+}
+ 
+.forgot:hover {
+    text-decoration: underline;
+    color:var(--redbutton);
+}
+ 
+/*remember my id checkbox row*/
+.remember {
+    display: flex;
+    align-items: center;
+    color: var(--main-text);
+    font-size: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+}
+ 
+.remember input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    
+}
+ /*forgot password section contaienr*/
+.sectioncontainer{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+
+}
+/*the stape text*/
+.stepindicator{
+    margin-bottom: clamp(1rem, 1rem + 1vw , 1.2rem);
+}
+ 
+.accountMessage {
+    margin-bottom: 10px;
+ 
+    color: var(--secondary-text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+ 
+.accountMessage strong {
+    color: var(--main-text);
+}
+/*requirement container*/
+.passwordRequirements {
+    padding: clamp(0.6rem, 0.6rem + 1vw , 1rem);
+ 
+    background-color: var(--input-background);
+ 
+    border: 1px solid var(--input-border);
+    border-radius: 14px;
+}
+ /*overwrite size of global*/
+.category-tag{
+    width:100%;
+    margin-top: clamp(0.6rem, 0.6rem + 1vw, 1rem);
+}
+
+.returnToLogin {
+    margin-top: 24px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+ 
+    color: var(--pokka-yellow);
+ 
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+ 
+.returnToLogin:hover {
+    text-decoration: underline;
+}
+ 
+.resetSuccess {
+    text-align: center;
+
+}
+ 
+/*to make the logo*/
+.success {
+    width: 75px;
+    height: 75px;
+ 
+    margin: 0 auto 25px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+    background-color: #1c9b54;
+    color: var(--bg);
+ 
+    border-radius: 50%;
+ 
+    font-size: 32px;
+}
+ 
+.resetSuccess a {
+    color:var(--bg);
+}

@@ -1,152 +1,148 @@
-<section class="container">
+<section class="container animate-fade-up">
 
-    <div class="signup">
+    <header>
+        <h1>
+            Join the Pokka Family to enjoy endless benefits!
+        </h1>
 
-        <header>
-            <h2>
-                Join the Pokka Family to enjoy endless benefits!
-            </h2>
+        <p class="subtitle">
+            Please fill up the information below to register
+            your Pokka account.
+        </p>
+    </header>
 
-            <p class="description">
-                Please fill up the information below to register
-                your Pokka account.
-            </p>
-        </header>
+    <form
+        id="signupFormElement"
+        action="#"
+        method="post"
+    >
 
-        <form
-            id="signupFormElement"
-            action="#"
-            method="post"
+        <label for="email">Email Address</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email Address"
+            required
         >
 
-            <label for="email">Email Address</label>
+
+        <label for="firstName">First Name</label>
+
+        <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="First Name"
+            required
+        >
+
+
+        <label for="lastName">Last Name</label>
+
+        <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Last Name"
+            required
+        >
+
+
+        <label for="mobileNumber">Mobile Number</label>
+
+        <input
+            type="tel"
+            id="mobileNumber"
+            name="mobileNumber"
+            placeholder="Mobile Number"
+            required
+        >
+
+
+        <label for="password">Password</label>
+
+        <div class="passwordContainer">
 
             <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email Address"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                maxlength="8"
                 required
             >
 
+            <i
+                class="fa-solid fa-eye-slash"
+                id="togglePassword"
+                role="button"
+                aria-label="Show or hide password"
+            ></i>
 
-            <label for="firstName">First Name</label>
+        </div>
+
+
+        <label for="confirmPassword">
+            Confirm Password
+        </label>
+
+        <div class="passwordContainer">
 
             <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your Password"
+                maxlength="8"
                 required
             >
 
+            <i
+                class="fa-solid fa-eye-slash"
+                id="toggleConfirmPassword"
+                role="button"
+                aria-label="Show or hide confirmed password"
+            ></i>
 
-            <label for="lastName">Last Name</label>
-
-            <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-                required
-            >
+        </div>
 
 
-            <label for="mobileNumber">Mobile Number</label>
+        <label for="pin">
+            A 4-digit Unique PIN Code
+        </label>
 
-            <input
-                type="tel"
-                id="mobileNumber"
-                name="mobileNumber"
-                placeholder="Mobile Number"
-                required
-            >
-
-
-            <label for="password">Password</label>
-
-            <div class="passwordContainer">
-
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    maxlength="8"
-                    required
-                >
-
-                <i
-                    class="fa-solid fa-eye-slash"
-                    id="togglePassword"
-                    role="button"
-                    aria-label="Show or hide password"
-                ></i>
-
-            </div>
+        <input
+            type="text"
+            id="pin"
+            name="pin"
+            placeholder="A 4-digit PIN. Yours alone."
+            minlength="4"
+            maxlength="4"
+            pattern="[0-9]{4}"
+            inputmode="numeric"
+            oninput="this.value=this.value.replace(/[^0-9]/g, '')"
+            required
+        >
 
 
-            <label for="confirmPassword">
-                Confirm Password
-            </label>
+        
 
-            <div class="passwordContainer">
+        <button
+            type="submit"
+            class="solidbutton"
+        >
+            Submit
+        </button>
 
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirm your Password"
-                    maxlength="8"
-                    required
-                >
+        
 
-                <i
-                    class="fa-solid fa-eye-slash"
-                    id="toggleConfirmPassword"
-                    role="button"
-                    aria-label="Show or hide confirmed password"
-                ></i>
+    </form>
 
-            </div>
-
-
-            <label for="pin">
-                A 4-digit Unique PIN Code
-            </label>
-
-            <input
-                type="text"
-                id="pin"
-                name="pin"
-                placeholder="A 4-digit PIN. Yours alone."
-                minlength="4"
-                maxlength="4"
-                pattern="[0-9]{4}"
-                inputmode="numeric"
-                oninput="this.value=this.value.replace(/[^0-9]/g, '')"
-                required
-            >
-
-
-            <div class="Signup-options">
-
-                <button
-                    type="submit"
-                    class="SignupButton"
-                >
-                    Submit
-                </button>
-
-            </div>
-
-        </form>
-
-        <p class="SignupFooter">
-            Already have an account?
-            <a href="LoginPage.html">Login</a>
-        </p>
-
-    </div>
+    <p class="authFooter">
+        Already have an account?
+        <a href="LoginPage.html">Login</a>
+    </p>
 
 </section>

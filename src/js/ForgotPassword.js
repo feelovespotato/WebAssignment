@@ -5,27 +5,19 @@ let validatedAccountEmail = "";
 document.addEventListener("DOMContentLoaded", async function () {
     try {
         await Promise.all([
-            loadComponent(
-                "navbarContainer",
-                "../components/layout/navbar.html"
-            ),
 
             loadComponent(
                 "forgotContainer",
                 "../components/Signup&Login/ForgotPasswordForm.html"
             ),
 
-            loadComponent(
-                "footerContainer",
-                "../components/layout/footer.html"
-            )
+            
         ]);
 
         createDemoAccount();
 
         initialiseForgotPasswordPage();
-        initialiseTheme();
-        initialiseFooter();
+        observeAnimations();
 
         console.log("Forgot password page loaded successfully.");
     } catch (error) {
@@ -152,9 +144,6 @@ function initialiseForgotPasswordPage() {
 }
 
 
-/* =================================
-   STEP 1: VALIDATE EMAIL
-================================= */
 
 function validateAccountEmail(event) {
     event.preventDefault();
@@ -429,73 +418,3 @@ function clearMessage(element) {
     );
 }
 
-function initialiseTheme() {
-    const themeButton =
-        document.getElementById("WebsiteTheme");
-
-    if (!themeButton) {
-        console.error(
-            "Theme button was not found."
-        );
-
-        return;
-    }
-
-    const savedTheme =
-        localStorage.getItem("theme");
-
-    const startingTheme =
-        savedTheme === "dark"
-            ? "dark"
-            : "light";
-
-    setTheme(startingTheme);
-
-    themeButton.addEventListener(
-        "click",
-        function () {
-            const currentTheme =
-                document.documentElement.dataset.theme;
-
-            const nextTheme =
-                currentTheme === "dark"
-                    ? "light"
-                    : "dark";
-
-            setTheme(nextTheme);
-        }
-    );
-}
-
-
-function setTheme(theme) {
-    document.documentElement.setAttribute(
-        "data-theme",
-        theme
-    );
-
-    localStorage.setItem(
-        "theme",
-        theme
-    );
-
-    const themeButton =
-        document.getElementById("WebsiteTheme");
-
-    if (themeButton) {
-        themeButton.textContent =
-            theme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode";
-    }
-}
-
-function initialiseFooter() {
-    const footerYear =
-        document.getElementById("footerYear");
-
-    if (footerYear) {
-        footerYear.textContent =
-            new Date().getFullYear();
-    }
-}

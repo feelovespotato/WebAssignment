@@ -1,29 +1,31 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        await Promise.all([
-            loadComponent(
-                "navbarContainer",
-                "../components/layout/navbar.html"
-            ),
-
-            loadComponent(
+        if (document.getElementById("signupContainer")) {
+            await loadComponent(
                 "signupContainer",
                 "../components/Signup&Login/SignupForm.html"
-            ),
+            );
 
-            loadComponent(
-                "footerContainer",
-                "../components/layout/footer.html"
-            )
-        ]);
+            initialiseSignupPage();
+        } else if (document.getElementById("loginContainer")) {
+            await loadComponent(
+                "loginContainer",
+                "../components/Signup&Login/LoginForm.html"
+            );
 
-        initialiseSignupPage();
-        initialiseTheme();
-        initialiseFooter();
+            initialiseLoginPage();
+        } else {
+            console.error(
+                "Neither #signupContainer nor #loginContainer was found on this page."
+            );
+            return;
+        }
 
-        console.log("All components loaded successfully.");
+        observeAnimations();
+
+        console.log("Auth page loaded successfully.");
     } catch (error) {
-        console.error("Signup page loading error:", error);
+        console.error("Auth page loading error:", error);
     }
 });
 
@@ -102,6 +104,46 @@ function initialiseSignupPage() {
 
 
 /* =========================
+   LOGIN FORM
+========================= */
+
+function initialiseLoginPage() {
+    setupPasswordToggle(
+        "password",
+        "togglePassword"
+    );
+
+    const loginForm =
+        document.getElementById("loginFormElement");
+
+    if (!loginForm) {
+        console.error("Login form was not found.");
+        return;
+    }
+
+    loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value;
+
+        const password =
+            document.getElementById("password").value;
+
+        const pin =
+            document.getElementById("pin").value;
+
+        if (pin.length !== 4) {
+            alert("Your PIN must contain exactly 4 digits.");
+            return;
+        }
+
+        alert("Login successful!");
+    });
+}
+
+
+/* =========================
    PASSWORD TOGGLE
 ========================= */
 
@@ -137,74 +179,4 @@ function setupPasswordToggle(inputId, toggleId) {
             !passwordIsHidden
         );
     });
-}
-
-
-/* =========================
-   LIGHT AND DARK MODE
-========================= */
-
-function initialiseTheme() {
-    const themeButton =
-        document.getElementById("WebsiteTheme");
-
-    if (!themeButton) {
-        console.error("Theme button was not found.");
-        return;
-    }
-
-    const savedTheme =
-        localStorage.getItem("theme");
-
-    const startingTheme =
-        savedTheme === "dark" ? "dark" : "light";
-
-    setTheme(startingTheme);
-
-    themeButton.addEventListener("click", function () {
-        const currentTheme =
-            document.documentElement.dataset.theme;
-
-        const nextTheme =
-            currentTheme === "dark"
-                ? "light"
-                : "dark";
-
-        setTheme(nextTheme);
-    });
-}
-
-
-function setTheme(theme) {
-    document.documentElement.setAttribute(
-        "data-theme",
-        theme
-    );
-
-    localStorage.setItem("theme", theme);
-
-    const themeButton =
-        document.getElementById("WebsiteTheme");
-
-    if (themeButton) {
-        themeButton.textContent =
-            theme === "dark"
-                ? "Switch to light mode"
-                : "Switch to dark mode";
-    }
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-function initialiseFooter() {
-    const footerYear =
-        document.getElementById("footerYear");
-
-    if (footerYear) {
-        footerYear.textContent =
-            new Date().getFullYear();
-    }
 }
