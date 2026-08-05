@@ -228,3 +228,8 @@ input:focus {
 .resetSuccess a {
     color:var(--bg);
 }
+
+
+.hidden { 
+    display: none; 
+}

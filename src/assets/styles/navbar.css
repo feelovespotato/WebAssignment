@@ -234,10 +234,12 @@
 
 @media(max-width:1200px){
  
-    .navbar{
+    .navbar {
         grid-template-columns: 1fr auto;
         padding: 0 20px;
-        height:100px;
+        height: 100px;
+        position: relative; 
+        z-index: 1000; 
     }
  
     .hamburger{
@@ -253,9 +255,10 @@
         width:100%;
         max-height:0;
         overflow:hidden;
-        background: var(--navbar-background);
+        background-color: var(--bg);
         box-shadow:0 10px 20px rgba(0,0,0,.1);
         transition: max-height .3s ease;
+        z-index: 1000;
     }
  
     .navMenu.active{

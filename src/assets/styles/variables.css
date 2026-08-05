@@ -68,7 +68,8 @@
 
   --orange: #F39A1E;
   --orange-hover: #D98300;
-  --card-title: #252525
+  --card-title: #252525;
+  --portfoliobg:#F3D6C3;
 }
 
 /*For light mode and dark mode*/
@@ -126,7 +127,7 @@ html[data-theme="dark"] {
     --brownboardbg: #2e2a24;
     --purplecardbg: #372a4a;
     --bluecardbg: #1e3a4a;
-    --coffeebg: #3a2c22;
+    --portfoliobg: #3a2c22;
 }
 
 [data-theme="dark"] .subtitle {

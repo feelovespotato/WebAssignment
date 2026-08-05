@@ -5,7 +5,7 @@ if (!footerContainer) {
 } else {
     // Starts from /js/footer.js and finds /components/layout/footer.html
     const footerURL = new URL(
-        "../components/layout/footer.html",
+        "../../components/layout/footer.html",
         document.currentScript.src
     );
 

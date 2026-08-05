@@ -81,7 +81,7 @@ if (!navbarContainer) {
     console.error('Missing <div id="navbar"></div>');
 } else {
     const navbarURL = new URL(
-        "../components/layout/navbar.html",
+        "../../components/layout/navbar.html",
         document.currentScript.src
     );
 
