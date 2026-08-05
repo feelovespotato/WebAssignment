@@ -21,6 +21,7 @@ function initCerts() {
     desc: 'This is a certificate for completing the Sunway FIST+ program, demonstrating my introduction to Sunway University & College and its assignments, as well as my adaptability.', 
     image: '../assets/images/Ryan/SunwayFIST.png', pdf: '../assets/images/Ryan/SunwayFIST.pdf' },
 ];
+
   let current = 0;
 
   const frame = document.getElementById('CertificationFrame');
@@ -29,7 +30,7 @@ function initCerts() {
   const pdfLink = document.getElementById('CertificationPDFLink');
   const dotsContainer = document.getElementById('CertificationDots');
 
-  certs.forEach((_, i) => {
+  certs.forEach((_, i) => { /*dot for each certification, allowing users to navigate between them*/
     const dot = document.createElement('span');
     dot.className = 'CertificationDot' + (i === 0 ? ' CertificationActiveDot' : '');
     dot.addEventListener('click', () => { current = i; updateCert(); });
@@ -56,6 +57,7 @@ function initCerts() {
     }, 250);
   }
 
+   /* forward and backward navigation */
   document.getElementById('PreviousCert').addEventListener('click', () => {
     current = (current - 1 + certs.length) % certs.length;
     updateCert();

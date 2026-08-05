@@ -1,39 +1,22 @@
-loadComponent('navbar', '../components/layout/navbar.html').then(() => {
-  const toggleBtn = document.getElementById('WebsiteTheme');
-  const root = document.documentElement;
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  root.setAttribute('data-theme', savedTheme);
-  toggleBtn.textContent = savedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-
-  toggleBtn.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    toggleBtn.textContent = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-  });
-});
-
-loadComponent('footer', '../components/layout/footer.html');
-
+/* loads up the video and the other components on the homepage, and sets up the event listeners for the video and animations */
 loadComponent('MainDisplay', '../components/homepage/MainDisplay.html').then(() => {
   const video = document.getElementById('MainVideo');
-  observeAnimations();
+  observeAnimations(); /*  checks for animations */
   video.addEventListener('loadedmetadata', () => {
     video.addEventListener('timeupdate', () => {
       if (video.currentTime >= video.duration - 1) {
-        video.pause();
+        video.pause(); /*  freeze frame the video before it ends */ 
       }
     });
   });
 });
 
 loadComponent('DrinkCategories', '../components/homepage/DrinkCategories.html').then(() => {
-  initCarousel();
-  observeAnimations();
+  initCarousel();  /*  initializes the drink category carousel */ 
+  observeAnimations();  /*  checks for animations */ 
 });
 
 loadComponent('CustomerReviews', '../components/homepage/CustomerReviews.html').then(() => {
-  initHomeRatings();
-  observeAnimations();
+  initHomeRatings(); /*  initializes the home ratings */ 
+  observeAnimations(); /*  checks for animations */ 
 });

@@ -1,5 +1,6 @@
 document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
 
+/*loading the stuff for the page */
 document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([
     loadComponent('RyanHeroSlot', '../components/portfolio/Ryan/hero.html'),

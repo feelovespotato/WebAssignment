@@ -1,3 +1,10 @@
+/*Property that makes the navbar sticky*/
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
 /*the container for the navbar*/
 .navbar{
     width:100%;

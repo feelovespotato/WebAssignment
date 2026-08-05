@@ -1,4 +1,4 @@
-/* universal box-sizing rule */
+/* ============================ Start of Universal Section ============================ */
 * {
   box-sizing: border-box;
 }
@@ -27,14 +27,21 @@ header {
   z-index: 999;
 }
 
+/* ============================  End of Universal Section ============================ */
+
+/* ============================  Start of Logo Section ============================ */
 #logo img {
   width: 100px;
   height: auto;
 }
 
+/* ============================  End of Logo Section ============================ */
+
+/* ============================  Start of Main Section ============================ */
+
 #MainDisplay {
   position: relative;
-  height: 100vh;
+  height: 100vh; /* viewport height so it will take up the full height of the screen */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -104,23 +111,23 @@ header {
   color: var(--textwhite);
 }
 
+
+/* ============================  Animation Section ============================ */
+
+/* Fade-up animation for elements */
 .animate-fade-up {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+/* Fade-up animation for elements, but for when they are in view */
 .animate-fade-up.in-view {
   opacity: 1;
   transform: translateY(0);
 }
 
-#DrinkCategories h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  animation: fadeSlideDown 0.8s ease forwards;
-  color: var(--orange);
-}
+/* creating the slidedown animation  */
 
 @keyframes fadeSlideDown {
   from {
@@ -133,7 +140,30 @@ header {
   }
 }
 
-#drink-carousel {
+
+/* ============================  End of Animation Section ============================ */
+
+
+
+
+/* ============================  Start of Drink Categories Section ============================ */
+
+#DrinkCategories h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  animation: fadeSlideDown 0.8s ease forwards;
+  color: var(--redtext);
+}
+
+/* the text content for drink categories is being styled by the carousel later in*/
+
+/* ============================  End of Drink Categories Section ============================ */
+
+
+
+/* ============================  Start of Drink Carousel Section ============================ */
+
+#DrinkCarousel {
   position: relative;
   width: 100%;
   height: 500px;
@@ -144,7 +174,7 @@ header {
   justify-content: center;
 }
 
-#carousel-content {
+#CarouselContent {
   position: absolute;
   bottom: 30px;
   left: 0;
@@ -160,42 +190,42 @@ header {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-#carousel-bg {
+#CarouselBackground {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: cover; /* scales the image to cover the container */
   background-position: center;
   z-index: 0;
   transition: opacity 0.4s ease;
 }
 
-#carousel-content h3 {
+#CarouselContent h3 {
   font-size: 2rem;
   margin-bottom: 12px;
   color: var(--textwhite);
 }
 
-#carousel-content p {
+#CarouselContent p {
   font-size: 1rem;
   margin-bottom: 16px;
   color: var(--textwhite);
 }
 
-#carousel-content a {
-  color: var(--orange);
+#CarouselContent a {
+  color: var(--redtext);
   font-weight: 700;
   text-decoration: none;
 }
 
-.carousel-arrow {
+.CarouselArrows {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  background: var(--orange);
+  background: var(--redbutton);
   border: none;
   color: var(--textwhite);
   font-size: 1.2rem;
@@ -209,22 +239,26 @@ header {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.carousel-arrow:hover {
-  background: var(--orange-hover);
+.CarouselArrows:hover {
+  background: var(--hoverredbutton);
   transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-arrow.left {
+.CarouselArrows.left {
   left: 20px;
 }
 
-.carousel-arrow.right {
+.CarouselArrows.right {
   right: 20px;
 }
 
+/* ============================  End of Drink Carousel Section ============================ */
+
+
+/* ============================  Start of Customer Reviews Section ============================ */
 #CustomerReviews h2 {
   text-align: center;
-  color: var(--orange);
+  color: var(--redtext);
   margin-bottom: 32px;
 }
 
@@ -238,7 +272,7 @@ header {
 
 #CustomerReviews .comment-card {
   background-color: var(--offwhitebg);
-  border: 1px solid var(--orange);
+  border: 1px solid var(--redtext);
   border-radius: 12px;
   padding: 24px;
   filter: brightness(1.2);
@@ -246,12 +280,12 @@ header {
 
 [data-theme="dark"] #CustomerReviews .comment-card {
   background-color: var(--offwhitebg);
-  border: 1px solid var(--orange);
+  border: 1px solid var(--redtext);
 }
 
 #CustomerReviews a {
   display: inline-block;
-  background-color: var(--orange);
+  background-color: var(--redbutton);
   color: var(--textwhite);
   padding: 12px 26px;
   border-radius: 50px;
@@ -262,6 +296,8 @@ header {
 }
 
 #CustomerReviews a:hover {
-  background-color: var(--orange-hover);
+  background-color: var(--hoverredbutton);
   transform: translateY(-4px);
 }
+
+/* ============================  End of Customer Reviews Section ============================ */

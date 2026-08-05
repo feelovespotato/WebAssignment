@@ -10,8 +10,8 @@ function initCarousel() {
   let current = 0;
 
   function updateCarousel(direction = 1) {
-    const content = document.getElementById('carousel-content');
-    const bg = document.getElementById('carousel-bg');
+    const content = document.getElementById('CarouselContent');
+    const bg = document.getElementById('CarouselBackground');
 
     content.style.opacity = '0';
     content.style.transform = `translateX(${direction * 60}px)`;
@@ -34,6 +34,7 @@ function initCarousel() {
     }, 400);
   }
 
+  /* Event listeners for navigation buttons forward and backward */
   document.getElementById('PreviousDrink').addEventListener('click', () => {
     current = (current - 1 + drinks.length) % drinks.length;
     updateCarousel(-1);
