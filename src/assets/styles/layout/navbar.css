@@ -6,151 +6,251 @@
 }
 
 /*the container for the navbar*/
-.navbar{
-    width:100%;
-    height:100px;
+.navbar {
+    width: 100%;
+    height: 100px;
     padding: 0 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
-    top:0;
+    top: 0;
     background: var(--navbar-background);
     color: var(--navbar-text);
     backdrop-filter: blur(15px);
-    box-shadow: 0 5px 20px rgba(0,0,0,.08);
-    z-index:999;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+    z-index: 999;
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
 
-/* container for all 3 main sections (links, cart/theme, buttons) */
-.navMenu{
-    display:contents;
-    justify-content:space-between;
+/*navbar logo*/
+.navbarLogo,
+.navbarLogo:visited {
+    text-decoration: none;
+    color: var(--redbutton);
+    font-size: 2.6rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0px;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 }
+
+.navbarLogo:hover {
+    color: var(--hoverredbutton);
+    transform: translateY(-4px);
+}
+
+/* container for all 3 main sections (links, cart/theme, buttons) */
+.navMenu {
+    display: contents;
+    justify-content: space-between;
+}
+
 /*container for 3 container navlinks, functionallinks and navbutton*/
-.navLinks{
-    display:flex;
-    list-style:none;
+.navLinks {
+    display: flex;
+    list-style: none;
     gap: clamp(1.5rem, 1.5rem + 1vw, 3rem);
 }
+
 /*for each navigation pages*/
 .navLinks a,
-.navLinks a:visited{
-    text-decoration:none;
+.navLinks a:visited {
+    text-decoration: none;
     color: var(--navbar-text);
-    font-weight:600;
-    font-size:clamp(0.6rem, 0.6rem + 1vw, 1.2rem );
-    position:relative;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 0.6rem + 1vw, 1.2rem);
+    position: relative;
     display: inline-block;
     transition: 0.4s;
 }
 
-.navLinks a:hover{
+.navLinks a:hover {
     color: var(--redborderbutton);
 }
 
 /* hover bounce animation */
 .navLinks li:hover a {
-  animation: bounce .35s ease;
+    animation: bounce .35s ease;
 }
 
-@keyframes bounce{
-    0%{ transform:translateY(0); }
-    40%{ transform:translateY(-8px); }
-    70%{ transform:translateY(-4px); }
-    100%{ transform:translateY(0); }
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-8px);
+    }
+
+    70% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* underline bar, appears on hover */
-.navLinks a::after{
-    content:"";
-    position:absolute;
-    width:0;
-    height:3px;
+.navLinks a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
     background-color: var(--redborderbutton);
-    left:50%;
-    bottom:-8px;
-    border-radius:50px;
-    transition:.3s;
-    transform:translateX(-50%);
+    left: 50%;
+    bottom: -8px;
+    border-radius: 50px;
+    transition: .3s;
+    transform: translateX(-50%);
 }
+
 /*the line shows when hover*/
-.navLinks a:hover::after{
-    width:100%;
+.navLinks a:hover::after {
+    width: 100%;
 }
 
 /*login and sign up button*/
-.navButtons{
-    display:flex;
-    align-items:center;
-    gap:clamp(1rem, 1rem + 1vw, 2rem);
+.navButtons {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 1rem + 1vw, 2rem);
     justify-self: end;
 }
+
 /*the login button text*/
 .loginButton,
-.loginButton:visited{
-    text-decoration:none;
+.loginButton:visited {
+    text-decoration: none;
     color: var(--navbar-text);
-    font-weight:600;
-    transition:.3s;
+    font-weight: 600;
+    transition: .3s;
 }
+
 /*login button when hover*/
-.loginButton:hover{
+.loginButton:hover {
     color: var(--redborderbutton);
-    transform:translateY(-4px);
+    transform: translateY(-4px);
 }
+
 /*sign up button*/
 .signupButton,
-.signupButton:visited{
-    text-decoration:none;
-    color:var(--bg);
+.signupButton:visited {
+    text-decoration: none;
+    color: var(--bg);
     background-color: var(--redbutton);
-    padding:14px 30px;
-    border-radius:50px;
-    font-weight:600;
-    transition:.3s;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: .3s;
 }
+
 /*sign up button when hover*/
-.signupButton:hover{
-    background-color:var(--hoverredbutton);
-    transform:translateY(-4px);
-    box-shadow: 0 5px 20px rgba(0,0,0,.08);;
+.signupButton:hover {
+    background-color: var(--hoverredbutton);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+    ;
 }
 
 
-.navEnd{
-    display:flex;
-    align-items:center;
-    gap:clamp(1rem, 1rem + 1vw, 2rem);
+.navEnd {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 1rem + 1vw, 2rem);
     justify-self: end;
 }
 
-.functionalLinks{
-    display:flex;
-    align-items:center;
-    gap:clamp(1rem, 1rem + 1vw, 2rem);
+.functionalLinks {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 1rem + 1vw, 2rem);
 }
 
-/*dark mode toggle button*/
-.category-tag {
-  font-size: clamp(0.6rem , 0.6rem + 0.8vw , 1rem);
-  padding: 1rem 1.2rem;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+/* ── Dark Mode Pill Toggle ── */
+.themeToggle {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
-.category-tag:hover {
-  background-color: var(--redbutton);
-  color:var(--bg);
+
+.themeToggle__track {
+    display: flex;
+    align-items: center;
+    width: 56px;
+    height: 28px;
+    background-color: #c8c8c8;
+    border-radius: 50px;
+    padding: 3px;
+    transition: background-color 0.3s ease;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2);
 }
-.category-tag:active {
-  transform: scale(0.97);
+
+/* thumb slides across the track */
+.themeToggle__thumb {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .25);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.themeToggle__icon {
+    position: absolute;
+    font-size: 11px;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* light mode: show sun, hide moon */
+.themeToggle__icon--light {
+    color: #f59e0b;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.themeToggle__icon--dark {
+    color: #6366f1;
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* dark mode active state — applied via JS data-theme */
+[data-theme="dark"] .themeToggle__track {
+    background-color: var(--redbutton);
+}
+
+[data-theme="dark"] .themeToggle__thumb {
+    transform: translateX(28px);
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .themeToggle__icon--light {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+[data-theme="dark"] .themeToggle__icon--dark {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /*cart button*/
 .cartButton,
-.cartButton:visited{
+.cartButton:visited {
     position: relative;
     width: 55px;
     height: 55px;
@@ -165,12 +265,13 @@
     font-size: 18px;
     transition: 0.3s;
 }
+
 /*the cart font*/
 .cartButton i {
-    color: var(--redbutton); 
-    line-height: 1;       
+    color: var(--redbutton);
+    line-height: 1;
     position: relative;
-    top: 1px  
+    top: 1px
 }
 
 .cartButton:hover {
@@ -180,7 +281,7 @@
 }
 
 .cartButton:hover i {
-    color:var(--bg);
+    color: var(--bg);
 }
 
 #cartCount {
@@ -202,124 +303,126 @@
 
 
 /*the nav bar will collapse when reached the size*/
-.hamburger{
-    display:none;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:5px;
-    width:32px;
-    height:32px;
-    background:none;
-    border:none;
-    padding:0;
-    cursor:pointer;
-    justify-self:end;
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    justify-self: end;
 }
- 
-.hamburger span{
-    display:block;
-    width:100%;
-    height:3px;
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
     background-color: var(--navbar-text);
-    border-radius:2px;
+    border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
- 
+
 /* turns into an X when the menu is open */
-.hamburger.active span:nth-child(1){
+.hamburger.active span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
-.hamburger.active span:nth-child(2){
-    opacity:0;
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
 }
-.hamburger.active span:nth-child(3){
+
+.hamburger.active span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
 }
 
 
 
-@media(max-width:1200px){
- 
+@media(max-width:1200px) {
+
     .navbar {
         grid-template-columns: 1fr auto;
         padding: 0 20px;
         height: 100px;
-        position: relative; 
-        z-index: 1000; 
+        position: relative;
+        z-index: 1000;
     }
- 
-    .hamburger{
-        display:flex;
+
+    .hamburger {
+        display: flex;
     }
- 
-    .navMenu{
-        display:flex;
-        flex-direction:column;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        max-height:0;
-        overflow:hidden;
+
+    .navMenu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
         background-color: var(--bg);
-        box-shadow:0 10px 20px rgba(0,0,0,.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
         transition: max-height .3s ease;
         z-index: 1000;
     }
- 
-    .navMenu.active{
-        max-height:600px;
+
+    .navMenu.active {
+        max-height: 600px;
     }
- 
-    .navLinks{
-        flex-direction:column;
-        gap:0;
-        padding:10px 25px 0;
+
+    .navLinks {
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 25px 0;
     }
- 
-    .navLinks li{
-        width:100%;
+
+    .navLinks li {
+        width: 100%;
     }
- 
-    .navLinks a{
-        display:block;
-        padding:14px 0;
-        
+
+    .navLinks a {
+        display: block;
+        padding: 14px 0;
+
     }
- 
-    .navLinks a::after{
-        display:none;
+
+    .navLinks a::after {
+        display: none;
     }
 
     .navEnd {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding: 25px 25px; 
+        padding: 25px 25px;
         justify-content: center;
     }
- 
-    .functionalLinks{
-        justify-content:space-between;
+
+    .functionalLinks {
+        justify-content: space-between;
         order: 1;
     }
- 
-    .navButtons{
-        flex-direction:column;
-        width:100%;
-        gap:12px;
+
+    .navButtons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
         order: 2;
     }
- 
+
     .loginButton,
-    .signupButton{
-        text-align:center;
-        width:100%;
+    .signupButton {
+        text-align: center;
+        width: 100%;
     }
- 
-    .cartButton{
-        align-self:flex-start;
+
+    .cartButton {
+        align-self: flex-start;
     }
- 
+
 }

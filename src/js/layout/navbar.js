@@ -9,15 +9,6 @@ try {
 }
 root.setAttribute("data-theme", savedTheme);
 
-function updateButtonText(theme) {
-    const toggleBtn = document.getElementById("WebsiteTheme");
-    if (!toggleBtn) return;
-    toggleBtn.textContent =
-        theme === "dark"
-            ? "Switch to light mode"
-            : "Switch to dark mode";
-}
-
 function closeMenu() {
     const navMenu = document.getElementById("navMenu");
     const hamburgerBtn = document.getElementById("hamburgerBtn");
@@ -38,14 +29,13 @@ document.addEventListener("click", (e) => {
         const current = root.getAttribute("data-theme");
         const next = current === "dark" ? "light" : "dark";
         root.setAttribute("data-theme", next);
-        
+
         try {
             localStorage.setItem("theme", next);
         } catch (error) {
             console.warn("Could not save theme to localStorage.");
         }
-        
-        updateButtonText(next);
+
         return;
     }
 
@@ -98,7 +88,6 @@ if (!navbarContainer) {
         })
         .then(data => {
             navbarContainer.innerHTML = data;
-            updateButtonText(root.getAttribute("data-theme"));
         })
         .catch(error => {
             console.error("NAVBAR ERROR:", error);

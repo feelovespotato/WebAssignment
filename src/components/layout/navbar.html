@@ -1,14 +1,10 @@
 <nav class="navbar">
 
-
-    <button
-        type="button"
-        id="hamburgerBtn"
-        class="hamburger"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="navMenu"
-    >
+    <a href="../pages/HomePage.html" class="navbarLogo">
+        DRINKS
+    </a>
+    <button type="button" id="hamburgerBtn" class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false"
+        aria-controls="navMenu">
         <span></span>
         <span></span>
         <span></span>
@@ -35,37 +31,38 @@
 
         <div class="navEnd ">
 
-        <div class="navButtons">
+            <div class="navButtons">
 
-            <a href="../pages/LoginPage.html" class="loginButton">
-                Login
-            </a>
+                <a href="../pages/LoginPage.html" class="loginButton">
+                    Login
+                </a>
 
-            <a href="../pages/SignupPage.html" class="signupButton">
-                Signup
-            </a>
+                <a href="../pages/SignupPage.html" class="signupButton">
+                    Signup
+                </a>
 
+            </div>
+
+            <div class="functionalLinks">
+                <a href="../pages/cart.html" class="cartButton" aria-label="Shopping cart">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span id="cartCount">0</span>
+                </a>
+
+                <button type="button" id="WebsiteTheme" class="themeToggle" aria-label="Toggle dark mode">
+                    <span class="themeToggle__track">
+                        <span class="themeToggle__thumb">
+                            <i class="fa-solid fa-sun themeToggle__icon themeToggle__icon--light"></i>
+                            <i class="fa-solid fa-moon themeToggle__icon themeToggle__icon--dark"></i>
+                        </span>
+                    </span>
+                </button>
+            </div>
         </div>
 
-        <div class="functionalLinks">
-            <a href="../pages/cart.html" class="cartButton" aria-label="Shopping cart">
-                <i class="fa-solid fa-shopping-cart"></i>
-                <span id="cartCount">0</span>
-            </a>
-
-            <button
-                type="button"
-                id="WebsiteTheme"
-                class="category-tag"
-            >
-                Switch to dark mode
-            </button>
-        </div>
-        </div>
-        
 
     </div>
 
-    
+
 
 </nav>
