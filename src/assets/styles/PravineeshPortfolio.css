@@ -58,6 +58,12 @@ textarea {
     font: inherit;
 }
 
+.componentError {
+    padding: 20px;
+    color: var(--dangerColor);
+    text-align: center;
+}
+
 /*Shared Section Styles*/
 
 .aboutMe,
@@ -101,9 +107,9 @@ textarea {
 .portfolioHeader {
     width: 100%;
     min-height: 85px;
-    padding: 0 7%;
+    padding: 0 3%;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 35px;
     position: sticky;
@@ -116,13 +122,15 @@ textarea {
 }
 
 .portfolioLogo {
-    color: var(--primaryColor);
+    justify-self: start;
+    color: var(--headingColor);
     font-size: 27px;
     font-weight: 700;
     text-decoration: none;
 }
 
 .portfolioNav {
+    justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,6 +203,7 @@ textarea {
 }
 
 .mobileMenuButton {
+    justify-self: end;
     width: 45px;
     height: 45px;
     display: none;
@@ -508,7 +517,7 @@ textarea {
     flex-grow: 1;
 }
 
-.projectCard .solidbutton {
+.projectCard .projectButton {
     margin: 0 24px 26px;
     padding: 12px 22px;
     align-self: flex-start;
@@ -523,7 +532,7 @@ textarea {
         transform 0.3s ease;
 }
 
-.projectCard .solidbutton:hover {
+.projectCard .projectButton:hover {
     background-color: var(--primaryHover);
     transform: translateY(-2px);
 }
