@@ -222,6 +222,10 @@
     justify-content: center;
 }
 
+.halfinvisibletext{
+    font-size: clamp(0.5rem, 0.9rem + 0.3vw, 1.5rem);
+}
+
 .span-small {
     grid-column: span 1;
     grid-row: span 2;
@@ -422,6 +426,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
     transform: rotate(-4deg);
     transition: transform 0.3s ease;
+    gap: clamp(1rem, 1rem + 1vw , 1.5rem);
 }
  
 /*transition for photo hover*/
@@ -443,6 +448,7 @@
     font-size: 1.5rem; 
     font-weight: 700;
     color: var(--title);
+    
 }
  
 .pin-caption {

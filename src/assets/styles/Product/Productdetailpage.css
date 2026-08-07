@@ -189,6 +189,7 @@
     font-size: clamp(1rem, 0.9rem + 0.2vw, 1.15rem);
     min-width: clamp(2rem, 2vw, 2.5rem);
     text-align: center;
+    color:var(--drinktitle);
 }
 
 /* reuse .solidbutton from global.css for the add-to-cart;

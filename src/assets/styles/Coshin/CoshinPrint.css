@@ -9,9 +9,10 @@ html[data-theme="dark"] {
     --title: #000 !important;
     --bg: #fff !important;
     --halfvisibletext: #333 !important;
-    --redtext: #000 !important;
+    
     --redborderbutton: #333 !important;
     --grayborder: #999 !important;
+    --drinktitle:var(--title) !important;
 }
 
 * {
@@ -35,6 +36,10 @@ section {
 .animate-fade-up {
     opacity: 1 !important;
     transform: none !important;
+}
+
+.subtitle{
+    color:var(--title) !important;
 }
 
 /*hide navbar - sticky positioning + interactive-only elements don't belong in print*/
@@ -199,7 +204,7 @@ a[href^="http"]:after {
 }
 /*same here*/
 .bento-item.span-tall .img-wrapper img {
-    max-height: 7cm !important;
+    max-height: 12cm !important;
     width: auto !important;
     max-width: 100% !important;
     object-fit: contain;

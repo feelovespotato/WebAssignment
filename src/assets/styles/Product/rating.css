@@ -74,6 +74,7 @@
 .rating-count{
   margin-top: clamp(0.5rem, 0.5rem + 1vw, 1rem);
   font-size: clamp(0.8rem, 0.8rem + 0.8vw, 1.5rem);
+  color:var(--drinktitle);
 }
 /*------------------------------------------------------------------------*/
 /*container for the review list*/

@@ -210,7 +210,8 @@ button {
 .subtitle{
     font-family: 'Montserrat', sans-serif;
     font-style: italic;
-    font-weight: 100; 
+    font-weight: 100;
+    color:var(--title) ;
 }
 
 /*----------------------------------------------------------------------------------------*/

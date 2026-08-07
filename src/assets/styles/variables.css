@@ -104,6 +104,7 @@ html[data-theme="dark"] {
     --input-background: #303030;
     --input-text: #ffffff;
     --input-border: #555555;
+    
 
     --navbar-background: #000000;
     --navbar-text: #ffffff;
@@ -115,7 +116,7 @@ html[data-theme="dark"] {
     
     --title: #ffffff;
     --drinktitle: #ffffff;
-    --halfvisibletext: #c0c0c0;
+    --halfvisibletext: #525151;
     --bg: #1a1a1a;
     --offwhitebg: #2a2a2a;
     --reviewborder: #444444;
