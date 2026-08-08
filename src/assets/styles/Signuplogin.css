@@ -1,4 +1,9 @@
 
+#loginContainer,
+#signupContainer {
+    padding-top: 1px;
+}
+
 /*section container*/
 .container {
     display: flex;
