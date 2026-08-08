@@ -1,0 +1,90 @@
+@media print {
+
+  /* Navbar */
+  #RyanNavigationBar {
+    display: none;
+  }
+
+  /* Hero */
+  #RyanHero {
+    display: block;
+  }
+
+  #RyanCVButton {
+    display: none;
+  }
+
+  /* Skills */
+  .RyanSkillBar {
+    border: 1px solid #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .RyanSkillFill {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Education */
+  .RyanEducationCard {
+    border: 1px solid #000;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  /* Projects */
+  .RyanProjectCard {
+    border: 1px solid #000;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  /* Certifications */
+  .CertificationArrow,
+  #CertificationDots,
+  .CertificationPDFButton {
+    display: none;
+  }
+
+  /* Contact */
+  #RyanContactGrid {
+    display: block;
+  }
+
+  .RyanContactSocials {
+    display: none;
+  }
+
+  #RyanContactForm {
+    background: none;
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+
+  #RyanContactForm input,
+  #RyanContactForm textarea {
+    border: 1px solid #000;
+    background: white;
+  }
+
+  #RyanContactForm button {
+    display: none;
+  }
+
+  /* Footer */
+  footer {
+    display: none;
+  }
+
+  /* Global */
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
