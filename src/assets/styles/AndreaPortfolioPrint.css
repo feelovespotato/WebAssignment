@@ -1,0 +1,148 @@
+/* Print stylesheet */
+@page {
+    size: A4 portrait;
+    margin: 1cm;
+}
+
+@media print {
+    * {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .root,
+    html,
+    body {
+        background-color: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    /* Make text visible */
+    p,
+    .aboutText p,
+    .revealElement,
+    [class*="reveal"],
+    [class*="animate"] {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    header,
+    .hamburger,
+    .theme-toggle,
+    .btn-group,
+    .hero-tag ~ .btn-group,
+    .contact-form,
+    .social-links,
+    #hero .btn-group {
+        display: none !important;
+    }
+
+    #hero {
+        min-height: auto;
+        padding-top: 0;
+    }
+
+    main, .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    section {
+        padding: 1.2rem 0 !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        page-break-inside: avoid;
+    }
+
+    h1, h2, .hero-title, .section-title {
+        color: var(--text-primary) !important;
+    }
+
+    p, .bio-text p, .timeline-desc, .project-desc, .education-list li,
+    .contact-info p {
+        color: var(--text-secondary) !important;
+    }
+
+    .bio-image, .project-image {
+        display: none !important;
+    }
+
+    .bio-grid {
+        display: block;
+    }
+
+    .timeline::after {
+        display: none;
+    }
+
+    .timeline-container {
+        width: 100% !important;
+        left: 0 !important;
+        text-align: left !important;
+        padding: 0.5rem 0;
+    }
+
+    .timeline-container::after {
+        display: none;
+    }
+
+    .timeline-content, .education-card, .cert-card, .project-card,
+    .skills-category {
+        border: 1px solid var(--border-color) !important;
+        background: var(--card-bg) !important;
+        break-inside: avoid;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Certificate photos */
+    .cert-image {
+        filter: grayscale(1);
+        max-height: 160px;
+    }
+
+    .cert-caption, .cert-issuer {
+        color: var(--text-secondary) !important;
+    }
+
+    .skill-tag, .project-tag {
+        border: 1px solid var(--border-color) !important;
+        background: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    .proficiency-bar {
+        border: 1px solid var(--border-color) !important;
+        background: var(--bg-secondary) !important;
+    }
+
+    .proficiency-fill {
+        background: linear-gradient(90deg, var(--accent));
+        width: var(--target-width, 0%) !important;
+    }
+
+    .proficiency-fill::after {
+        display: none;
+    }
+
+    /* Print link destinations after the visible text */
+    .project-link[href]::after,
+    .info-item a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.75em;
+        color: var(--text-primary) !important;
+    }
+
+    footer {
+        background: var(--bg-secondary) !important;
+        color: var(--text-secondary) !important;
+        border-top: 1px solid var(--border-color) !important;
+    }
+
+    @page {
+        margin: 1.5cm;
+    }
+}
