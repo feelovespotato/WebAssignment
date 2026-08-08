@@ -137,12 +137,33 @@ function initialiseLoginPage() {
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const email = document.getElementById("email").value;
+        const email = document.getElementById("email").value.trim().toLowerCase();
         const password = document.getElementById("password").value;
         const pin = document.getElementById("pin").value;
 
         if (pin.length !== 4) {
             alert("Your PIN must contain exactly 4 digits.");
+            return;
+        }
+
+        // Look up the account and check the password actually matches
+        const USER_STORAGE_KEY = "pokkaUsers";
+        let users = [];
+        try {
+            const stored = localStorage.getItem(USER_STORAGE_KEY);
+            if (stored) {
+                users = JSON.parse(stored);
+            }
+        } catch (error) {
+            console.error("Stored users could not be read:", error);
+        }
+
+        const matchedUser = users.find(function (user) {
+            return user.email.toLowerCase() === email;
+        });
+
+        if (!matchedUser || matchedUser.password !== password) {
+            alert("Incorrect email or password.");
             return;
         }
 
