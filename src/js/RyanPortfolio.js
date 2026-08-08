@@ -15,3 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initCerts();
   observeAnimations();
 });
+
+document.getElementById('NavigationHamburgerButton').addEventListener('click', () => {
+  document.getElementById('RyanNavLinks').classList.toggle('RyanNavOpen'); /* on click burger on */
+});

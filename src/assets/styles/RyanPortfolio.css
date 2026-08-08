@@ -18,6 +18,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--PrimaryCardBorder);
+  
 }
 
 .RyanNavigationLogo {
@@ -27,11 +28,45 @@
   color: var(--PrimaryAccent);
 }
 
+/* adding the little 3 lines to hide all menu for when the page is too small to show */
+#NavigationHamburgerButton { /* normal is closed */
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--title);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .RyanNavigationLinks {
   display: flex;
   list-style: none;
   gap: clamp(1rem, 2.5vw, 2.5rem);
 }
+
+@media (max-width: 700px) { /* apply if the page is below 700px */
+
+  #NavigationHamburgerButton {
+    display: block;
+  }
+
+  .RyanNavigationLinks {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .RyanNavigationLinks.RyanNavOpen {
+    display: flex; /* turn the burger on*/
+  } 
+}
+
 
 .RyanNavigationLinks a {
   text-decoration: none;

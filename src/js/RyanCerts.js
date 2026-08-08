@@ -45,6 +45,7 @@ function initCerts() {
 
     setTimeout(() => {
       frame.setAttribute('SRC', cert.image);
+      frame.setAttribute('alt', cert.name);
       name.textContent = cert.name;
       desc.textContent = cert.desc;
       pdfLink.setAttribute('HREF', cert.pdf);
