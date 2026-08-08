@@ -15,10 +15,9 @@
   align-items: center;
   justify-content: space-between;
   padding: clamp(1rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 4rem);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--PrimaryCardBg);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--PrimaryCardBorder);
-  
 }
 
 .RyanNavigationLogo {
