@@ -1,0 +1,172 @@
+/* PAGE SETUP */
+@page {
+    size: A4 portrait;
+    margin: 2cm;
+}
+
+/* GLOBAL PRINT COLORS */
+@media print {
+
+    :root,
+    html,
+    body {
+        background-color: var(--surfaceColor) !important;
+        color: var(--headingColor) !important;
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Remove animations, transitions, shadows */
+    * {
+        animation: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Make text visible */
+    p,
+    .aboutText p,
+    .revealElement,
+    [class*="reveal"],
+    [class*="animate"] {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+
+    /* Hide items */
+    #headerContainer,
+    #footerContainer,
+    .navbar,
+    .nav-links,
+    .cta-btn,
+    .social-icons,
+    button,
+    form,
+    .no-print {
+        display: none !important;
+    }
+
+    /* TYPOGRAPHY */
+    h1 {
+        font-size: 18pt !important;
+        margin-bottom: 0.5em !important;
+    }
+
+    h2 {
+        font-size: 14pt !important;
+        margin-top: 1em !important;
+        margin-bottom: 0.4em !important;
+        border-bottom: 1px solid var(--borderColor) !important;
+    }
+
+    h3 {
+        font-size: 12pt !important;
+    }
+
+    p,
+    li {
+        font-size: 10.5pt !important;
+    }
+
+    /* Links */
+    a {
+        color: var(--primaryColor) !important;
+        text-decoration: underline !important;
+    }
+
+    /* External links */
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 8.5pt;
+        font-weight: normal;
+    }
+
+    /* PAGE BREAK */
+    section,
+    .card,
+    .project-card,
+    .education-item,
+    .experience-item,
+    .certification-card,
+    img {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* HIDE OVERLAYS, PROMPTS */
+    .certificateOverlay,
+    .skillClickHint,
+    .certificationToggleButton,
+    .experienceToggleButton {
+        display: none !important;
+    }
+
+    /* EXPAND SKILLS TO SHOW ON PRINT */
+    details.skillCategory {
+        display: block !important;
+        border: 1px solid var(--surfaceColor2) !important;
+        padding: 12px !important;
+        margin-bottom: 12px !important;
+    }
+
+    details.skillCategory .skillStats {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .skillBar {
+        background-color: var(--backgroundColor) !important;
+        border: 1px solid var(--borderColor) !important;
+    }
+
+    .skillBarFill {
+        width: var(--level) !important;
+        background-color: var(--backgroundColor) !important;
+        height: 100% !important;
+    }
+
+    /* EXPAND CERTIFICATES TO SHOW ON PRINT */
+    .extraCertifications {
+        grid-template-rows: 1fr !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .extraCertificationsInner {
+        overflow: visible !important;
+    }
+
+    .extraCertifications .certificationCard {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* EXPAND EXPERIENCES TO SHOW ON PRINT */
+    .extraExperiences {
+        grid-template-rows: 1fr !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .extraExperiencesInner {
+        overflow: visible !important;
+    }
+
+    .extraExperiences .timeline-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* IMAGE */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
