@@ -61,6 +61,14 @@
     margin: clamp(0.2rem, 0.2rem + 0.5vw , 0.6rem) clamp(0.2rem, 0.2rem + 0.5vw , 0.4rem);
 }
 
+.solidbutton:visited {
+    color: var(--textwhite);
+}
+
+.solidbutton:visited:hover {
+    color: var(--grayhovertext); /* match whatever your normal .solidbutton:hover uses */
+}
+
 /*bring the name + bio part down avoid breaking and not nice*/
 @media (max-width: 950px) {
     .hero-card {
