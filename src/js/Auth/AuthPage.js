@@ -53,7 +53,7 @@ async function loadComponent(containerId, filePath) {
 }
 
 
-//SIGNUP FORM
+//SIGNUP FORM (3-step wizard: Personal -> Account -> Security)
 
 function initialiseSignupPage() {
     setupPasswordToggle("password", "togglePassword");
@@ -66,26 +66,138 @@ function initialiseSignupPage() {
         return;
     }
 
+    const steps = Array.from(signupForm.querySelectorAll(".form-step"));
+    const indicators = Array.from(
+        document.querySelectorAll(".stepper .progress-step")
+    );
+
+    // moves the wizard to the given step number, updating the panel that's
+    // shown, the progress indicator, and where keyboard focus lands
+    function showStep(stepNumber) {
+        steps.forEach(function (stepEl) {
+            const isTarget = Number(stepEl.dataset.step) === stepNumber;
+            stepEl.classList.toggle("hidden", !isTarget);
+            stepEl.setAttribute("aria-hidden", String(!isTarget));
+        });
+
+        indicators.forEach(function (indicatorEl) {
+            const stepNum = Number(indicatorEl.dataset.step);
+            indicatorEl.classList.toggle("active", stepNum === stepNumber);
+            indicatorEl.classList.toggle("completed", stepNum < stepNumber);
+
+            if (stepNum === stepNumber) {
+                indicatorEl.setAttribute("aria-current", "step");
+            } else {
+                indicatorEl.removeAttribute("aria-current");
+            }
+        });
+
+        const activeStep = steps.find(function (stepEl) {
+            return Number(stepEl.dataset.step) === stepNumber;
+        });
+
+        const firstField = activeStep && activeStep.querySelector("input");
+        if (firstField) firstField.focus();
+    }
+
+    // STEP 1: first name, last name, mobile number
+    function validateStep1() {
+        const firstName = document.getElementById("firstName");
+        const lastName = document.getElementById("lastName");
+        const mobileNumber = document.getElementById("mobileNumber");
+        const message = document.getElementById("step1Message");
+
+        clearMessage(message);
+
+        if (!firstName.checkValidity() || !lastName.checkValidity()) {
+            showMessage(message, "Please enter your first and last name.", "error");
+            return false;
+        }
+
+        if (!mobileNumber.checkValidity()) {
+            showMessage(message, "Please enter a valid mobile number.", "error");
+            return false;
+        }
+
+        return true;
+    }
+
+    // STEP 2: email, password, confirm password
+    function validateStep2() {
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const message = document.getElementById("step2Message");
+
+        clearMessage(message);
+
+        if (!email.checkValidity()) {
+            showMessage(message, "Please enter a valid email address.", "error");
+            return false;
+        }
+
+        if (!password.checkValidity()) {
+            showMessage(message, "Password must be at least 6 characters long.", "error");
+            return false;
+        }
+
+        if (password.value !== confirmPassword.value) {
+            showMessage(message, "The passwords do not match.", "error");
+            return false;
+        }
+
+        return true;
+    }
+
+    // STEP 3: 4-digit PIN
+    function validateStep3() {
+        const pin = document.getElementById("pin");
+        const message = document.getElementById("step3Message");
+
+        clearMessage(message);
+
+        if (!/^[0-9]{4}$/.test(pin.value)) {
+            showMessage(message, "Your PIN must contain exactly 4 digits.", "error");
+            return false;
+        }
+
+        return true;
+    }
+
+    document.getElementById("toStep2").addEventListener("click", function () {
+        if (validateStep1()) showStep(2);
+    });
+
+    document.getElementById("backToStep1").addEventListener("click", function () {
+        showStep(1);
+    });
+
+    document.getElementById("toStep3").addEventListener("click", function () {
+        if (validateStep2()) showStep(3);
+    });
+
+    document.getElementById("backToStep2").addEventListener("click", function () {
+        showStep(2);
+    });
+
     signupForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        // 1. Retrieve the email input along with the others
-        const email = document.getElementById("email").value;
+        // re-check every step at submit time too, in case a user reached step 3
+        // then used the back buttons and changed an earlier answer
+        if (!validateStep1() || !validateStep2()) {
+            showStep(!validateStep1() ? 1 : 2);
+            return;
+        }
+
+        if (!validateStep3()) {
+            return;
+        }
+
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
         const pin = document.getElementById("pin").value;
 
-        if (password !== confirmPassword) {
-            alert("The passwords do not match.");
-            return;
-        }
-
-        if (pin.length !== 4) {
-            alert("Your PIN must contain exactly 4 digits.");
-            return;
-        }
-
-        // 2. Fetch existing users from localStorage or start an empty array
         const USER_STORAGE_KEY = "pokkaUsers";
         let users = [];
         try {
@@ -97,28 +209,34 @@ function initialiseSignupPage() {
             console.error("Stored users could not be read:", error);
         }
 
-        // 3. Optional: Check if the user already exists before saving
         const accountExists = users.some(function (user) {
             return user.email.toLowerCase() === email.toLowerCase();
         });
 
         if (accountExists) {
-            alert("An account with this email already exists.");
+            showMessage(
+                document.getElementById("step2Message"),
+                "An account with this email already exists.",
+                "error"
+            );
+            showStep(2);
             return;
         }
 
-        // 4. Save the newly registered user to localStorage
         users.push({
             email: email,
-            password: password
+            password: password,
+            pin: pin
         });
         localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(users));
 
         alert("Your Pokka account has been created!");
-        
-        // 5. Redirect to the Product Page
+
+        // Redirect to the Product Page
         window.location.href = "ProductPage.html";
     });
+
+    showStep(1);
 }
 
 //LOGIN FORM
@@ -168,7 +286,7 @@ function initialiseLoginPage() {
         }
 
         alert("Login successful!");
-        
+
         // Redirect to the Product Page upon successful login
         window.location.href = "ProductPage.html";
     });
@@ -210,4 +328,28 @@ function setupPasswordToggle(inputId, toggleId) {
             !passwordIsHidden
         );
     });
+}
+
+
+//STEP MESSAGE HELPERS (mirrors the pattern used in ForgotPassword.js)
+
+function showMessage(element, message, type) {
+    if (!element) {
+        return;
+    }
+
+    element.textContent = message;
+
+    element.classList.remove("error", "success");
+    element.classList.add(type);
+}
+
+function clearMessage(element) {
+    if (!element) {
+        return;
+    }
+
+    element.textContent = "";
+
+    element.classList.remove("error", "success");
 }

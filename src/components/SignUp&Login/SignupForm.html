@@ -11,132 +11,184 @@
         </p>
     </header>
 
+    <!-- progress indicator -->
+    <ol class="stepper" aria-label="Signup progress">
+        <li class="progress-step active" data-step="1" aria-current="step">
+            <span class="step-circle">1</span>
+            <span class="step-label">Personal</span>
+        </li>
+        <li class="progress-step" data-step="2">
+            <span class="step-circle">2</span>
+            <span class="step-label">Account</span>
+        </li>
+        <li class="progress-step" data-step="3">
+            <span class="step-circle">3</span>
+            <span class="step-label">Security</span>
+        </li>
+    </ol>
+
     <form
         id="signupFormElement"
         action="#"
         method="post"
+        novalidate
     >
 
-        <label for="email">Email Address</label>
+        <!-- STEP 1: Personal details -->
+        <div class="form-step" id="signupStep1" data-step="1">
 
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email Address"
-            required
-        >
-
-
-        <label for="firstName">First Name</label>
-
-        <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            placeholder="First Name"
-            required
-        >
-
-
-        <label for="lastName">Last Name</label>
-
-        <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            placeholder="Last Name"
-            required
-        >
-
-
-        <label for="mobileNumber">Mobile Number</label>
-
-        <input
-            type="tel"
-            id="mobileNumber"
-            name="mobileNumber"
-            placeholder="Mobile Number"
-            required
-        >
-
-
-        <label for="password">Password</label>
-
-        <div class="passwordContainer">
+            <label for="firstName">First Name</label>
 
             <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                maxlength="8"
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="First Name"
                 required
             >
 
-            <i
-                class="fa-solid fa-eye-slash"
-                id="togglePassword"
-                role="button"
-                aria-label="Show or hide password"
-            ></i>
+
+            <label for="lastName">Last Name</label>
+
+            <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name"
+                required
+            >
+
+
+            <label for="mobileNumber">Mobile Number</label>
+
+            <input
+                type="tel"
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+                pattern="[0-9+\-\s]{8,15}"
+                required
+            >
+
+            <p class="stepMessage" id="step1Message" aria-live="polite"></p>
+
+            <div class="stepNav">
+                <span></span>
+                <button type="button" class="solidbutton" id="toStep2">
+                    Next
+                </button>
+            </div>
 
         </div>
 
 
-        <label for="confirmPassword">
-            Confirm Password
-        </label>
+        <!-- STEP 2: Account credentials -->
+        <div class="form-step hidden" id="signupStep2" data-step="2" aria-hidden="true">
 
-        <div class="passwordContainer">
+            <label for="email">Email Address</label>
 
             <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Confirm your Password"
-                maxlength="8"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
                 required
             >
 
-            <i
-                class="fa-solid fa-eye-slash"
-                id="toggleConfirmPassword"
-                role="button"
-                aria-label="Show or hide confirmed password"
-            ></i>
+
+            <label for="password">Password</label>
+
+            <div class="passwordContainer">
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    minlength="6"
+                    required
+                >
+
+                <i
+                    class="fa-solid fa-eye-slash"
+                    id="togglePassword"
+                    role="button"
+                    aria-label="Show or hide password"
+                ></i>
+
+            </div>
+
+
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+
+            <div class="passwordContainer">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your Password"
+                    minlength="6"
+                    required
+                >
+
+                <i
+                    class="fa-solid fa-eye-slash"
+                    id="toggleConfirmPassword"
+                    role="button"
+                    aria-label="Show or hide confirmed password"
+                ></i>
+
+            </div>
+
+            <p class="stepMessage" id="step2Message" aria-live="polite"></p>
+
+            <div class="stepNav">
+                <button type="button" class="outlineButton" id="backToStep1">
+                    Back
+                </button>
+                <button type="button" class="solidbutton" id="toStep3">
+                    Next
+                </button>
+            </div>
 
         </div>
 
 
-        <label for="pin">
-            A 4-digit Unique PIN Code
-        </label>
+        <!-- STEP 3: Security PIN + review -->
+        <div class="form-step hidden" id="signupStep3" data-step="3" aria-hidden="true">
 
-        <input
-            type="text"
-            id="pin"
-            name="pin"
-            placeholder="A 4-digit PIN. Yours alone."
-            minlength="4"
-            maxlength="4"
-            pattern="[0-9]{4}"
-            inputmode="numeric"
-            oninput="this.value=this.value.replace(/[^0-9]/g, '')"
-            required
-        >
+            <label for="pin">
+                A 4-digit Unique PIN Code
+            </label>
 
+            <input
+                type="text"
+                id="pin"
+                name="pin"
+                placeholder="A 4-digit PIN. Yours alone."
+                minlength="4"
+                maxlength="4"
+                pattern="[0-9]{4}"
+                inputmode="numeric"
+                oninput="this.value=this.value.replace(/[^0-9]/g, '')"
+                required
+            >
 
-        
+            <p class="stepMessage" id="step3Message" aria-live="polite"></p>
 
-        <button
-            type="submit"
-            class="solidbutton"
-        >
-            Submit
-        </button>
+            <div class="stepNav">
+                <button type="button" class="outlineButton" id="backToStep2">
+                    Back
+                </button>
+                <button type="submit" class="solidbutton">
+                    Submit
+                </button>
+            </div>
 
-        
+        </div>
 
     </form>
 

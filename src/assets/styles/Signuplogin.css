@@ -1,4 +1,3 @@
-
 #loginContainer,
 #signupContainer {
     padding-top: 1px;
@@ -149,6 +148,160 @@ input:focus {
     height: 18px;
     
 }
+
+/*==========================================================*/
+/* MULTI-STEP SIGNUP WIZARD (Personal -> Account -> Security) */
+/* reuses .hidden further down this file for step panels,     */
+/* and the same tokens as the rest of this stylesheet          */
+/*==========================================================*/
+
+/*progress indicator - the "1-2-3" row above the form*/
+.stepper {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 28rem;
+    margin: 0 auto clamp(2rem, 1.5rem + 1vw, 3rem);
+    padding: 0;
+}
+
+/*each numbered stop on the progress indicator - not to be confused
+  with .stepindicator below, which labels the forgot-password steps.
+  side padding (not a flex gap) is what creates the space between labels,
+  so the connecting-line pseudo-element below still has a contiguous
+  box to stretch across into the next step*/
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 clamp(0.5rem, 0.25rem + 1vw, 1.25rem);
+}
+
+/*connecting line drawn behind each circle, joining it to the next step*/
+.progress-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.1rem;
+    left: 55%;
+    width: 90%;
+    height: 2px;
+    background-color: var(--grayborder);
+    z-index: 0;
+}
+
+.progress-step.completed:not(:last-child)::after {
+    background-color: var(--successborder);
+}
+
+.step-circle {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background-color: var(--bg);
+    border: 2px solid var(--grayborder);
+    color: var(--halfvisibletext);
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.progress-step.active .step-circle {
+    border-color: var(--redborderbutton);
+    background-color: var(--redbutton);
+    color: var(--textwhite);
+}
+
+.progress-step.completed .step-circle {
+    border-color: var(--successborder);
+    background-color: var(--successbg);
+    color: var(--successtext);
+}
+
+.step-label {
+    font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.95rem);
+    font-weight: 500;
+    color: var(--halfvisibletext);
+    text-align: center;
+}
+
+.progress-step.active .step-label {
+    color: var(--title);
+    font-weight: 600;
+}
+
+/*step feedback message, styled the same as the forgot-password
+  form's error/success text further down this file*/
+.stepMessage {
+    min-height: 1.4em;
+    font-size: clamp(0.85rem, 0.8rem + 0.3vw, 1rem);
+    margin: 0.5rem 0 1rem;
+}
+
+.stepMessage.error {
+    color: var(--redtext);
+}
+
+.stepMessage.success {
+    color: var(--successtext);
+}
+
+/*Back / Next row - overrides .solidbutton's width:100% above so the two
+  buttons can sit side by side instead of each filling the full row*/
+.stepNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stepNav .solidbutton,
+.stepNav .outlineButton {
+    width: auto;
+    flex: 1;
+    margin-top: 0;
+}
+
+/*secondary "Back" button - hollow counterpart to .solidbutton*/
+.outlineButton {
+    border: 1px solid var(--redborderbutton);
+    background-color: transparent;
+    border-radius: 100vw;
+    padding: clamp(0.8rem, 0.8rem + 1vw, 1rem) clamp(1.5rem, 1rem + 1vw, 2rem);
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: var(--redtext);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.outlineButton:hover {
+    background-color: var(--bgpink);
+}
+
+@media (max-width: 480px) {
+    .stepNav {
+        flex-direction: column-reverse;
+    }
+
+    .step-label {
+        display: none;
+    }
+}
+
  /*forgot password section contaienr*/
 .sectioncontainer{
     display:flex;
